@@ -245,30 +245,41 @@
     .content-card {
       background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border);
       padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      width: 100%; overflow: hidden;
+      width: 100%; max-width: 100%; overflow: hidden;
     }
     @media (min-width: 640px) {
       .content-card { padding: 20px; }
     }
 
     .card-header {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      align-items: flex-start; gap: 10px; margin-bottom: 14px;
+      display: flex; flex-direction: column;
+      align-items: flex-start; gap: 12px; margin-bottom: 14px;
       border-bottom: 1px solid var(--border); padding-bottom: 12px;
       width: 100%;
     }
+    @media (min-width: 768px) {
+      .card-header {
+        flex-direction: row; justify-content: space-between; align-items: flex-start;
+      }
+    }
 
-    .card-title { min-width: 0; flex: 1 1 240px; }
+    .card-title { width: 100%; min-width: 0; }
+    @media (min-width: 768px) {
+      .card-title { flex: 1; }
+    }
     .card-title h2 { font-size: 16px; font-weight: 800; color: var(--text-main); word-break: break-word; }
     .card-title p { font-size: 12px; color: var(--text-muted); word-break: break-word; }
 
     .action-group {
-      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-      margin-left: auto;
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .action-group { width: auto; margin-left: auto; justify-content: flex-end; }
     }
 
     .select-dropdown {
-      padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+      padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border);
       font-size: 12px; font-weight: 600; background-color: #f1f5f9;
       color: var(--text-main); outline: none; max-width: 100%;
     }
@@ -636,15 +647,13 @@
               <input type="password" id="setting-new-pin" placeholder="പുതിയ പിൻ" class="select-dropdown" style="width:100%; margin-top:4px;" maxlength="8">
             </div>
             <button onclick="savePersonalPin()" class="btn-primary-sm" style="width:100%;">വ്യക്തിഗത പിൻ സേവ് ചെയ്യുക</button>
-        <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:14px; overflow:hidden;">
-          <h3 style="font-size:14px; font-weight:800; margin-bottom:8px;">📋 ഭാരവാഹികളുടെ പട്ടിക & പാസ്‌വേഡ് മാനേജ്‌മെന്റ്</h3>
-          <div class="table-responsive">
-            <table class="stats-table">
-              <thead>
-                <tr><th>പേര്</th><th>പദവി</th><th>വിഭാഗം</th><th>സ്വന്തം പിൻ</th><th>നടപടി</th></tr>
-              </thead>
-              <tbody id="admin-leaders-tbody"></tbody>
-            </table>
+          </div>
+
+          <div class="admin-box">
+            <h3>💾 സിസ്റ്റം ബാക്കപ്പ് & ഡാറ്റാ സുരക്ഷ</h3>
+            <p style="font-size:12px; color:#64748b; margin-bottom:12px; line-height:1.5;">യൂണിറ്റിന്റെ മുഴുവൻ ഡാറ്റയും സുരക്ഷിതമായി സൂക്ഷിക്കാൻ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുകയോ പുനഃക്രമീകരിക്കുകയോ ചെയ്യാം.</p>
+            <button onclick="exportDataBackup()" class="btn-secondary" style="width:100%; margin-bottom:10px;">📥 ബാക്കപ്പ് ഫയൽ ഡൗൺലോഡ് (JSON)</button>
+            <button onclick="confirmResetAllPins()" class="btn-secondary" style="width:100%; color:#dc2626; border-color:#fca5a5;">⚠️ മുഴുവൻ പിൻ കോഡുകളും റീസെറ്റ് ചെയ്യുക</button>
           </div>
         </div>
       </div>
