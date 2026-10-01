@@ -220,6 +220,36 @@
       outline: none; cursor: pointer; max-width: 100%;
     }
 
+    .year-dropdown, .cal-dropdown {
+      padding: 6px 10px; border-radius: 8px; border: 1.5px solid #cbd5e1;
+      background: #ffffff; font-size: 12px; font-weight: 700; color: #1e293b;
+      outline: none; cursor: pointer;
+    }
+
+    .today-banner {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #e0f2fe 100%);
+      border: 1.5px solid #86efac; border-radius: 14px; padding: 12px 16px;
+      display: flex; flex-direction: column; gap: 8px; width: 100%;
+      box-shadow: 0 2px 8px rgba(4, 120, 87, 0.05);
+    }
+    @media (min-width: 640px) {
+      .today-banner { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+
+    .today-badge-chip {
+      background: #047857; color: #fff; padding: 3px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;
+    }
+
+    .dual-metrics-wrapper {
+      display: flex; flex-direction: column; gap: 12px; width: 100%;
+    }
+
+    .metrics-section-title {
+      font-size: 12.5px; font-weight: 800; color: #0f172a;
+      display: flex; align-items: center; gap: 6px; margin-bottom: 6px;
+    }
+
     /* TABS */
     .tabs-bar {
       display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;
@@ -327,235 +357,198 @@
       }
     }
 
-    .task-interactive-card.status-done {
-      background-color: #f0fdf4; border-color: #86efac; border-left: 5px solid #16a34a;
-    }
-    .task-interactive-card.status-in-progress {
-      background-color: #fefce8; border-color: #fde047; border-left: 5px solid #ca8a04;
-    }
-    .task-interactive-card.status-pending {
-      background-color: #ffffff; border-color: #e2e8f0; border-left: 5px solid #dc2626;
-    }
-    .task-interactive-card.status-missed {
-      background-color: #faf5ff; border-color: #d8b4fe; border-left: 5px solid #7c3aed;
-    }
+      <div id="toast"><span id="toast-text">സന്ദേശം കോപ്പി ചെയ്തു!</span></div>
 
-    .task-info-block { min-width: 0; flex: 1; }
-    .task-action-block { flex-shrink: 0; align-self: flex-start; }
-
-    .tag-pill {
-      background: #f1f5f9; padding: 2px 7px; border-radius: 6px; font-size: 11px;
-      font-weight: 700; color: #475569; display: inline-block; margin-right: 4px; margin-top: 3px;
-      word-break: break-word;
-    }
-
-    .cycle-btn {
-      padding: 6px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700;
-      border: 1.5px solid transparent; cursor: pointer; white-space: normal;
-      text-align: center; max-width: 100%; line-height: 1.3;
-      display: inline-flex; align-items: center; justify-content: center; gap: 4px;
-    }
-    .cycle-btn.btn-done { background: #16a34a; color: #fff; }
-    .cycle-btn.btn-in-progress { background: #eab308; color: #713f12; border-color: #ca8a04; }
-    .cycle-btn.btn-pending { background: #fef2f2; color: #b91c1c; border-color: #fca5a5; }
-    .cycle-btn.btn-missed { background: #f3e8ff; color: #6b21a8; border-color: #c084fc; }
-
-    /* TABLES AND MOBILE HORIZONTAL SCROLL */
-    .table-responsive {
-      width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
-      margin-top: 8px; border-radius: 8px; border: 1px solid var(--border);
-    }
-
-    .stats-table {
-      width: 100%; min-width: 440px; border-collapse: collapse; font-size: 12px;
-    }
-    .stats-table th {
-      background: #f1f5f9; padding: 8px 10px; text-align: left; font-weight: 700;
-      border-bottom: 2px solid var(--border); white-space: nowrap;
-    }
-    .stats-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); word-break: break-word; }
-    .stats-table tr:hover { background-color: #f8fafc; }
-
-    /* TOAST */
-    #toast {
-      position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #ffffff;
-      padding: 10px 18px; border-radius: 10px; font-size: 12.5px; font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0;
-      transition: all 0.3s ease; z-index: 100000; pointer-events: none;
-      max-width: calc(100vw - 40px);
-    }
-    #toast.show { transform: translateY(0); opacity: 1; }
-
-    /* ADMIN & SETTINGS */
-    .admin-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: 14px; margin-bottom: 18px; width: 100%;
-    }
-    .admin-box {
-      background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px;
-      min-width: 0;
-    }
-    .admin-box h3 {
-      font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 10px;
-    }
-    .setting-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 0; border-bottom: 1px solid #f1f5f9; flex-wrap: wrap; gap: 6px;
-    }
-    .setting-row:last-child { border-bottom: none; }
-    .btn-secondary {
-      background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px;
-      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; max-width: 100%;
-    }
-    .btn-secondary:hover { background: #e2e8f0; }
-    .btn-primary-sm {
-      background: var(--primary); color: #fff; border: none; padding: 6px 12px;
-      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; max-width: 100%;
-    }
-    .btn-primary-sm:hover { background: var(--primary-dark); }
-
-    .hidden { display: none !important; }
-  </style>
-</head>
-<body>
-
-  <!-- AUTH GATE SCREEN -->
-  <div id="auth-gate-screen">
-    <div class="auth-card">
-      <div class="auth-badge">സുരക്ഷിത പ്രവേശന കവാടം</div>
-      <h2>SKSSF ആറങ്ങാടി യൂണിറ്റ്</h2>
-      <p class="auth-desc">പോർട്ടലിൽ പ്രവേശിക്കാൻ താങ്കളുടെ സുരക്ഷാ കോഡ് (PIN) അല്ലെങ്കിൽ വ്യക്തിഗത പാസ്‌വേഡ് നൽകുക:</p>
-
-      <div class="role-hint-box" id="gate-role-hint-box">
-        🔑 <strong>പിൻ വിവരങ്ങൾ (Role-Based Access):</strong><br>
-        • <strong>കോർ കമ്മിറ്റി (Admin):</strong> കോർ പിൻ നൽകുക.<br>
-        • <strong>എക്സിക്യൂട്ടീവ് കൗൺസിൽ:</strong> എക്സിക്യൂട്ടീവ് പിൻ നൽകുക.<br>
-        • <strong>മുഴുവൻ അംഗങ്ങൾ:</strong> അംഗങ്ങളുടെ പിൻ നൽകുക.<br>
-        • <strong>വ്യക്തിഗത പാസ്‌വേഡ്:</strong> താങ്കൾ സെറ്റ് ചെയ്ത സ്വന്തം പിൻ ഉപയോഗിക്കാം.
-      </div>
-      
-      <div class="pin-input-wrapper">
-        <input 
-          type="password" 
-          id="gate-pin-input" 
-          class="auth-input" 
-          placeholder="••••" 
-          maxlength="8" 
-          inputmode="numeric" 
-          autocomplete="off"
-          autofocus
-          oninput="handlePinInput(this)"
-          onkeydown="if(event.key==='Enter') verifyGatePin()"
-        >
-        <button type="button" onclick="togglePinVisibility('gate-pin-input', 'btn-toggle-eye')" id="btn-toggle-eye" class="btn-toggle-eye">കാണിക്കുക</button>
-      </div>
-
-      <button type="button" onclick="verifyGatePin()" class="auth-btn">പ്രവേശിക്കുക</button>
-      <button type="button" onclick="loginAsGuest()" class="guest-btn">പൊതുജന അറിയിപ്പുകൾ മാത്രം കാണുക (Guest View)</button>
-
-      <p id="gate-error" class="auth-error">തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി വീണ്ടും ശ്രമിക്കുക.</p>
-    </div>
-  </div>
-
-  <!-- MAIN APPLICATION -->
-  <div id="main-app" class="hidden">
-    <!-- Header -->
-    <header>
-      <div class="header-container">
-        <div class="brand">
-          <h1>SKSSF ആറങ്ങാടി യൂണിറ്റ്</h1>
-          <p>കർമ്മപദ്ധതി, വാട്സാപ്പ് & തത്സമയ അഡ്മിൻ പോർട്ടൽ</p>
-        </div>
-        <div class="header-controls">
-          <span id="current-role-badge" class="role-badge">കോർ കമ്മിറ്റി (Admin)</span>
-          <button id="header-settings-btn" onclick="switchTab('settings')" class="btn-header" title="യൂണിറ്റ് ക്രമീകരണങ്ങൾ">⚙️ ക്രമീകരണങ്ങൾ</button>
-          <button onclick="lockApp()" class="btn-header btn-lock" title="പോർട്ടൽ ലോക്ക് ചെയ്യുക">ലോക്ക് 🔒</button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Toast Notification -->
-    <div id="toast"><span id="toast-text">സന്ദേശം കോപ്പി ചെയ്തു!</span></div>
-
-    <main>
-      <!-- Overall Metrics Strip -->
-      <div class="metrics-grid">
-        <div class="metric-card card-total">
-          <div class="metric-icon">📋</div>
-          <div class="metric-data" style="flex:1;">
-            <h3 id="stat-total">0</h3>
-            <p>ആകെ ടാസ്‌‌കുകൾ</p>
+      <!-- Today's Significance Spotlight Banner -->
+      <div class="today-banner">
+        <div style="min-width:0; flex:1;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+            <span class="today-badge-chip">🌟 ഇന്നത്തെ തീയതി & ദിനവിശേഷം</span>
+            <span id="live-today-fulldate" style="font-size:12px; font-weight:800; color:#065f46;">ഇന്ന് ലോഡ് ചെയ്യുന്നു...</span>
+          </div>
+          <div id="live-today-specialty" style="font-size:12px; color:#334155; line-height:1.5;">
+            ഇന്നത്തെ ആത്മീയ-ഭൗതിക ദിനവിശേഷങ്ങൾ കണ്ടെത്തുന്നു...
           </div>
         </div>
+        <div style="display:flex; gap:6px; flex-shrink:0; align-items:center; flex-wrap:wrap;">
+          <button onclick="switchTab('today')" class="btn-primary-sm" style="font-size:11.5px; padding:6px 12px;">
+            ⚡ ഇന്നത്തെ ഡ്യൂട്ടി കാണുക
+          </button>
+        </div>
+      </div>
 
-        <div class="metric-card card-done">
-          <div class="metric-icon">✅</div>
-          <div class="metric-data" style="flex:1;">
-            <h3 id="stat-done">0</h3>
-            <p>പൂർത്തിയായവ (Done)</p>
-            <div class="progress-bar-container">
-              <div id="progress-done-bar" class="progress-segment" style="background:#16a34a; width:0%;"></div>
+      <!-- Overall Metrics Strip: Dual View (Annual Cumulative & Selected Month) -->
+      <div class="dual-metrics-wrapper">
+        <!-- Section A: Active Month Metrics -->
+        <div>
+          <div class="metrics-section-title">
+            <span>📅 ഈ മാസത്തെ പുരോഗതി (Selected Month: <span id="metrics-active-month-label" style="color:#047857;">റബീഉൽ ആഖിർ</span>)</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card card-total">
+              <div class="metric-icon">📋</div>
+              <div class="metric-data">
+                <h3 id="stat-month-total">0</h3>
+                <p>മാസ ടാസ്‌കുകൾ</p>
+              </div>
+            </div>
+            <div class="metric-card card-done">
+              <div class="metric-icon">✅</div>
+              <div class="metric-data">
+                <h3 id="stat-month-done">0</h3>
+                <p>പൂർത്തിയായവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-month-done" class="progress-segment" style="background:#16a34a; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-progress">
+              <div class="metric-icon">🟡</div>
+              <div class="metric-data">
+                <h3 id="stat-month-progress">0</h3>
+                <p>നടക്കുന്നവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-month-progress" class="progress-segment" style="background:#ca8a04; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-pending">
+              <div class="metric-icon">🔴</div>
+              <div class="metric-data">
+                <h3 id="stat-month-pending">0</h3>
+                <p>ബാക്കിയുള്ളവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-month-pending" class="progress-segment" style="background:#dc2626; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-missed">
+              <div class="metric-icon">⚠️</div>
+              <div class="metric-data">
+                <h3 id="stat-month-missed">0</h3>
+                <p>കാലാവധി കഴിഞ്ഞവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-month-missed" class="progress-segment" style="background:#7c3aed; width:0%;"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="metric-card card-progress">
-          <div class="metric-icon">🟡</div>
-          <div class="metric-data" style="flex:1;">
-            <h3 id="stat-progress">0</h3>
-            <p>നടന്നുകൊണ്ടിരിക്കുന്നവ</p>
-            <div class="progress-bar-container">
-              <div id="progress-progress-bar" class="progress-segment" style="background:#ca8a04; width:0%;"></div>
-            </div>
+        <!-- Section B: Annual Cumulative Metrics -->
+        <div>
+          <div class="metrics-section-title">
+            <span>🏆 വാർഷിക സമഗ്ര പുരോഗതി (Annual Year: <span id="metrics-active-year-label" style="color:#0284c7;">2026 - 2027</span>)</span>
           </div>
-        </div>
-
-        <div class="metric-card card-pending">
-          <div class="metric-icon">🔴</div>
-          <div class="metric-data" style="flex:1;">
-            <h3 id="stat-pending">0</h3>
-            <p>ബാക്കിയുള്ളവ (Pending)</p>
-            <div class="progress-bar-container">
-              <div id="progress-pending-bar" class="progress-segment" style="background:#dc2626; width:0%;"></div>
+          <div class="metrics-grid">
+            <div class="metric-card card-total">
+              <div class="metric-icon">🏛️</div>
+              <div class="metric-data">
+                <h3 id="stat-annual-total">0</h3>
+                <p>ആകെ വാർഷികം</p>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="metric-card card-missed">
-          <div class="metric-icon">⚠️</div>
-          <div class="metric-data" style="flex:1;">
-            <h3 id="stat-missed">0</h3>
-            <p>കാലാവധി കഴിഞ്ഞവ (Missed)</p>
-            <div class="progress-bar-container">
-              <div id="progress-missed-bar" class="progress-segment" style="background:#7c3aed; width:0%;"></div>
+            <div class="metric-card card-done">
+              <div class="metric-icon">✅</div>
+              <div class="metric-data">
+                <h3 id="stat-annual-done">0</h3>
+                <p>ആകെ കഴിഞ്ഞവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-annual-done" class="progress-segment" style="background:#16a34a; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-progress">
+              <div class="metric-icon">🟡</div>
+              <div class="metric-data">
+                <h3 id="stat-annual-progress">0</h3>
+                <p>ആകെ നടക്കുന്നവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-annual-progress" class="progress-segment" style="background:#ca8a04; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-pending">
+              <div class="metric-icon">🔴</div>
+              <div class="metric-data">
+                <h3 id="stat-annual-pending">0</h3>
+                <p>ആകെ ബാക്കി</p>
+                <div class="progress-bar-container">
+                  <div id="prog-annual-pending" class="progress-segment" style="background:#dc2626; width:0%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="metric-card card-missed">
+              <div class="metric-icon">⚠️</div>
+              <div class="metric-data">
+                <h3 id="stat-annual-missed">0</h3>
+                <p>റീഷെഡ്യൂൾ ചെയ്തവ</p>
+                <div class="progress-bar-container">
+                  <div id="prog-annual-missed" class="progress-segment" style="background:#7c3aed; width:0%;"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Filter Panel with 12 Month Master Calendar -->
+      <!-- Perpetual Filter Panel with Year, Hijri Month, and Gregorian Month -->
       <div class="filter-panel">
         <div class="filter-controls-wrap">
-          <span style="font-size:12.5px; font-weight:800; color:#065f46; white-space:nowrap;">മാസം / കാലയളവ്:</span>
-          <select id="month-selector" onchange="onMonthChange()" class="month-dropdown">
-            <option value="auto" id="opt-auto-date">ഇന്നത്തെ തീയതി (Auto Detect)</option>
-            <option value="all">മുഴുവൻ വാർഷിക പദ്ധതികൾ (All Year 2026 - 2027)</option>
-            <optgroup label="─── പ്രതിമാസ കലണ്ടർ ───">
-              <option value="rabi_al_akhir">1. റബീഉൽ ആഖിർ (സെപ്റ്റംബർ - ഒക്ടോബർ 2026)</option>
-              <option value="jumada_al_ula">2. ജുമാദൽ ഊലാ (ഒക്ടോബർ - നവംബർ 2026)</option>
-              <option value="jumada_al_akhira">3. ജുമാദൽ ആഖിറ (നവംബർ - ഡിസംബർ 2026)</option>
-              <option value="rajab">4. റജബ് (ഡിസംബർ 2026 - ജനുവരി 2027)</option>
-              <option value="shaban">5. ശഅ്ബാൻ (ജനുവരി - ഫെബ്രുവരി 2027)</option>
-              <option value="ramadan">6. വിശുദ്ധ റമളാൻ (ഫെബ്രുവരി - മാർച്ച് 2027)</option>
-              <option value="shawwal">7. ശവ്വാൽ (മാർച്ച് - ഏപ്രിൽ 2027)</option>
-              <option value="dhul_qadah">8. ദുൽഖഅ്ദ (ഏപ്രിൽ - മെയ് 2027)</option>
-              <option value="dhul_hijjah">9. ദുൽഹിജ്ജ (മെയ് - ജൂൺ 2027)</option>
-              <option value="muharram">10. മുഹർറം (ജൂൺ - ജൂലൈ 2027)</option>
-              <option value="safar">11. സഫർ (ജൂലൈ - ആഗസ്റ്റ് 2027)</option>
-              <option value="rabi_al_awwal">12. റബീഉൽ അവ്വൽ (ആഗസ്റ്റ് - സെപ്റ്റംബർ 2027)</option>
-            </optgroup>
-          </select>
-          <span id="active-period-name" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 10px; border-radius:14px; font-size:11.5px; font-weight:700; word-break:break-word;">
+          <!-- Year Selector -->
+          <div style="display:flex; align-items:center; gap:5px;">
+            <span style="font-size:12px; font-weight:800; color:#0f172a;">വർഷം:</span>
+            <select id="cal-year-select" onchange="onYearOrCalendarChange()" class="year-dropdown">
+              <option value="2026">2026 – 2027 (1448 – 1449)</option>
+              <option value="2027">2027 – 2028 (1449 – 1450)</option>
+              <option value="2028">2028 – 2029 (1450 – 1451)</option>
+              <option value="2029">2029 – 2030 (1451 – 1452)</option>
+              <option value="2030">2030 – 2031 (1452 – 1453)</option>
+            </select>
+          </div>
+
+          <!-- Hijri Month Selector -->
+          <div style="display:flex; align-items:center; gap:5px;">
+            <span style="font-size:12px; font-weight:800; color:#065f46;">അറബി (ഹിജ്‌റ):</span>
+            <select id="hijri-month-select" onchange="onHijriMonthChange()" class="month-dropdown">
+              <option value="auto">🌟 ഇന്നത്തെ തീയതി (Auto)</option>
+              <option value="all">മുഴുവൻ വർഷം (All 12 Months)</option>
+              <option value="muharram">1. മുഹർറം</option>
+              <option value="safar">2. സഫർ</option>
+              <option value="rabi_al_awwal">3. റബീഉൽ അവ്വൽ</option>
+              <option value="rabi_al_akhir">4. റബീഉൽ ആഖിർ</option>
+              <option value="jumada_al_ula">5. ജുമാദൽ ഊലാ</option>
+              <option value="jumada_al_akhira">6. ജുമാദൽ ആഖിറ</option>
+              <option value="rajab">7. റജബ്</option>
+              <option value="shaban">8. ശഅ്ബാൻ</option>
+              <option value="ramadan">9. വിശുദ്ധ റമളാൻ</option>
+              <option value="shawwal">10. ശവ്വാൽ</option>
+              <option value="dhul_qadah">11. ദുൽഖഅ്ദ</option>
+              <option value="dhul_hijjah">12. ദുൽഹിജ്ജ</option>
+            </select>
+          </div>
+
+          <!-- Gregorian Month Selector -->
+          <div style="display:flex; align-items:center; gap:5px;">
+            <span style="font-size:12px; font-weight:800; color:#0369a1;">ഇംഗ്ലീഷ് മാസം:</span>
+            <select id="greg-month-select" onchange="onGregorianMonthChange()" class="cal-dropdown">
+              <option value="all">മുഴുവൻ മാസങ്ങളും</option>
+              <option value="0">ജനുവരി (Jan)</option>
+              <option value="1">ഫെബ്രുവരി (Feb)</option>
+              <option value="2">മാർച്ച് (Mar)</option>
+              <option value="3">ഏപ്രിൽ (Apr)</option>
+              <option value="4">മെയ് (May)</option>
+              <option value="5">ജൂൺ (Jun)</option>
+              <option value="6">ജൂലൈ (Jul)</option>
+              <option value="7">ആഗസ്റ്റ് (Aug)</option>
+              <option value="8">സെപ്റ്റംബർ (Sep)</option>
+              <option value="9">ഒക്ടോബർ (Oct)</option>
+              <option value="10">നവംബർ (Nov)</option>
+              <option value="11">ഡിസംബർ (Dec)</option>
+            </select>
+          </div>
+
+          <span id="active-period-name" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 10px; border-radius:14px; font-size:11.5px; font-weight:700;">
             റബീഉൽ ആഖിർ
           </span>
         </div>
@@ -566,6 +559,7 @@
 
       <!-- Navigation Tabs -->
       <div class="tabs-bar">
+        <button onclick="switchTab('today')" id="tab-today" class="tab-btn" style="border-color:#10b981; color:#047857; font-weight:800;">📅 ഇന്നത്തെ കർമ്മപദ്ധതി</button>
         <button onclick="switchTab('analytics')" id="tab-analytics" class="tab-btn active">📊 പ്രോഗ്രസ് റിപ്പോർട്ട്</button>
         <button onclick="switchTab('admin')" id="tab-admin" class="tab-btn tab-admin">👑 അഡ്മിൻ ഡാഷ്‌ബോർഡ്</button>
         <button onclick="switchTab('core')" id="tab-core" class="tab-btn">🔒 കോർ കമ്മിറ്റി (Tier 1)</button>
@@ -576,6 +570,42 @@
         <button onclick="switchTab('subwings')" id="tab-subwings" class="tab-btn">🏢 സബ് വിംഗുകൾ</button>
         <button onclick="switchTab('agenda')" id="tab-agenda" class="tab-btn">🗓️ മീറ്റിംഗ് അജണ്ട</button>
         <button onclick="switchTab('settings')" id="tab-settings" class="tab-btn tab-settings">⚙️ സെറ്റിങ്സ്</button>
+      </div>
+
+      <!-- TAB: Today's Action Plan (ഇന്നത്തെ കർമ്മപദ്ധതി) -->
+      <div id="view-today" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>📅 ഇന്നത്തെ തീയതിയിലെ പ്രത്യേക കർമ്മപദ്ധതികളും ചുമതലകളും</h2>
+            <p id="today-view-subtitle">ഇന്ന് യൂണിറ്റിൽ നടപ്പിലാക്കേണ്ട നിത്യേനയുള്ളതും പ്രതിവാര/പ്രതിമാസവുമായ പ്രവർത്തനങ്ങൾ</p>
+          </div>
+          <div class="action-group">
+            <button onclick="copyElementText('today-whatsapp-msg', 'ഇന്നത്തെ കർമ്മപദ്ധതി കോപ്പി ചെയ്തു!')" class="btn-copy">കോപ്പി</button>
+            <a id="share-today-wa" href="#" target="_blank" class="btn-whatsapp">വാട്സാപ്പ് ഷെയർ</a>
+          </div>
+        </div>
+
+        <!-- Routine breakdown boxes -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:12px; margin-bottom:14px;">
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:12px;">
+            <h4 style="font-size:13px; font-weight:800; color:#047857; margin-bottom:6px;">☀️ നിത്യേനയുള്ള ശീലം (Daily Routine)</h4>
+            <p id="today-daily-text" style="font-size:12px; color:#334155; line-height:1.5;">സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ (മീഡിയ); മെഡിക്കൽ ഉപകരണ അന്വേഷണങ്ങൾ (സഹചാരി & വിഖായ).</p>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:12px;">
+            <h4 style="font-size:13px; font-weight:800; color:#0284c7; margin-bottom:6px;">🕌 പ്രതിവാര / പ്രതിമാസ അജണ്ട</h4>
+            <p id="today-weekly-text" style="font-size:12px; color:#334155; line-height:1.5;">വ്യാഴം/വെള്ളി ജുമുഅക്ക് ശേഷമുള്ള മൗലിദ്-സ്വലാത്ത്, സഹചാരി പെട്ടി ശേഖരണം, വനിതാ ക്ലസ്റ്റർ പഠനം.</p>
+          </div>
+        </div>
+
+        <div id="today-whatsapp-msg" class="msg-box"></div>
+
+        <div class="view-tasks-section">
+          <div class="view-tasks-header">
+            <h3>📝 ഇന്ന് ശ്രദ്ധിക്കേണ്ട പ്രധാന ടാസ്‌കുകൾ (Focus Tasks)</h3>
+            <span style="font-size:11px; color:#64748b;">ഈ മാസത്തിൽ ഉടൻ തീർക്കേണ്ട ഉത്തരവാദിത്തങ്ങൾ</span>
+          </div>
+          <div id="today-tasks-container"></div>
+        </div>
       </div>
 
       <!-- TAB: Admin Dashboard -->
@@ -663,7 +693,7 @@
         <div class="card-header">
           <div class="card-title">
             <h2>യൂണിറ്റിന്റെ സമഗ്ര പ്രോഗ്രസ് റിപ്പോർട്ടും സ്ഥിതിവിവരക്കണക്കുകളും</h2>
-            <p>പൂർത്തിയായവ, നടക്കുന്നവ, ബാക്കിയുള്ളവ, കാലാവധി കഴിഞ്ഞവ (നഷ്ടപ്പെട്ടവ) എന്നിവയുടെ പൂർണ്ണ കണക്കുകൾ</p>
+            <p>വാർഷിക സമഗ്ര പുരോഗതിയും തെരഞ്ഞെടുത്ത മാസത്തെ കണക്കുകളും വെവ്വേറെ പരിശോധിക്കാം</p>
           </div>
         </div>
 
@@ -672,7 +702,7 @@
             <h3 style="font-size:13.5px; font-weight:800; color:#065f46; margin-bottom:8px;">🏢 സബ് വിംഗ് തിരിച്ചുള്ള പുരോഗതി</h3>
             <div class="table-responsive">
               <table class="stats-table">
-                <thead><tr><th>സബ് വിംഗ്</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>കഴിഞ്ഞുപോയത്</th></tr></thead>
+                <thead><tr><th>സബ് വിംഗ്</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>റീഷെഡ്യൂൾ</th></tr></thead>
                 <tbody id="subwing-stats-tbody"></tbody>
               </table>
             </div>
@@ -691,7 +721,7 @@
 
         <div class="view-tasks-section" style="margin-top:16px;">
           <div class="view-tasks-header">
-            <h3>📝 തെരഞ്ഞെടുത്ത മാസത്തിലെ ടാസ്‌ക് ചെക്ക്‌ലിസ്റ്റ് & തത്സമയ സ്റ്റാറ്റസ് മാറ്റം</h3>
+            <h3>📝 കർമ്മപദ്ധതി ചെക്ക്‌ലിസ്റ്റ് & തത്സമയ സ്റ്റാറ്റസ് മാറ്റം</h3>
             <span style="font-size:11px; color:#64748b;">ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ സ്റ്റാറ്റസ് മാറും (Done ➔ In-progress ➔ Pending ➔ Missed)</span>
           </div>
           <div id="all-tasks-container"></div>
@@ -850,72 +880,99 @@
   <script>
     const PORTAL_LINK = "https://skssfarangadiunit.github.io/Task-Manager/";
 
-    const DEFAULT_ROLE_PINS = {
-      core: { pin: "1989", title: "കോർ കമ്മിറ്റി (Admin)", tier: "core" },
-      executive: { pin: "2222", title: "എക്സിക്യൂട്ടീവ് കൗൺസിൽ", tier: "executive" },
-      members: { pin: "3333", title: "മുഴുവൻ അംഗങ്ങൾ", tier: "members" }
+    let selectedActiveYear = 2026; // Default base Gregorian starting year
+    let selectedActiveHijriMonth = "auto";
+    let selectedActiveGregMonth = "all";
+
+    // Spiritual & Historical Highlights Directory mapped across Hijri / Gregorian days
+    const HISTORICAL_SPECIALTIES = {
+      // Hijri month based
+      "muharram_1": "ഹിജ്‌റ പുതുവർഷ ദിനം (1448/1449); ചരിത്ര പ്രാർത്ഥനാ സദസ്സ്",
+      "muharram_7": "ഖുത്വുബുസ്സമാൻ സയ്യിദ് അലവി മമ്പുറം തങ്ങൾ ആണ്ട് നേർച്ച",
+      "muharram_10": "ആശൂറാഅ് പുണ്യ നോമ്പ്; കർബല ശുഹദാക്കളുടെ ചരിത്രാനുസ്മരണം",
+      "safar_18": "മൗലാനാ പള്ളി സ്ഥാപിത ദിനം; ആത്മീയ പ്രാർത്ഥനകൾ",
+      "safar_27": "സുൽത്താൻ സ്വലാഹുദ്ദീൻ അയ്യൂബി ചരിത്രാനുസ്മരണം",
+      "rabi_al_awwal_1": "വിശുദ്ധ മീലാദ് കാമ്പയിൻ തുടക്കം; മൻഖൂസ് മൗലിദ് രാവുകൾ",
+      "rabi_al_awwal_4": "ശംസുൽ ഉലമ ഇ.കെ. അബൂബക്കർ മുസ്‌ലിയാർ വഫാത്ത് ദിനം",
+      "rabi_al_awwal_12": "തിരുനബി ﷺ തങ്ങളുടെ പവിത്ര ജന്മദിനം (ഈദ് മീലാദുന്നബി)",
+      "rabi_al_akhir_11": "സുൽത്താനുൽ ഔലിയാഅ് ഗൗസുൽ അഅ്ളം ശൈഖ് ജീലാനി ദിനം",
+      "jumada_al_ula_12": "സുൽത്താനുൽ ആരിഫീൻ സയ്യിദ് അഹ്‌മദുൽ കബീർ രിഫാഈ ദിനം",
+      "jumada_al_akhira_15": "ഹുജ്ജത്തുൽ ഇസ്‌ലാം ഇമാം ഗസ്സാലി അനുസ്മരണം",
+      "rajab_6": "സുൽത്താനുൽ ഹിന്ദ് ഖാജാ മുഈനുദ്ദീൻ ചിശ്തി അജ്മീർ ഉറൂസ്",
+      "rajab_27": "ഇസ്റാഅ് - മിഅ്റാജ് പുണ്യ ദിനം; നോമ്പും പ്രാർത്ഥനയും",
+      "shaban_15": "ബറാഅത്ത് രാവ്; പാപമോചന പ്രാർത്ഥനാ സദസ്സ് (യാസീൻ, തൗബ, ദുആ)",
+      "shaban_17": "സമസ്ത സ്ഥാപക പ്രസിഡന്റ് വരക്കൽ മുല്ലക്കോയ തങ്ങൾ ആണ്ട്",
+      "ramadan_1": "വിശുദ്ധ റമളാൻ വ്രതാരംഭം; തറാവീഹ് നമസ്കാരങ്ങൾ",
+      "ramadan_17": "ചരിത്രപ്രസിദ്ധമായ ബദ്ർ ദിനം; ബദ്ർ ശുഹദാക്കളുടെ അനുസ്മരണം",
+      "ramadan_27": "ലൈലത്തുൽ ഖദ്ർ പ്രതീക്ഷാ രാവ്; ഖത്മുൽ ഖുർആൻ",
+      "shawwal_1": "ഈദുൽ ഫിത്വർ (ചെറിയ പെരുന്നാൾ ദിനം)",
+      "shawwal_4": "ഖുത്വുബുൽ ആലം സി.എം. വലിയുല്ലാഹി മടവൂർ ആണ്ട്",
+      "dhul_hijjah_9": "അറഫാ ദിനം; പുണ്യ നോമ്പും തക്ബീർ ധ്വനികളും",
+      "dhul_hijjah_10": "ബലിപെരുന്നാൾ (ഈദുൽ അദ്ഹാ)",
+      "dhul_hijjah_23": "സ്വാതന്ത്ര്യ സമര നായകൻ വെളിയങ്കോട് ഉമർ ഖാളി അനുസ്മരണം",
+
+      // Gregorian fixed dates
+      "greg_1_26": "റിപ്പബ്ലിക് ദിനം (ദേശീയ ദിനാചരണം)",
+      "greg_2_19": "SKSSF സ്ഥാപക ദിനം (1989 ഫെബ്രുവരി 19)",
+      "greg_6_5": "ലോക പരിസ്ഥിതി ദിനം; മരങ്ങൾ നടലും ശുചീകരണവും",
+      "greg_6_14": "ലോക രക്തദാന ദിനം (വിഖായ രക്തദാന ക്യാമ്പുകൾ)",
+      "greg_6_26": "സമസ്ത കേരള ജംഇയ്യത്തുൽ ഉലമ രൂപീകരണ ദിനം (1926) & ലഹരിവിരുദ്ധ ദിനം",
+      "greg_8_15": "സ്വാതന്ത്ര്യ ദിനാചരണം; പതാക ഉയർത്തലും സ്വാതന്ത്ര്യ സ്മൃതിയും",
+      "greg_9_1": "സുപ്രഭാതം ദിനപത്രം പ്രസിദ്ധീകരണ ആരംഭ ദിനം (2014)",
+      "greg_9_5": "ദേശീയ അധ്യാപക ദിനം; മദ്റസാ ഉസ്താദുമാർക്ക് ആദരവ്",
+      "greg_9_17": "സമസ്ത കേരള ഇസ്ലാം മത വിദ്യാഭ്യാസ ബോർഡ് രൂപീകരണ ദിനം (1951)",
+      "greg_10_1": "ദേശീയ രക്തദാന ദിനം (വിഖായ രക്തദാന സേന)",
+      "greg_10_11": "കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ സംയുക്ത ആണ്ട് അനുസ്മരണം",
+      "greg_11_11": "ദേശീയ വിദ്യാഭ്യാസ ദിനം (മൗലാനാ അബുൽകലാം ആസാദ് ജന്മദിനം)",
+      "greg_11_14": "സമസ്ത രജിസ്ട്രേഷൻ ദിനം (1934 നവംബർ 14)",
+      "greg_12_18": "അന്താരാഷ്ട്ര അറബി ഭാഷാ ദിനം & ന്യൂനപക്ഷ അവകാശ ദിനം"
     };
 
-    const DEFAULT_PERSONAL_PINS = {
-      "മുഹമ്മദ് ആദിൽ": { pin: "1001", role: "core", desig: "പ്രസിഡന്റ്" },
-      "നിസാർ കെ. കെ": { pin: "1002", role: "core", desig: "ജനറൽ സെക്രട്ടറി" },
-      "മുഹ്സിൻ പി. എം": { pin: "1003", role: "core", desig: "വർക്കിംഗ് സെക്രട്ടറി" },
-      "വി. ബി. റമീസ് ബാഖവി": { pin: "1004", role: "core", desig: "ട്രഷറർ" },
-      "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി": { pin: "1005", role: "core", desig: "മേഖലാ കൗൺസിലർ" },
-      "അൻസിൽ വി. എ": { pin: "1006", role: "core", desig: "മേഖലാ കൗൺസിലർ" },
-      "അബ്ദുൽ ലത്തീഫ്": { pin: "2001", role: "executive", desig: "വൈസ് പ്രസിഡന്റ്" },
-      "റൈഹാൻ ബഷീർ": { pin: "2002", role: "executive", desig: "മീഡിയ കൺവീനർ" },
-      "മുഹമ്മദ് സഫീർ ആർ. എം": { pin: "2003", role: "executive", desig: "സഹചാരി കൺവീനർ" },
-      "മുഹമ്മദ് സഫ്‌വാൻ": { pin: "2004", role: "executive", desig: "ത്വലബ കൺവീനർ" },
-      "മുഹമ്മദ് ഹാറൂൺ പി. എ": { pin: "2005", role: "executive", desig: "സർഗലയം കൺവീനർ" }
-    };
-
-    function getRolePins() {
-      try {
-        const saved = localStorage.getItem("skssf_role_pins_v4");
-        if (saved) return { ...DEFAULT_ROLE_PINS, ...JSON.parse(saved) };
-      } catch (e) {}
-      return { ...DEFAULT_ROLE_PINS };
-    }
-
-    function saveRolePins(obj) {
-      try { localStorage.setItem("skssf_role_pins_v4", JSON.stringify(obj)); } catch (e) {}
-    }
-
-    function getPersonalPins() {
-      try {
-        const saved = localStorage.getItem("skssf_personal_pins_v4");
-        if (saved) return { ...DEFAULT_PERSONAL_PINS, ...JSON.parse(saved) };
-      } catch (e) {}
-      return { ...DEFAULT_PERSONAL_PINS };
-    }
-
-    function savePersonalPins(obj) {
-      try { localStorage.setItem("skssf_personal_pins_v4", JSON.stringify(obj)); } catch (e) {}
-    }
-
-    let currentUserRole = "core";
-    let loggedInUserName = null;
-    let isMemoryUnlocked = false;
-
-    const ARABIC_SALAM_FULL = "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ";
-    const ARABIC_SALAM_SHORT = "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ";
-
-    const ML_MONTHS = ["ജനുവരി", "ഫെബ്രുവരി", "മാർച്ച്", "ഏപ്രിൽ", "മെയ്", "ജൂൺ", "ജൂലൈ", "ആഗസ്റ്റ്", "സെപ്റ്റംബർ", "ഒക്ടോബർ", "നവംബർ", "ഡിസംബർ"];
-    const ML_DAYS = ["ഞായർ", "തിങ്കൾ", "ചൊവ്വ", "ബുധൻ", "വ്യാഴം", "വെള്ളി", "ശനി"];
-
-    // 12-Month Calendar Definitions with accurate hijri / gregorian mappings
-    const CALENDAR_PERIODS = {
+    const PERPETUAL_HIJRI_MONTHS = {
+      muharram: {
+        id: "muharram", order: 1, name: "മുഹർറം", hijriYearOffset: 1,
+        approxGregMonths: [5, 6], // Jun - Jul
+        theme: "ഹിജ്റ പുതുവർഷം, സമൂഹ ആശൂറാഅ് ഇഫ്ത്വാർ, കർബല സെമിനാർ, മമ്പുറം ആണ്ട് സിയാറത്ത്, ചേളാരി സന്ദർശനം",
+        spiritualDays: "മുഹർറം 1: ഹിജ്റ പുതുവർഷം, മുഹർറം 7: മമ്പുറം തങ്ങൾ ആണ്ട്, മുഹർറം 10: ആശൂറാഅ് ദിനം",
+        tasks: [
+          { id: 1001, title: "മഹല്ല് തല സമൂഹ ആശൂറാഅ് സൗഹൃദ ഇഫ്ത്വാർ മീറ്റ്", wing: "വിഖായ & സഹചാരി", resp: "അൻസിൽ വി. എ, സഫീർ", status: "pending", priority: "high", tier: "members", desc: "ആശൂറാഅ് നോമ്പ് തുറക്കാൻ പള്ളിയിൽ വിപുലമായ സമൂഹ ഇഫ്ത്വാർ ഒരുക്കൽ." },
+          { id: 1002, title: "കർബല ചരിത്ര സെമിനാറും ഹിജ്റ പുതുവർഷ സംഗമവും", wing: "ഇബാദ് & മനീഷ", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "members", desc: "കർബല ശുഹദാക്കളുടെ ത്യാഗചരിത്രവും ശിയാ വാദങ്ങളുടെ പൊള്ളത്തരങ്ങളും പഠിപ്പിക്കൽ." },
+          { id: 1003, title: "മമ്പുറം ആണ്ട് നേർച്ച സിയാറത്ത് യാത്ര (മുഹർറം 7)", wing: "ഇബാദ്", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "executive", desc: "ഖുത്വുബുസ്സമാൻ സയ്യിദ് അലവി തങ്ങൾ മഖാമിലേക്ക് വിപുലമായ സിയാറത്ത് പര്യടനം." },
+          { id: 1004, title: "ചേളാരി സമസ്ത വിദ്യാഭ്യാസ ബോർഡ് കാര്യാലയ സന്ദർശനം", wing: "ത്വലബ & ഓർഗാനെറ്റ്", resp: "മുഹമ്മദ് സഫ്‌വാൻ", status: "pending", priority: "low", tier: "executive", desc: "സമസ്ത പാഠപുസ്തക പ്രസ്സും പരീക്ഷാ ഭവനും സന്ദർശിച്ച് സംഘടനാ പാഠങ്ങൾ ഗ്രഹിക്കൽ." }
+        ]
+      },
+      safar: {
+        id: "safar", order: 2, name: "സഫർ", hijriYearOffset: 1,
+        approxGregMonths: [6, 7], // Jul - Aug
+        theme: "സ്വാതന്ത്ര്യ സ്മൃതി സംഗമം, ആഖിർ ബുധൻ പഠന ക്ലാസ്, റബീഉൽ അവ്വൽ വിളംബര ജാഥ, പാണക്കാട് സന്ദർശനം",
+        spiritualDays: "ആഖിർ ബുധൻ സുന്നി പഠന ക്ലാസ്, സുൽത്താൻ സ്വലാഹുദ്ദീൻ അയ്യൂബി സ്മരണ",
+        tasks: [
+          { id: 1101, title: "സ്വാതന്ത്ര്യ സ്മൃതി സംഗമവും പതാക ഉയർത്തലും (ആഗസ്റ്റ് 15)", wing: "വിഖായ & മനീഷ", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "high", tier: "members", desc: "സ്വാതന്ത്ര്യ സമരത്തിൽ മുസ്‌ലിം പണ്ഡിതന്മാരുടെ പങ്ക് വ്യക്തമാക്കുന്ന സംഗമം." },
+          { id: 1102, title: "ആഖിർ ബുധൻ, നഹ്സുകൾ സംബന്ധിച്ച സുന്നി ആധികാരിക പഠന ക്ലാസ്", wing: "ഇസ്തിഖാമ & ഇബാദ്", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "members", desc: "അന്ധവിശ്വാസങ്ങൾ നീക്കി സുന്നി പണ്ഡിതന്മാരുടെ വീക്ഷണം വ്യക്തമാക്കൽ." },
+          { id: 1103, title: "റബീഉൽ അവ്വലിനെ വരവേറ്റ് മഹല്ല് തല സന്ദേശ വിളംബര ജാഥ", wing: "സർഗലയം & വിഖായ", resp: "മുഹമ്മദ് ഹാറൂൺ, അൻസിൽ", status: "pending", priority: "high", tier: "members", desc: "നബിദിന മാസത്തെ വരവേറ്റ് കുട്ടികളെയും പ്രവർത്തകരെയും അണിനിരത്തി ജാഥ." },
+          { id: 1104, title: "വാർഷിക ബെസ്റ്റ് സബ് വിംഗ് & മാതൃകാ പ്രവർത്തക അവാർഡ് ജൂറി രൂപീകരണം", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ", status: "pending", priority: "high", tier: "core", desc: "വർഷം മുഴുവൻ മികച്ച രീതിയിൽ പ്രവർത്തിച്ച വിംഗുകളെയും പ്രവർത്തകരെയും കണ്ടെത്തൽ." }
+        ]
+      },
+      rabi_al_awwal: {
+        id: "rabi_al_awwal", order: 3, name: "റബീഉൽ അവ്വൽ", hijriYearOffset: 1,
+        approxGregMonths: [7, 8], // Aug - Sep
+        theme: "മീലാദ് മഹാ സമ്മേളനം & റാലി, മീലാദ് സർഗ്ഗോത്സവം, വാർഷിക അവാർഡുകൾ & റോളിംഗ് ട്രോഫി, പട്ടിക്കാട് സിയാറത്ത്",
+        spiritualDays: "റബീഉൽ അവ്വൽ 1 - 12: മൻഖൂസ് മൗലിദ് രാവുകൾ, റബീഉൽ അവ്വൽ 12: പവിത്ര നബിദിനം",
+        tasks: [
+          { id: 1201, title: "വിപുലമായ മീലാദ് മഹാ സമ്മേളനവും നബിദിന സന്ദേശ റാലിയും", wing: "മുഴുവൻ വിംഗുകളും", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "high", tier: "members", desc: "പ്രൗഢമായ മീലാദ് വേദി, ദഫ് പ്രദർശനം, പൊതുജന മധുര വിതരണം." },
+          { id: 1202, title: "വാർഷിക 'ബെസ്റ്റ് സബ് വിംഗ് റോളിംഗ് ട്രോഫി' സമ്മാനിക്കൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "pending", priority: "high", tier: "core", desc: "ഏറ്റവും മികച്ച പ്രവർത്തനം നടത്തിയ സബ് വിംഗിന് മീലാദ് വേദിയിൽ വെച്ച് ട്രോഫി നൽകൽ." },
+          { id: 1203, title: "യൂണിറ്റിന്റെ സ്പെഷ്യൽ മീലാദ് സപ്ലിമെന്റ് പ്രകാശനം", wing: "സർഗലയം & ISA", resp: "മുഹമ്മദ് ഹാറൂൺ, റൈഹാൻ", status: "pending", priority: "normal", tier: "members", desc: "പ്രവാചക പ്രകീർത്തന ലേഖനങ്ങൾ ഉൾപ്പെടുത്തി പ്രിന്റഡ് സപ്ലിമെന്റ് പുറത്തിറക്കൽ." },
+          { id: 1204, title: "തീർത്ഥാടക സാന്ത്വന കിയോസ്ക് (ആറങ്ങാടി ഉപ്പാപ്പ മഖാം)", wing: "സഹചാരി & വിഖായ", resp: "മുഹമ്മദ് സഫീർ, അൻസിൽ", status: "pending", priority: "high", tier: "members", desc: "നബിദിനത്തിൽ എത്തുന്ന സന്ദർശകർക്ക് സൗജന്യ കുടിവെള്ളവും ലഘുഭക്ഷണവും വിശ്രമവും നൽകൽ." },
+          { id: 1205, title: "പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ & ശംസുൽ ഉലമ മഖാം സിയാറത്ത് പര്യടനം", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഹമ്മദ് ആദിൽ", status: "pending", priority: "normal", tier: "executive", desc: "നബിദിന അവധിയിൽ പട്ടിക്കാട് ജാമിഅ നൂരിയ്യയിലേക്ക് ആത്മീയ യാത്ര സംഘടിപ്പിക്കൽ." }
+        ]
+      },
       rabi_al_akhir: {
-        id: "rabi_al_akhir",
-        name: "റബീഉൽ ആഖിർ",
-        hijriTitle: "റബീഉൽ ആഖിർ 1448",
-        gregorianPeriod: "സെപ്റ്റംബർ - ഒക്ടോബർ 2026",
-        gregorianMonths: [8, 9], // Sep, Oct (0-indexed)
+        id: "rabi_al_akhir", order: 4, name: "റബീഉൽ ആഖിർ", hijriYearOffset: 0,
+        approxGregMonths: [8, 9], // Sep - Oct
         theme: "പുതിയ കമ്മിറ്റി തുടക്കം, ഒക്ടോബർ 11 പഠന ക്ലാസ്, സീലുകൾ, സുപ്രഭാതം കാമ്പയിൻ, സഹചാരി ഓഫീസ്",
         spiritualDays: "റബീഉൽ ആഖിർ 11: ശൈഖ് ജീലാനി ദിനം, ഒക്ടോബർ 11: കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ ആണ്ട്",
         tasks: [
-          { id: 1, title: "പ്രഥമ എക്സിക്യൂട്ടീവ് കൗൺസിൽ യോഗം", wing: "കോർ കമ്മിറ്റി", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "done", priority: "high", tier: "core", desc: "സെപ്റ്റംബർ 27-ന് ഇർഷാദുൽ അനാം മദ്റസയിൽ ചേർന്ന പുതിയ ഭാരവാഹികളുടെ പ്രഥമ യോഗം." },
+          { id: 1, title: "പ്രഥമ എക്സിക്യൂട്ടീവ് കൗൺസിൽ യോഗം", wing: "കോർ കമ്മിറ്റി", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "done", priority: "high", tier: "core", desc: "ഇർഷാദുൽ അനാം മദ്റസയിൽ ചേർന്ന പുതിയ ഭാരവാഹികളുടെ പ്രഥമ യോഗം." },
           { id: 2, title: "പുതിയ ലെറ്റർപാഡ് സമർപ്പണം & അച്ചടി", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ", status: "done", priority: "high", tier: "core", desc: "യൂണിറ്റിന്റെ ഔദ്യോഗിക പ്രവർത്തനങ്ങൾക്കായി പുതിയ ലെറ്റർപാഡ് സജ്ജമാക്കി." },
           { id: 3, title: "മുൻ കണക്കുകളും ഫണ്ടും പുസ്തകങ്ങളും കൈമാറൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "done", priority: "high", tier: "core", desc: "മുൻ സെക്രട്ടറി പുതിയ സെക്രട്ടറിക്ക് രജിസ്റ്ററുകളും കണക്കുകളും കൈമാറി." },
           { id: 4, title: "സബ് വിംഗ് കൺവീനർമാരെ ചുമതലപ്പെടുത്തൽ", wing: "കോർ കമ്മിറ്റി", resp: "എക്സിക്യൂട്ടീവ് കൗൺസിൽ", status: "done", priority: "high", tier: "core", desc: "പ്രധാന സബ് വിംഗുകളുടെ കൺവീനർമാരെ ഔദ്യോഗികമായി നിശ്ചയിച്ചു." },
@@ -924,8 +981,8 @@
           { id: 7, title: "മഹല്ല് പള്ളി കമ്മിറ്റിക്ക് ഔദ്യോഗിക കത്ത് നൽകൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "in-progress", priority: "high", tier: "core", desc: "ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദ്, ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദ് എന്നിവരുമായി ആലോചിച്ച് സമർപ്പിക്കുക." },
           { id: 8, title: "യൂണിറ്റിന്റെ ഔദ്യോഗിക സീലുകൾ നിർമ്മിക്കൽ", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ, മുഹമ്മദ് ആദിൽ", status: "in-progress", priority: "high", tier: "core", desc: "പ്രസിഡന്റ്, ജനറൽ സെക്രട്ടറി സീലുകൾ നിർമ്മിക്കുക." },
           { id: 9, title: "സുപ്രഭാതം പത്രം പള്ളിയിൽ സ്ഥിരമാക്കലും സ്ഥാപന സ്പോൺസർഷിപ്പും", wing: "മീഡിയ & കൗൺസിൽ", resp: "മുഹമ്മദ് ആദിൽ", status: "in-progress", priority: "normal", tier: "executive", desc: "ആറങ്ങാടി ഉപ്പാപ്പ പള്ളിയിലും പഞ്ചായത്തിലെ സ്ഥാപനങ്ങളിലും സുപ്രഭാതം വരുത്താൻ അബ്ദുൽ ഖാദർ വാഫിയുമായി സംസാരിക്കുക." },
-          { id: 10, title: "ഒക്ടോബർ 1 വിഖായ രക്തദാന വിവരശേഖരണം പൂർത്തിയാക്കൽ", wing: "വിഖായ", resp: "അൻസിൽ വി. എ", status: "missed", priority: "rescheduled", tier: "members", targetDate: "2026-10-01", desc: "ഒക്ടോബർ 1 ദേശീയ രക്തദാന ദിനത്തോടനുബന്ധിച്ച് നടത്താൻ നിശ്ചയിച്ചിരുന്ന വിവരശേഖരണം. ഈ വർഷത്തെ തീയതി കഴിഞ്ഞതിനാൽ, അടുത്ത വർഷത്തേക്ക് (2027 ഒക്ടോബർ 1) കൃത്യമായി നടപ്പിലാക്കാൻ മഹല്ല് തലത്തിൽ ശാസ്ത്രീയ മുന്നൊരുക്കം ആരംഭിക്കുക." },
-          { id: 11, title: "സംഘടനാ പഠന ക്ലാസ് (2026 ഒക്ടോബർ 11 ഞായർ രാവിലെ 10:00)", wing: "വിഖായ & എക്സിക്യൂട്ടീവ്", resp: "അൻസിൽ വി. എ (സംഘാടന ചുമതല)", status: "in-progress", priority: "high", tier: "members", targetDate: "2026-10-11", desc: "കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ അനുസ്മരണവും പഠന ക്ലാസും (ജാബിർ യമാനി പാടൂർ)." },
+          { id: 10, title: "ഒക്ടോബർ 1 വിഖായ രക്തദാന വിവരശേഖരണം പൂർത്തിയാക്കൽ", wing: "വിഖായ", resp: "അൻസിൽ വി. എ", status: "missed", priority: "rescheduled", tier: "members", desc: "ഒക്ടോബർ 1 ദേശീയ രക്തദാന ദിനത്തോടനുബന്ധിച്ച് നടത്താൻ നിശ്ചയിച്ചിരുന്ന വിവരശേഖരണം. കാലാവധി കഴിഞ്ഞതിനാൽ അടുത്ത വർഷത്തേക്ക് കൂടുതൽ ശാസ്ത്രീയമായി മുന്നൊരുക്കം നടത്തുക." },
+          { id: 11, title: "സംഘടനാ പഠന ക്ലാസ് (ഒക്ടോബർ 11 ഞായർ രാവിലെ 10:00)", wing: "വിഖായ & എക്സിക്യൂട്ടീവ്", resp: "അൻസിൽ വി. എ (സംഘാടന ചുമതല)", status: "in-progress", priority: "high", tier: "members", desc: "കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ അനുസ്മരണവും പഠന ക്ലാസും (ജാബിർ യമാനി പാടൂർ)." },
           { id: 12, title: "സഹചാരി സെന്റർ / യൂണിറ്റ് ഓഫീസ് കണ്ടെത്തൽ", wing: "സഹചാരി", resp: "മുഹമ്മദ് ആദിൽ, അൻസിൽ വി. എ, മുഹമ്മദ് സഫീർ", status: "pending", priority: "high", tier: "executive", desc: "പതാകകൾ, പുസ്തകങ്ങൾ, മെഡിക്കൽ ഉപകരണ ബാങ്ക് എന്നിവ അങ്ങോട്ട് മാറ്റാൻ മുറി കണ്ടെത്തുക." },
           { id: 13, title: "പഠന ക്ലാസ് സ്പെഷ്യൽ സപ്ലിമെന്റ് തയ്യാറാക്കൽ", wing: "ട്രെൻഡ് & സർഗലയം", resp: "അബ്ദുൽ ലത്തീഫ്, മുഹമ്മദ് ഹാറൂൺ", status: "pending", priority: "normal", tier: "executive", desc: "ക്ലാസിൽ വിതരണം ചെയ്യാനുള്ള ലഘു സപ്ലിമെന്റ് തയ്യാറാക്കലും കവർ ഡിസൈനും." },
           { id: 14, title: "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം - റൂട്ട് മാപ്പും തീയതിയും", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "low", tier: "executive", desc: "മഹല്ലിന് കീഴിലെ മുഴുവൻ പള്ളികളിലെയും പര്യടന തീയതി നിശ്ചയിക്കുക." },
@@ -933,12 +990,9 @@
         ]
       },
       jumada_al_ula: {
-        id: "jumada_al_ula",
-        name: "ജുമാദൽ ഊലാ",
-        hijriTitle: "ജുമാദൽ ഊലാ 1448",
-        gregorianPeriod: "ഒക്ടോബർ - നവംബർ 2026",
-        gregorianMonths: [9, 10],
-        theme: "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം, സമസ്ത രജിസ്ട്രേഷൻ ദിനം, റോഡ് സുരക്ഷാ മിററുകൾ, രക്തദാന ഹെൽപ്പ്‌ലൈൻ സമർപ്പണം",
+        id: "jumada_al_ula", order: 5, name: "ജുമാദൽ ഊലാ", hijriYearOffset: 0,
+        approxGregMonths: [9, 10], // Oct - Nov
+        theme: "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം, സമസ്ത രജിസ്ട്രേഷൻ ദിനം, റോഡ് സുരക്ഷാ മിററുകൾ, രക്തദാന ഹെൽപ്പ്‌‌ലൈൻ സമർപ്പണം",
         spiritualDays: "ജുമാദൽ ഊലാ 12: സയ്യിദ് അഹ്മദുൽ കബീർ രിഫാഈ ദിനം, ഇമാം ബൈഹഖി വഫാത്ത്",
         tasks: [
           { id: 201, title: "മഹല്ല് പള്ളികളിലെ ഔദ്യോഗിക ശാക്തീകരണ പര്യടനം", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "high", tier: "executive", desc: "മഹല്ലിലെ മുഴുവൻ പള്ളികളിലും പ്രവർത്തകരെയും സമസ്ത അനുഭാവികളെയും നേരിൽ കണ്ട് ഏകോപിപ്പിക്കൽ." },
@@ -950,11 +1004,8 @@
         ]
       },
       jumada_al_akhira: {
-        id: "jumada_al_akhira",
-        name: "ജുമാദൽ ആഖിറ",
-        hijriTitle: "ജുമാദൽ ആഖിറ 1448",
-        gregorianPeriod: "നവംബർ - ഡിസംബർ 2026",
-        gregorianMonths: [10, 11],
+        id: "jumada_al_akhira", order: 6, name: "ജുമാദൽ ആഖിറ", hijriYearOffset: 0,
+        approxGregMonths: [10, 11], // Nov - Dec
         theme: "ആറങ്ങാടി സർഗ്ഗസംഗമം മത്സരങ്ങൾ, പ്രായോഗിക മയ്യത്ത് പരിപാലന ക്ലാസ്, അറബിക് ഭാഷാ ദിനം, തമിഴ്നാട് ക്രിസ്മസ് സിയാറത്ത്",
         spiritualDays: "ജുമാദൽ ആഖിറ 15: ഇമാം ഗസ്സാലി അനുസ്മരണം, സിദ്ദീഖ് (റ), ഫാത്വിമ (റ) വഫാത്ത്",
         tasks: [
@@ -966,11 +1017,8 @@
         ]
       },
       rajab: {
-        id: "rajab",
-        name: "റജബ്",
-        hijriTitle: "റജബ് 1448",
-        gregorianPeriod: "ഡിസംബർ 2026 - ജനുവരി 2027",
-        gregorianMonths: [11, 0],
+        id: "rajab", order: 7, name: "റജബ്", hijriYearOffset: 0,
+        approxGregMonths: [11, 0], // Dec - Jan
         theme: "മിഅ്റാജ് സംഗമം, റിപ്പബ്ലിക് ദിനം, പലിശരഹിത വായ്പാ വിതരണ തുടക്കം, മാട്രിമോണിയൽ ഡെസ്ക്, അജ്മീർ തീർത്ഥാടനം",
         spiritualDays: "റജബ് 6: ഖാജാ ചിശ്തി അജ്മീർ ഉറൂസ്, റജബ് 27: ഇസ്റാഅ് - മിഅ്റാജ് ദിനം",
         tasks: [
@@ -982,11 +1030,8 @@
         ]
       },
       shaban: {
-        id: "shaban",
-        name: "ശഅ്ബാൻ",
-        hijriTitle: "ശഅ്ബാൻ 1448",
-        gregorianPeriod: "ജനുവരി - ഫെബ്രുവരി 2027",
-        gregorianMonths: [0, 1],
+        id: "shaban", order: 8, name: "ശഅ്ബാൻ", hijriYearOffset: 1,
+        approxGregMonths: [0, 1], // Jan - Feb
         theme: "ഫെബ്രുവരി 19 സ്ഥാപക ദിനം, ഹൈബ്രിഡ് ജനറൽ ബോഡി (പ്രവാസി സംഗമം), റമളാൻ ഇസ്തിഖ്ബാൽ, വരക്കൽ സിയാറത്ത്",
         spiritualDays: "ശഅ്ബാൻ 15: ബറാഅത്ത് രാവ്, ശഅ്ബാൻ 17: വരക്കൽ മുല്ലക്കോയ തങ്ങൾ ആണ്ട്",
         tasks: [
@@ -997,11 +1042,8 @@
         ]
       },
       ramadan: {
-        id: "ramadan",
-        name: "വിശുദ്ധ റമളാൻ",
-        hijriTitle: "റമളാൻ 1448",
-        gregorianPeriod: "ഫെബ്രുവരി - മാർച്ച് 2027",
-        gregorianMonths: [1, 2],
+        id: "ramadan", order: 9, name: "വിശുദ്ധ റമളാൻ", hijriYearOffset: 1,
+        approxGregMonths: [1, 2], // Feb - Mar
         theme: "റമളാൻ ഭക്ഷ്യധാന്യ കിറ്റുകൾ, ബദ്ർ ദിനം, സംസ്ഥാന സഹചാരി ഫണ്ട്, ആശുപത്രി ഇഫ്ത്വാർ, പെരുന്നാൾ റിലീഫ്",
         spiritualDays: "റമളാൻ 17: ചരിത്രപ്രസിദ്ധമായ ബദ്ർ ദിനം, ലൈലത്തുൽ ഖദ്ർ രാവുകൾ, ഖത്മുൽ ഖുർആൻ",
         tasks: [
@@ -1013,11 +1055,8 @@
         ]
       },
       shawwal: {
-        id: "shawwal",
-        name: "ശവ്വാൽ",
-        hijriTitle: "ശവ്വാൽ 1448",
-        gregorianPeriod: "മാർച്ച് - ഏപ്രിൽ 2027",
-        gregorianMonths: [2, 3],
+        id: "shawwal", order: 10, name: "ശവ്വാൽ", hijriYearOffset: 1,
+        approxGregMonths: [2, 3], // Mar - Apr
         theme: "ഈദ് സൗഹൃദ സംഗമം, ഉസ്താദുമാർക്ക് ആദരവും ഉംറ പ്രഖ്യാപനവും, വേനൽക്കാല കുടിവെള്ള വിതരണം, മടവൂർ സിയാറത്ത്",
         spiritualDays: "ശവ്വാൽ 1: ഈദുൽ ഫിത്വർ, ശവ്വാൽ 4: സി.എം. വലിയുല്ലാഹി മടവൂർ ആണ്ട്, ഉഹ്ദ് ദിനം",
         tasks: [
@@ -1028,11 +1067,8 @@
         ]
       },
       dhul_qadah: {
-        id: "dhul_qadah",
-        name: "ദുൽഖഅ്ദ",
-        hijriTitle: "ദുൽഖഅ്ദ 1448",
-        gregorianPeriod: "ഏപ്രിൽ - മെയ് 2027",
-        gregorianMonths: [3, 4],
+        id: "dhul_qadah", order: 11, name: "ദുൽഖഅ്ദ", hijriYearOffset: 1,
+        approxGregMonths: [3, 4], // Apr - May
         theme: "ഹജ്ജ് യാത്രയയപ്പും ദുആയും, ട്രെൻഡ് കരിയർ ക്ലിനിക്ക്, സ്കൂൾ കിറ്റ് ശേഖരണം, ദാറുൽ ഹുദാ സന്ദർശനം",
         spiritualDays: "ഹജ്ജ് തീർത്ഥാടക യാത്രയയപ്പ് ദുആ മജ്‌ലിസ്, ആനക്കര കോയക്കുട്ടി മുസ്‌ലിയാർ സ്മരണ",
         tasks: [
@@ -1043,11 +1079,8 @@
         ]
       },
       dhul_hijjah: {
-        id: "dhul_hijjah",
-        name: "ദുൽഹിജ്ജ",
-        hijriTitle: "ദുൽഹിജ്ജ 1448",
-        gregorianPeriod: "മെയ് - ജൂൺ 2027",
-        gregorianMonths: [4, 5],
+        id: "dhul_hijjah", order: 12, name: "ദുൽഹിജ്ജ", hijriYearOffset: 1,
+        approxGregMonths: [4, 5], // May - Jun
         theme: "സമസ്ത രൂപീകരണ ദിനം, ഈദുൽ അദ്ഹാ ഖുർബാനി വിതരണം, പരിസ്ഥിതി ദിനം, രക്തദാന ക്യാമ്പ്, കടൽക്ഷോഭ ദുരിതാശ്വാസം",
         spiritualDays: "ദുൽഹിജ്ജ 9: അറഫാ നോമ്പ്, ദുൽഹിജ്ജ 10: ബലിപെരുന്നാൾ, വെളിയങ്കോട് ഉമർ ഖാളി ആണ്ട്",
         tasks: [
@@ -1056,576 +1089,174 @@
           { id: 903, title: "ലോക രക്തദാന ദിനത്തിൽ പ്രത്യേക രക്തദാന ക്യാമ്പ് (ജൂൺ 14)", wing: "വിഖായ & മീം", resp: "അൻസിൽ വി. എ", status: "pending", priority: "high", tier: "members", desc: "ആശുപത്രികളിലേക്ക് രക്തദാതാക്കളെ സംഘടിപ്പിച്ച് ക്യാമ്പ് നടത്തൽ." },
           { id: 904, title: "കാലവർഷ തീരദേശ കടൽക്ഷോഭ ദുരിതാശ്വാസ കൺട്രോൾ റൂം", wing: "വിഖായ", resp: "അൻസിൽ വി. എ", status: "pending", priority: "high", tier: "members", desc: "കടൽക്ഷോഭ ഭീഷണിയുള്ള തീരദേശ കുടുംബങ്ങൾക്ക് അടിയന്തിര സഹായം ഉറപ്പാക്കൽ." }
         ]
-      },
-      muharram: {
-        id: "muharram",
-        name: "മുഹർറം",
-        hijriTitle: "മുഹർറം 1449",
-        gregorianPeriod: "ജൂൺ - ജൂലൈ 2027",
-        gregorianMonths: [5, 6],
-        theme: "ഹിജ്റ പുതുവർഷം, സമൂഹ ആശൂറാഅ് ഇഫ്ത്വാർ, കർബല സെമിനാർ, മമ്പുറം ആണ്ട് സിയാറത്ത്, ചേളാരി സന്ദർശനം",
-        spiritualDays: "മുഹർറം 1: ഹിജ്റ പുതുവർഷം, മുഹർറം 7: മമ്പുറം തങ്ങൾ ആണ്ട്, മുഹർറം 10: ആശൂറാഅ് ദിനം",
-        tasks: [
-          { id: 1001, title: "മഹല്ല് തല സമൂഹ ആശൂറാഅ് സൗഹൃദ ഇഫ്ത്വാർ മീറ്റ്", wing: "വിഖായ & സഹചാരി", resp: "അൻസിൽ വി. എ, സഫീർ", status: "pending", priority: "high", tier: "members", desc: "ആശൂറാഅ് നോമ്പ് തുറക്കാൻ പള്ളിയിൽ വിപുലമായ സമൂഹ ഇഫ്ത്വാർ ഒരുക്കൽ." },
-          { id: 1002, title: "കർബല ചരിത്ര സെമിനാറും ഹിജ്റ പുതുവർഷ സംഗമവും", wing: "ഇബാദ് & മനീഷ", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "members", desc: "കർബല ശുഹദാക്കളുടെ ത്യാഗചരിത്രവും ശിയാ വാദങ്ങളുടെ പൊള്ളത്തരങ്ങളും പഠിപ്പിക്കൽ." },
-          { id: 1003, title: "മമ്പുറം ആണ്ട് നേർച്ച സിയാറത്ത് യാത്ര (മുഹർറം 7)", wing: "ഇബാദ്", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "executive", desc: "ഖുത്വുബുസ്സമാൻ സയ്യിദ് അലവി തങ്ങൾ മഖാമിലേക്ക് വിപുലമായ സിയാറത്ത് പര്യടനം." },
-          { id: 1004, title: "ചേളാരി സമസ്ത വിദ്യാഭ്യാസ ബോർഡ് കാര്യാലയ സന്ദർശനം", wing: "ത്വലബ & ഓർഗാനെറ്റ്", resp: "മുഹമ്മദ് സഫ്‌വാൻ", status: "pending", priority: "low", tier: "executive", desc: "സമസ്ത പാഠപുസ്തക പ്രസ്സും പരീക്ഷാ ഭവനും സന്ദർശിച്ച് സംഘടനാ പാഠങ്ങൾ ഗ്രഹിക്കൽ." }
-        ]
-      },
-      safar: {
-        id: "safar",
-        name: "സഫർ",
-        hijriTitle: "സഫർ 1449",
-        gregorianPeriod: "ജൂലൈ - ആഗസ്റ്റ് 2027",
-        gregorianMonths: [6, 7],
-        theme: "സ്വാതന്ത്ര്യ സ്മൃതി സംഗമം, ആഖിർ ബുധൻ പഠന ക്ലാസ്, റബീഉൽ അവ്വൽ വിളംബര ജാഥ, പാണക്കാട് സന്ദർശനം",
-        spiritualDays: "ആഖിർ ബുധൻ സുന്നി പഠന ക്ലാസ്, സുൽത്താൻ സ്വലാഹുദ്ദീൻ അയ്യൂബി സ്മരണ",
-        tasks: [
-          { id: 1101, title: "സ്വാതന്ത്ര്യ സ്മൃതി സംഗമവും പതാക ഉയർത്തലും (ആഗസ്റ്റ് 15)", wing: "വിഖായ & മനീഷ", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "high", tier: "members", desc: "സ്വാതന്ത്ര്യ സമരത്തിൽ മുസ്‌ലിം പണ്ഡിതന്മാരുടെ പങ്ക് വ്യക്തമാക്കുന്ന സംഗമം." },
-          { id: 1102, title: "ആഖിർ ബുധൻ, നഹ്സുകൾ സംബന്ധിച്ച സുന്നി ആധികാരിക പഠന ക്ലാസ്", wing: "ഇസ്തിഖാമ & ഇബാദ്", resp: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", status: "pending", priority: "normal", tier: "members", desc: "അന്ധവിശ്വാസങ്ങൾ നീക്കി സുന്നി പണ്ഡിതന്മാരുടെ വീക്ഷണം വ്യക്തമാക്കൽ." },
-          { id: 1103, title: "റബീഉൽ അവ്വലിനെ വരവേറ്റ് മഹല്ല് തല സന്ദേശ വിളംബര ജാഥ", wing: "സർഗലയം & വിഖായ", resp: "മുഹമ്മദ് ഹാറൂൺ, അൻസിൽ", status: "pending", priority: "high", tier: "members", desc: "നബിദിന മാസത്തെ വരവേറ്റ് കുട്ടികളെയും പ്രവർത്തകരെയും അണിനിരത്തി ജാഥ." },
-          { id: 1104, title: "വാർഷിക ബെസ്റ്റ് സബ് വിംഗ് & മാതൃകാ പ്രവർത്തക അവാർഡ് ജൂറി രൂപീകരണം", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ", status: "pending", priority: "high", tier: "core", desc: "വർഷം മുഴുവൻ മികച്ച രീതിയിൽ പ്രവർത്തിച്ച വിംഗുകളെയും പ്രവർത്തകരെയും കണ്ടെത്തൽ." }
-        ]
-      },
-      rabi_al_awwal: {
-        id: "rabi_al_awwal",
-        name: "റബീഉൽ അവ്വൽ",
-        hijriTitle: "റബീഉൽ അവ്വൽ 1449",
-        gregorianPeriod: "ആഗസ്റ്റ് - സെപ്റ്റംബർ 2027",
-        gregorianMonths: [7, 8],
-        theme: "മീലാദ് മഹാ സമ്മേളനം & റാലി, മീലാദ് സർഗ്ഗോത്സവം, വാർഷിക അവാർഡുകൾ & റോളിംഗ് ട്രോഫി, പട്ടിക്കാട് സിയാറത്ത്",
-        spiritualDays: "റബീഉൽ അവ്വൽ 1 - 12: മൻഖൂസ് മൗലിദ് രാവുകൾ, റബീഉൽ അവ്വൽ 12: പവിത്ര നബിദിനം",
-        tasks: [
-          { id: 1201, title: "വിപുലമായ മീലാദ് മഹാ സമ്മേളനവും നബിദിന സന്ദേശ റാലിയും", wing: "മുഴുവൻ വിംഗുകളും", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "high", tier: "members", desc: "പ്രൗഢമായ മീലാദ് വേദി, ദഫ് പ്രദർശനം, പൊതുജന മധുര വിതരണം." },
-          { id: 1202, title: "വാർഷിക 'ബെസ്റ്റ് സബ് വിംഗ് റോളിംഗ് ട്രോഫി' സമ്മാനിക്കൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "pending", priority: "high", tier: "core", desc: "ഏറ്റവും മികച്ച പ്രവർത്തനം നടത്തിയ സബ് വിംഗിന് മീലാദ് വേദിയിൽ വെച്ച് ട്രോഫി നൽകൽ." },
-          { id: 1203, title: "യൂണിറ്റിന്റെ സ്പെഷ്യൽ മീലാദ് സപ്ലിമെന്റ് പ്രകാശനം", wing: "സർഗലയം & ISA", resp: "മുഹമ്മദ് ഹാറൂൺ, റൈഹാൻ", status: "pending", priority: "normal", tier: "members", desc: "പ്രവാചക പ്രകീർത്തന ലേഖനങ്ങൾ ഉൾപ്പെടുത്തി പ്രിന്റഡ് സപ്ലിമെന്റ് പുറത്തിറക്കൽ." },
-          { id: 1204, title: "തീർത്ഥാടക സാന്ത്വന കിയോസ്ക് (ആറങ്ങാടി ഉപ്പാപ്പ മഖാം)", wing: "സഹചാരി & വിഖായ", resp: "മുഹമ്മദ് സഫീർ, അൻസിൽ", status: "pending", priority: "high", tier: "members", desc: "നബിദിനത്തിൽ എത്തുന്ന സന്ദർശകർക്ക് സൗജന്യ കുടിവെള്ളവും ലഘുഭക്ഷണവും വിശ്രമവും നൽകൽ." },
-          { id: 1205, title: "പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ & ശംസുൽ ഉലമ മഖാം സിയാറത്ത് പര്യടനം", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഹമ്മദ് ആദിൽ", status: "pending", priority: "normal", tier: "executive", desc: "നബിദിന അവധിയിൽ പട്ടിക്കാട് ജാമിഅ നൂരിയ്യയിലേക്ക് ആത്മീയ യാത്ര സംഘടിപ്പിക്കൽ." }
-        ]
       }
     };
 
     // Standard recurring routines from calendar PDF
     const RECURRING_ROUTINES = {
-      daily: "സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ & സ്റ്റാറ്റസ് റീലുകൾ (മീഡിയ); മെഡിക്കൽ ഉപകരണ അന്വേഷണങ്ങൾ (സഹചാരി & വിഖായ)",
-      weekly: "വ്യാഴം/വെള്ളി ജുമുഅക്ക് ശേഷമുള്ള മൗലിദ്-സ്വലാത്ത്-കുത്തുബിയ്യത്ത് (ഇബാദ്); സഹചാരി പെട്ടി ശേഖരണം (സഹചാരി); വനിതാ ക്ലസ്റ്റർ പഠനം (IFC); ആശുപത്രി സന്ദർശനം",
-      monthly: "നിശ്ചിത വ്യാഴാഴ്ച രാവിൽ പ്രതിമാസ കുത്തുബിയ്യത്ത് & മൻഖൂസ് മൗലിദ്; ഒരു ഞായറാഴ്ച പള്ളി-ഖബർസ്ഥാൻ ശുചീകരണം (വിഖായ); പാലിയേറ്റീവ് ഹോം വിസിറ്റ്; യൂണിറ്റ് എക്സിക്യൂട്ടീവ് യോഗം"
+      daily: "സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ & സ്റ്റാറ്റസ് റീലുകൾ (മീഡിയ); മെഡിക്കൽ ഉപകരണ അന്വേഷണങ്ങൾ (സഹചാരി & വിഖായ).",
+      weekly: "വ്യാഴം/വെള്ളി ജുമുഅക്ക് ശേഷമുള്ള മൗലിദ്-സ്വലാത്ത്-കുത്തുബിയ്യത്ത് (ഇബാദ്); സഹചാരി പെട്ടി ശേഖരണം (സഹചാരി); വനിതാ ക്ലസ്റ്റർ പഠനം (IFC); ആശുപത്രി സന്ദർശനം.",
+      monthly: "നിശ്ചിത വ്യാഴാഴ്ച രാവിൽ പ്രതിമാസ കുത്തുബിയ്യത്ത് & മൻഖൂസ് മൗലിദ്; ഒരു ഞായറാഴ്ച പള്ളി-ഖബർസ്ഥാൻ ശുചീകരണം (വിഖായ); പാലിയേറ്റീവ് ഹോം വിസിറ്റ്; യൂണിറ്റ് എക്സിക്യൂട്ടീവ് യോഗം."
     };
 
-    let checklistTasks = loadTasks();
-
-    function loadTasks() {
-      try {
-        const saved = localStorage.getItem("skssf_tasks_state_v4");
-        if (saved) return JSON.parse(saved);
-      } catch (e) {}
-      // Default to initial month tasks
-      return [...CALENDAR_PERIODS.rabi_al_akhir.tasks];
+    function getHijriYearForPeriod(periodKey, baseYear) {
+      // Base year 2026 corresponds to Hijri 1448 (starting Rabi al-Akhir 1448)
+      const baseHijri = 1448 + (baseYear - 2026);
+      const period = PERPETUAL_HIJRI_MONTHS[periodKey];
+      const offset = period ? (period.hijriYearOffset || 0) : 0;
+      return baseHijri + offset;
     }
 
-    function saveTasks() {
-      try { localStorage.setItem("skssf_tasks_state_v4", JSON.stringify(checklistTasks)); } catch (e) {}
-    }
-
-    const leadersRegistry = {
-      "മുഹമ്മദ് ആദിൽ": {
-        role: "യൂണിറ്റ് പ്രസിഡന്റ്",
-        salutation: "ബഹുമാനപ്പെട്ട പ്രസിഡന്റ് ആദിൽ സാഹിബ്",
-        customSuggestions: [
-          "മഹല്ല് ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദുമായും ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദുമായും ആലോചിച്ച് പള്ളി കമ്മിറ്റിക്കുള്ള ഔദ്യോഗിക കത്ത് സമർപ്പിക്കാൻ മുൻകൈ എടുത്താൽ നന്നായിരിക്കും.",
-          "ആറങ്ങാടി ഉപ്പാപ്പ പള്ളിയിൽ സുപ്രഭാതം പത്രം സ്ഥിരമാക്കുന്നതിനും പഞ്ചായത്ത് സ്ഥാപനങ്ങളിൽ സ്പോൺസർഷിപ്പ് ആരംഭിക്കുന്നതിനും സദർ ഉസ്താദ് അബ്ദുൽ ഖാദർ വാഫിയുമായി സംസാരിക്കുന്നത് ആലോചിക്കാമോ?",
-          "സഹചാരി സെന്ററിനായി അനുയോജ്യമായ മുറി കണ്ടെത്താൻ അൻസിലുമായി ചേർന്ന് അന്വേഷണം നടത്തിയാൽ വളരെ ഉപകാരമായിരിക്കും."
-        ]
-      },
-      "നിസാർ കെ. കെ": {
-        role: "യൂണിറ്റ് ജനറൽ സെക്രട്ടറി",
-        salutation: "പ്രിയ ജനറൽ സെക്രട്ടറി നിസാർ സാഹിബ്",
-        customSuggestions: [
-          "യൂണിറ്റിന്റെ ഔദ്യോഗിക ആവശ്യങ്ങൾക്കായി പ്രസിഡന്റ്, സെക്രട്ടറി സീലുകൾ ഉടൻ നിർമ്മിക്കാൻ നടപടിയെടുത്താൽ നന്നായിരിക്കും.",
-          "കഴിഞ്ഞ എക്സിക്യൂട്ടീവ് യോഗത്തിലെ തീരുമാനങ്ങളുടെ ഫോളോ-അപ്പ് രേഖപ്പെടുത്താനും അടുത്ത മീറ്റിംഗ് അജണ്ട തയ്യാറാക്കാനും സാധിക്കുമോ?",
-          "മഹല്ല് പള്ളികളിലെ ശാക്തീകരണ പര്യടനത്തിന്റെ റൂട്ട് മാപ്പും തീയതിയും തയ്യാറാക്കുന്നതിലേക്ക് നിർദ്ദേശങ്ങൾ നൽകിയാൽ ഉപകാരമായിരിക്കും."
-        ]
-      },
-      "മുഹ്സിൻ പി. എം": {
-        role: "യൂണിറ്റ് വർക്കിംഗ് സെക്രട്ടറി",
-        salutation: "പ്രിയ വർക്കിംഗ് സെക്രട്ടറി മുഹ്സിൻ സാഹിബ്",
-        customSuggestions: [
-          "ജനറൽ സെക്രട്ടറിയുമായി ചേർന്ന് എക്സിക്യൂട്ടീവ് കൗൺസിൽ അംഗങ്ങളുടെ സാന്നിധ്യം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചാൽ നന്നായിരിക്കും.",
-          "വരാനിരിക്കുന്ന പരിപാടികളുടെ ഹാൾ ക്രമീകരണങ്ങളും സമയക്രമവും ഉറപ്പുവരുത്താൻ സഹായിക്കാമോ?"
-        ]
-      },
-      "വി. ബി. റമീസ് ബാഖവി": {
-        role: "യൂണിറ്റ് ട്രഷറർ",
-        salutation: "ബഹുമാനപ്പെട്ട റമീസ് ബാഖവി ഉസ്താദ് (ട്രഷറർ)",
-        customSuggestions: [
-          "യൂണിറ്റിന്റെ നിലവിലെ സാമ്പത്തിക നീക്കിയിരിപ്പും പുതിയ വരവ്-ചെലവ് കണക്കുകളും ക്യാഷ് ബുക്കിൽ രേഖപ്പെടുത്തി സൂക്ഷിച്ചാൽ നന്നായിരിക്കും.",
-          "സഹചാരി റിലീഫ് ഫണ്ട്, പലിശരഹിത വായ്പാ നിധി എന്നിവയുടെ പ്രത്യേക അക്കൗണ്ട് പുസ്തകം ക്രമീകരിക്കാൻ സാധിക്കുമോ?"
-        ]
-      },
-      "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി": {
-        role: "മേഖലാ കൗൺസിലർ & ഇബാദ് കൺവീനർ",
-        salutation: "ബഹുമാനപ്പെട്ട എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി ഉസ്താദ്",
-        customSuggestions: [
-          "മാസത്തിലെ വ്യാഴാഴ്ച രാവുകളിലെ സ്ഥിരം സ്വലാത്ത്, മൗലിദ്, കുത്തുബിയ്യത്ത് സദസ്സുകൾക്ക് നേതൃത്വം നൽകാൻ ഉസ്താദിന്റെ സൗകര്യം അറിയിച്ചാൽ നന്നായിരിക്കും.",
-          "മേഖലാ കമ്മിറ്റിയുമായുള്ള ആശയവിനിമയം ശക്തമായി നിലനിർത്താൻ ഉസ്താദിന്റെ സഹായം വിനീതമായി പ്രതീക്ഷിക്കുന്നു."
-        ]
-      },
-      "അൻസിൽ വി. എ": {
-        role: "മേഖലാ കൗൺസിലർ & വിഖായ കൺവീനർ",
-        salutation: "പ്രിയ അൻസിൽ സാഹിബ് (മേഖലാ കൗൺസിലർ & വിഖായ കൺവീനർ)",
-        customSuggestions: [
-          "ഒക്ടോബർ 1 രക്തദാന ദിനവുമായി ബന്ധപ്പെട്ട വിവരശേഖരണം ഈ വർഷം സാധ്യമായില്ലെങ്കിൽ, നഷ്ടപ്പെട്ട അവസരമായി കണ്ട് അടുത്ത വർഷത്തേക്ക് (2027 ഒക്ടോബർ 1) കൃത്യമായി നടപ്പിലാക്കാൻ മഹല്ല് തലത്തിൽ മുൻകൂട്ടി മുന്നൊരുക്കം ആരംഭിച്ചാലോ?",
-          "2026 ഒക്ടോബർ 11 ഞായറാഴ്ച നടക്കുന്ന കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ പഠന ക്ലാസ് (ജാബിർ യമാനി പാടൂർ) വിജയകരമാക്കാൻ ഹാൾ ഒരുക്കലും സ്വീകരണവും ഏകോപിപ്പിച്ചാൽ നന്നായിരിക്കും."
-        ]
-      },
-      "അബ്ദുൽ ലത്തീഫ്": {
-        role: "വൈസ് പ്രസിഡന്റ് & ട്രെൻഡ് കൺവീനർ",
-        salutation: "പ്രിയ അബ്ദുൽ ലത്തീഫ് സാഹിബ് (ട്രെൻഡ് കൺവീനർ)",
-        customSuggestions: [
-          "വിദ്യാർത്ഥികളുടെയും യുവാക്കളുടെയും പങ്കാളിത്തം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചാൽ നന്നായിരിക്കും.",
-          "നാട്ടിലെ തൊഴിലന്വേഷകരായ യുവാക്കളുടെ വിവരശേഖരണം ആരംഭിക്കുന്നത് ആലോചിക്കാമോ?"
-        ]
-      },
-      "റൈഹാൻ ബഷീർ": {
-        role: "മീഡിയ & സൈബർ വിംഗ് കൺവീനർ",
-        salutation: "പ്രിയ റൈഹാൻ ബഷീർ (മീഡിയ കൺവീനർ)",
-        customSuggestions: [
-          "സുപ്രഭാതം കലണ്ടർ അധിഷ്ഠിത പോസ്റ്ററുകൾ കൃത്യസമയത്ത് ഡിസൈൻ ചെയ്ത് പബ്ലിഷ് ചെയ്താൽ നന്നായിരിക്കും.",
-          "വാട്സാപ്പ് ഗ്രൂപ്പുകളിൽ ഐടി അച്ചടക്കം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചാലോ?"
-        ]
-      },
-      "മുഹമ്മദ് സഫീർ ആർ. എം": {
-        role: "വൈസ് പ്രസിഡന്റ് & സഹചാരി കൺവീനർ",
-        salutation: "പ്രിയ മുഹമ്മദ് സഫീർ സാഹിബ് (സഹചാരി കൺവീനർ)",
-        customSuggestions: [
-          "സഹചാരി സെന്റർ സ്ഥാപിച്ച് മെഡിക്കൽ ഉപകരണ ബാങ്കിലേക്ക് വീൽചെയർ, വാട്ടർ ബെഡ് എന്നിവ സമാഹരിക്കാൻ അന്വേഷണം നടത്തിയാൽ നന്നായിരിക്കും.",
-          "മഹല്ലിലെ കിടപ്പുരോഗികളുടെ വിവരങ്ങൾ ശേഖരിച്ച് പാലിയേറ്റീവ് രജിസ്റ്റർ പൂർത്തിയാക്കാൻ സാധിക്കുമോ?"
-        ]
-      },
-      "മുഹമ്മദ് സഫ്‌വാൻ": {
-        role: "ത്വലബ വിംഗ് കൺവീനർ",
-        salutation: "പ്രിയ മുഹമ്മദ് സഫ്‌വാൻ (ത്വലബ കൺവീനർ)",
-        customSuggestions: [
-          "മഹല്ലിലെ കുട്ടികളെയും രക്ഷിതാക്കളെയും കണ്ട് ദർസുകളിലേക്കും ശരീഅത്ത് കോളേജുകളിലേക്കും കൂടുതൽ വിദ്യാർത്ഥികളെ ആകർഷിക്കാൻ ശ്രമിച്ചാൽ നന്നായിരിക്കും."
-        ]
-      },
-      "മുഹമ്മദ് ഹാറൂൺ പി. എ": {
-        role: "സർഗലയം കൺവീനർ",
-        salutation: "പ്രിയ മുഹമ്മദ് ഹാറൂൺ (സർഗലയം കൺവീനർ)",
-        customSuggestions: [
-          "വിശേഷാൽ സപ്ലിമെന്റ് ഡിസൈനിംഗിലും വേദി അലങ്കാരത്തിലും സഹകരിച്ചാൽ വളരെ ഉപകാരമായിരിക്കും."
-        ]
-      }
-    };
-
-    const subWingsRegistry = {
-      "സഹചാരി റിലീഫ് സെൽ": { lead: "മുഹമ്മദ് സഫീർ ആർ. എം", desc: "ജീവകാരുണ്യ & മെഡിക്കൽ ഉപകരണ ബാങ്ക്", suggestions: ["മെഡിക്കൽ ഉപകരണ ബാങ്കിലേക്ക് വീൽചെയർ, വാട്ടർ ബെഡ് എന്നിവ സമാഹരിക്കുക.", "പാലിയേറ്റീവ് രജിസ്റ്റർ തയ്യാറാക്കുക."] },
-      "വിഖായ വിംഗ്": { lead: "അൻസിൽ വി. എ", desc: "സന്നദ്ധ സേവനം & രക്തദാനം", suggestions: ["മഹല്ല് ബ്ലഡ് ഡോണേഴ്സ് ഡാറ്റാബേസ് പൂർത്തിയാക്കുക.", "പ്രായോഗിക മയ്യത്ത് പരിപാലന ക്ലാസ് സംഘടിപ്പിക്കുക."] },
-      "ട്രെൻഡ് (വിദ്യാഭ്യാസം)": { lead: "അബ്ദുൽ ലത്തീഫ്", desc: "വിദ്യാഭ്യാസം & എംപ്ലോയ്‌മെന്റ്", suggestions: ["തൊഴിലന്വേഷകരുടെ ഡാറ്റാബേസ് ഉണ്ടാക്കുക.", "പഠന ക്ലാസ് സപ്ലിമെന്റ് തയ്യാറാക്കുക."] },
-      "മീഡിയ & സൈബർ": { lead: "റൈഹാൻ ബഷീർ", desc: "ഐടി & സോഷ്യൽ മീഡിയ", suggestions: ["സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ ഡിസൈൻ ചെയ്യുക.", "ഗ്രൂപ്പ് അച്ചടക്കം പാലിക്കുക."] },
-      "ഇബാദ് (ആത്മീയത)": { lead: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി", desc: "ആത്മീയ സദസ്സുകൾ", suggestions: ["പ്രതിമാസ സ്വലാത്ത്, മൗലിദ്, കുത്തുബിയ്യത്ത് സദസ്സുകൾ നയിക്കുക."] },
-      "സർഗലയം": { lead: "മുഹമ്മദ് ഹാറൂൺ പി. എ", desc: "കലാ-സാഹിത്യം", suggestions: ["വിദ്യാർത്ഥികൾക്കായി മത്സരങ്ങൾ ആസൂത്രണം ചെയ്യുക."] },
-      "ത്വലബ വിംഗ്": { lead: "മുഹമ്മദ് സഫ്‌വാൻ", desc: "ദർസ് ഏകോപനം", suggestions: ["ദർസ് പഠന പ്രചാരണം നടത്തുക."] }
-    };
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      const textEl = document.getElementById('toast-text');
-      if (textEl) textEl.innerText = msg;
-      if (t) {
-        t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 2300);
-      }
-    }
-
-    function copyElementText(id, note) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const text = el.innerText;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast(note || "കോപ്പി ചെയ്തു!"));
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.style.position = "fixed";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast(note || "കോപ്പി ചെയ്തു!");
-      }
-    }
-
-    function cleanPin(val) {
-      if (!val) return "";
-      const mlMap = {'൦':'0','൧':'1','൨':'2','൩':'3','൪':'4','൫':'5','൬':'6','൭':'7','൮':'8','൯':'9'};
-      return String(val).replace(/[൦-൯]/g, d => mlMap[d]).replace(/\D/g, '');
-    }
-
-    function handlePinInput(el) {
-      const cleaned = cleanPin(el.value);
-      if (cleaned.length >= 4) {
-        if (checkLoginPin(cleaned)) {
-          verifyGatePin();
-        }
-      }
-    }
-
-    function checkLoginPin(pin) {
-      const rolePins = getRolePins();
-      for (const [key, obj] of Object.entries(rolePins)) {
-        if (obj.pin === pin) return { type: "role", roleKey: key, title: obj.title };
-      }
-      const personalPins = getPersonalPins();
-      for (const [name, obj] of Object.entries(personalPins)) {
-        if (obj.pin === pin) return { type: "personal", name: name, roleKey: obj.role, title: `${name} (${obj.desig})` };
-      }
-      return null;
-    }
-
-    function verifyGatePin() {
-      const inputEl = document.getElementById('gate-pin-input');
-      const err = document.getElementById('gate-error');
-      const cleanedPin = cleanPin(inputEl ? inputEl.value : "");
-
-      const matched = checkLoginPin(cleanedPin);
-
-      if (matched) {
-        currentUserRole = matched.roleKey;
-        loggedInUserName = matched.name || null;
-        safeSetAuth(true, currentUserRole, loggedInUserName);
-        if (err) err.style.display = 'none';
-        unlockInterface();
-        showToast(`${matched.title} ആയി പ്രവേശിച്ചു!`);
-      } else {
-        if (err) {
-          err.style.display = 'block';
-          err.innerText = "തെറ്റായ കോഡ് അല്ലെങ്കിൽ വ്യക്തിഗത പിൻ! ദയവായി വീണ്ടും ശ്രമിക്കുക.";
-        }
-        if (inputEl) { inputEl.value = ''; inputEl.focus(); }
-      }
-    }
-
-    function loginAsGuest() {
-      currentUserRole = "public";
-      loggedInUserName = null;
-      safeSetAuth(true, "public");
-      unlockInterface();
-      showToast("പൊതുജന ഗസ്റ്റ് മോഡിൽ പ്രവേശിച്ചു! (Read-Only)");
-    }
-
-    function safeGetAuth() {
-      try {
-        const stored = localStorage.getItem("skssf_gate_unlocked_v4");
-        currentUserRole = localStorage.getItem("skssf_user_role_v4") || "core";
-        loggedInUserName = localStorage.getItem("skssf_user_name_v4") || null;
-        return stored === "true" || isMemoryUnlocked;
-      } catch (e) {
-        return isMemoryUnlocked;
-      }
-    }
-
-    function safeSetAuth(val, role = "core", name = null) {
-      isMemoryUnlocked = val;
-      currentUserRole = role;
-      loggedInUserName = name;
-      try {
-        if (val) {
-          localStorage.setItem("skssf_gate_unlocked_v4", "true");
-          localStorage.setItem("skssf_user_role_v4", role);
-          if (name) localStorage.setItem("skssf_user_name_v4", name);
-          else localStorage.removeItem("skssf_user_name_v4");
-        } else {
-          localStorage.removeItem("skssf_gate_unlocked_v4");
-          localStorage.removeItem("skssf_user_role_v4");
-          localStorage.removeItem("skssf_user_name_v4");
-        }
-      } catch (e) {}
-    }
-
-    function lockApp() {
-      safeSetAuth(false);
-      lockInterface();
-      showToast("പോർട്ടൽ ലോക്ക് ചെയ്തു.");
-    }
-
-    function unlockInterface() {
-      const gate = document.getElementById('auth-gate-screen');
-      const app = document.getElementById('main-app');
-      if (gate) { gate.style.display = 'none'; gate.classList.add('hidden'); }
-      if (app) { app.style.display = 'block'; app.classList.remove('hidden'); }
-      applyRolePermissions();
-      initApp();
-    }
-
-    function lockInterface() {
-      const gate = document.getElementById('auth-gate-screen');
-      const app = document.getElementById('main-app');
-      const inputEl = document.getElementById('gate-pin-input');
-      const err = document.getElementById('gate-error');
-      if (gate) { gate.style.display = 'flex'; gate.classList.remove('hidden'); }
-      if (app) { app.style.display = 'none'; app.classList.add('hidden'); }
-      if (err) err.style.display = 'none';
-      if (inputEl) { inputEl.value = ''; setTimeout(() => inputEl.focus(), 150); }
-    }
-
-    function togglePinVisibility(inputId, btnId) {
-      const input = document.getElementById(inputId);
-      const btn = document.getElementById(btnId);
-      if (!input || !btn) return;
-      if (input.type === 'password') {
-        input.type = 'text'; btn.innerText = 'മറയ്ക്കുക';
-      } else {
-        input.type = 'password'; btn.innerText = 'കാണിക്കുക';
-      }
-    }
-
-    function applyRolePermissions() {
-      const badge = document.getElementById('current-role-badge');
-      const adminTab = document.getElementById('tab-admin');
-      const coreTab = document.getElementById('tab-core');
-      const execTab = document.getElementById('tab-executive');
-      const membersTab = document.getElementById('tab-allmembers');
-      const indTab = document.getElementById('tab-individuals');
-      const subwingsTab = document.getElementById('tab-subwings');
-      const agendaTab = document.getElementById('tab-agenda');
-      const settingsTab = document.getElementById('tab-settings');
-      const headerSettingsBtn = document.getElementById('header-settings-btn');
-
-      let nameLabel = loggedInUserName ? ` (${loggedInUserName})` : "";
-
-      if (currentUserRole === 'core') {
-        if (badge) badge.innerText = `കോർ കമ്മിറ്റി (Admin)${nameLabel}`;
-        if (adminTab) adminTab.style.display = 'flex';
-        if (coreTab) coreTab.style.display = 'flex';
-        if (execTab) execTab.style.display = 'flex';
-        if (membersTab) membersTab.style.display = 'flex';
-        if (indTab) indTab.style.display = 'flex';
-        if (subwingsTab) subwingsTab.style.display = 'flex';
-        if (agendaTab) agendaTab.style.display = 'flex';
-        if (settingsTab) settingsTab.style.display = 'flex';
-        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
-      } else if (currentUserRole === 'executive') {
-        if (badge) badge.innerText = `എക്സിക്യൂട്ടീവ്${nameLabel}`;
-        if (adminTab) adminTab.style.display = 'none';
-        if (coreTab) coreTab.style.display = 'none';
-        if (execTab) execTab.style.display = 'flex';
-        if (membersTab) membersTab.style.display = 'flex';
-        if (indTab) indTab.style.display = 'flex';
-        if (subwingsTab) subwingsTab.style.display = 'flex';
-        if (agendaTab) agendaTab.style.display = 'flex';
-        if (settingsTab) settingsTab.style.display = 'flex';
-        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
-      } else if (currentUserRole === 'members') {
-        if (badge) badge.innerText = `യൂണിറ്റ് അംഗം${nameLabel}`;
-        if (adminTab) adminTab.style.display = 'none';
-        if (coreTab) coreTab.style.display = 'none';
-        if (execTab) execTab.style.display = 'none';
-        if (membersTab) membersTab.style.display = 'flex';
-        if (indTab) indTab.style.display = 'none';
-        if (subwingsTab) subwingsTab.style.display = 'none';
-        if (agendaTab) agendaTab.style.display = 'none';
-        if (settingsTab) settingsTab.style.display = 'flex';
-        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
-      } else {
-        if (badge) badge.innerText = "പൊതുജനങ്ങൾ (Guest - Read Only)";
-        if (adminTab) adminTab.style.display = 'none';
-        if (coreTab) coreTab.style.display = 'none';
-        if (execTab) execTab.style.display = 'none';
-        if (membersTab) membersTab.style.display = 'none';
-        if (indTab) indTab.style.display = 'none';
-        if (subwingsTab) subwingsTab.style.display = 'none';
-        if (agendaTab) agendaTab.style.display = 'none';
-        if (settingsTab) settingsTab.style.display = 'none';
-        if (headerSettingsBtn) headerSettingsBtn.style.display = 'none';
-
-        const activeTab = document.querySelector('.tab-btn.active');
-        if (activeTab && (activeTab.id !== 'tab-analytics' && activeTab.id !== 'tab-public')) {
-          switchTab('analytics');
-        }
-      }
-    }
-
-    function savePersonalPin() {
-      const name = document.getElementById('setting-user-select').value;
-      const curr = cleanPin(document.getElementById('setting-curr-pin').value);
-      const nw = cleanPin(document.getElementById('setting-new-pin').value);
-
-      if (!name) { showToast("ദയവായി വ്യക്തിയെ തെരഞ്ഞെടുക്കുക!"); return; }
-      if (!nw || nw.length < 4 || nw.length > 8) { showToast("പുതിയ പിൻ 4 മുതൽ 8 അക്കങ്ങളായിരിക്കണം!"); return; }
-
-      const personalPins = getPersonalPins();
-      const rolePins = getRolePins();
-
-      const isAuthValid = (personalPins[name] && personalPins[name].pin === curr) || (rolePins.core.pin === curr);
-      if (!isAuthValid) {
-        showToast("നിലവിലെ പിൻ തെറ്റാണ്!");
-        return;
-      }
-
-      if (!personalPins[name]) personalPins[name] = { pin: nw, role: "executive", desig: "അംഗം" };
-      else personalPins[name].pin = nw;
-
-      savePersonalPins(personalPins);
-      document.getElementById('setting-curr-pin').value = '';
-      document.getElementById('setting-new-pin').value = '';
-      showToast(`${name} ന്റെ പുതിയ വ്യക്തിഗത പിൻ സേവ് ചെയ്തു!`);
-      renderAdminDashboard();
-    }
-
-    function exportDataBackup() {
-      const backupData = {
-        rolePins: getRolePins(),
-        personalPins: getPersonalPins(),
-        tasks: checklistTasks,
-        exportDate: new Date().toISOString()
-      };
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `skssf_arangadi_backup_${new Date().toISOString().slice(0,10)}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      showToast("ഡാറ്റാ ബാക്കപ്പ് ഫയൽ ഡൗൺലോഡ് ചെയ്തു!");
-    }
-
-    function confirmResetAllPins() {
-      if (confirm("മുഴുവൻ റോളുകളുടെയും വ്യക്തികളുടെയും പിൻ കോഡുകൾ ഡിഫോൾട്ടിലേക്ക് റീസെറ്റ് ചെയ്യണോ?")) {
-        saveRolePins(DEFAULT_ROLE_PINS);
-        savePersonalPins(DEFAULT_PERSONAL_PINS);
-        showToast("മുഴുവൻ പിൻ കോഡുകളും റീസെറ്റ് ചെയ്തു!");
-        renderAdminDashboard();
-      }
-    }
-
-    function renderAdminDashboard() {
-      const pins = getRolePins();
-      const roleListEl = document.getElementById('admin-role-pins-list');
-      if (roleListEl) {
-        roleListEl.innerHTML = `
-          <div class="setting-row">
-            <div><strong>കോർ കമ്മിറ്റി (Admin):</strong></div>
-            <span class="tag-pill" style="font-size:13px; font-weight:800; background:#ecfdf5; color:#065f46;">${pins.core.pin}</span>
-          </div>
-          <div class="setting-row">
-            <div><strong>എക്സിക്യൂട്ടീവ് കൗൺസിൽ:</strong></div>
-            <span class="tag-pill" style="font-size:13px; font-weight:800; background:#fef9c3; color:#ca8a04;">${pins.executive.pin}</span>
-          </div>
-          <div class="setting-row">
-            <div><strong>മുഴുവൻ അംഗങ്ങൾ:</strong></div>
-            <span class="tag-pill" style="font-size:13px; font-weight:800; background:#e0f2fe; color:#0369a1;">${pins.members.pin}</span>
-          </div>
-        `;
-      }
-
-      const pPins = getPersonalPins();
-      const adminLeadersTbody = document.getElementById('admin-leaders-tbody');
-      if (adminLeadersTbody) {
-        adminLeadersTbody.innerHTML = '';
-        Object.keys(pPins).forEach(name => {
-          const item = pPins[name];
-          adminLeadersTbody.innerHTML += `
-            <tr>
-              <td><strong>${name}</strong></td>
-              <td>${item.desig}</td>
-              <td><span class="tag-pill">${item.role}</span></td>
-              <td><code>${item.pin}</code></td>
-              <td><button onclick="resetSingleUserPin('${name}')" class="btn-secondary" style="font-size:11px; padding:3px 8px;">റീസെറ്റ്</button></td>
-            </tr>
-          `;
-        });
-      }
-
-      const settingSelect = document.getElementById('setting-user-select');
-      if (settingSelect && settingSelect.children.length === 0) {
-        Object.keys(pPins).forEach(name => {
-          const opt = document.createElement('option');
-          opt.value = name;
-          opt.innerText = `${name} (${pPins[name].desig})`;
-          settingSelect.appendChild(opt);
-        });
-      }
-    }
-
-    function resetSingleUserPin(name) {
-      const pPins = getPersonalPins();
-      if (pPins[name]) {
-        pPins[name].pin = "1234";
-        savePersonalPins(pPins);
-        renderAdminDashboard();
-        showToast(`${name} ന്റെ പിൻ '1234' എന്നതിലേക്ക് റീസെറ്റ് ചെയ്തു!`);
-      }
+    function getGregorianPeriodString(periodKey, baseYear) {
+      const period = PERPETUAL_HIJRI_MONTHS[periodKey];
+      if (!period) return "";
+      const m1 = period.approxGregMonths[0];
+      const m2 = period.approxGregMonths[1];
+      const y1 = (m1 >= 8) ? baseYear : baseYear + 1;
+      const y2 = (m2 >= 8) ? baseYear : baseYear + 1;
+      return `${ML_MONTHS[m1]} - ${ML_MONTHS[m2]} ${y1 === y2 ? y1 : y1 + ' / ' + y2}`;
     }
 
     function getSystemDateInfo() {
       const now = new Date();
       const currentMonthIndex = now.getMonth(); // 0 to 11
+      const currentDay = now.getDate();
+      const currentYear = now.getFullYear();
 
-      // Auto-detect Hijri period based on month
+      // Detect Hijri period based on month
       let detectedPeriodKey = "rabi_al_akhir";
-      for (const [key, period] of Object.entries(CALENDAR_PERIODS)) {
-        if (period.gregorianMonths && period.gregorianMonths.includes(currentMonthIndex)) {
+      for (const [key, period] of Object.entries(PERPETUAL_HIJRI_MONTHS)) {
+        if (period.approxGregMonths && period.approxGregMonths.includes(currentMonthIndex)) {
           detectedPeriodKey = key;
           break;
         }
       }
 
-      const currentPeriod = CALENDAR_PERIODS[detectedPeriodKey];
+      const activeHijriYear = getHijriYearForPeriod(detectedPeriodKey, currentYear >= 2026 ? currentYear : 2026);
+      const periodObj = PERPETUAL_HIJRI_MONTHS[detectedPeriodKey];
+
+      // Identify today's special highlight
+      const gregKey = `greg_${currentMonthIndex + 1}_${currentDay}`;
+      let specialtyText = HISTORICAL_SPECIALTIES[gregKey] || "";
+
+      if (!specialtyText) {
+        const dayOfWeek = now.getDay();
+        if (dayOfWeek === 4) { // Thursday
+          specialtyText = "വ്യാഴാഴ്ച രാവ്: പ്രതിമാസ / പ്രതിവാര സ്വലാത്ത്, മൗലിദ്, കുത്തുബിയ്യത്ത് സദസ്സ്.";
+        } else if (dayOfWeek === 5) { // Friday
+          specialtyText = "വിശുദ്ധ ജുമുഅ ദിനം: പള്ളികളിലെ സഹചാരി പെട്ടി ശേഖരണവും പ്രാർത്ഥനാ സദസ്സും.";
+        } else {
+          specialtyText = `${periodObj.name} മാസം: ${periodObj.spiritualDays}`;
+        }
+      }
 
       return {
-        formattedDate: `${now.getFullYear()} ${ML_MONTHS[now.getMonth()]} ${now.getDate()} (${ML_DAYS[now.getDay()]})`,
-        formattedDateFull: `${now.getFullYear()} ${ML_MONTHS[now.getMonth()]} ${now.getDate()}, ${ML_DAYS[now.getDay()]}ാഴ്ച`,
+        now: now,
+        year: currentYear,
+        monthIndex: currentMonthIndex,
+        day: currentDay,
+        dayOfWeek: currentDay,
+        formattedDate: `${currentYear} ${ML_MONTHS[currentMonthIndex]} ${currentDay} (${ML_DAYS[now.getDay()]})`,
+        formattedDateFull: `${currentYear} ${ML_MONTHS[currentMonthIndex]} ${currentDay}, ${ML_DAYS[now.getDay()]}ാഴ്ച`,
         detectedPeriodKey: detectedPeriodKey,
-        hijriTitle: currentPeriod.hijriTitle,
-        planTitle: `${currentPeriod.name} (${currentPeriod.gregorianPeriod})`,
-        theme: currentPeriod.theme
+        hijriTitle: `${periodObj.name} ${activeHijriYear}`,
+        planTitle: `${periodObj.name} (${getGregorianPeriodString(detectedPeriodKey, currentYear)})`,
+        theme: periodObj.theme,
+        specialtyText: specialtyText
       };
     }
 
-    function getSelectedPeriodDetails() {
-      const sel = document.getElementById('month-selector');
-      const val = sel ? sel.value : "auto";
-      const sys = getSystemDateInfo();
+    function onYearOrCalendarChange() {
+      const yrSel = document.getElementById('cal-year-select');
+      if (yrSel) selectedActiveYear = parseInt(yrSel.value) || 2026;
+      updateCalendarPeriodViews();
+    }
 
-      if (val === "auto") {
+    function onHijriMonthChange() {
+      const hSel = document.getElementById('hijri-month-select');
+      if (hSel) selectedActiveHijriMonth = hSel.value;
+      updateCalendarPeriodViews();
+    }
+
+    function onGregorianMonthChange() {
+      const gSel = document.getElementById('greg-month-select');
+      const val = gSel ? gSel.value : "all";
+      selectedActiveGregMonth = val;
+
+      if (val !== "all") {
+        const mIdx = parseInt(val);
+        // Map to corresponding hijri month
+        for (const [key, period] of Object.entries(PERPETUAL_HIJRI_MONTHS)) {
+          if (period.approxGregMonths && period.approxGregMonths.includes(mIdx)) {
+            selectedActiveHijriMonth = key;
+            const hSel = document.getElementById('hijri-month-select');
+            if (hSel) hSel.value = key;
+            break;
+          }
+        }
+      }
+      updateCalendarPeriodViews();
+    }
+
+    function getSelectedPeriodDetails() {
+      const sys = getSystemDateInfo();
+      const yr = selectedActiveYear || 2026;
+      const hVal = selectedActiveHijriMonth;
+
+      if (hVal === "auto") {
+        const hYr = getHijriYearForPeriod(sys.detectedPeriodKey, yr);
+        const pObj = PERPETUAL_HIJRI_MONTHS[sys.detectedPeriodKey];
         return {
           key: sys.detectedPeriodKey,
-          messagePeriodText: `ഇന്ന്: ${sys.formattedDateFull}\n> *ഹിജ്‌റ മാസം:* ${sys.hijriTitle}\n> *കർമ്മപദ്ധതി:* ${sys.planTitle}`,
-          badgeText: `ഇന്ന്: ${sys.formattedDate} | ${sys.hijriTitle}`,
-          periodObj: CALENDAR_PERIODS[sys.detectedPeriodKey]
+          isAllYear: false,
+          year: yr,
+          hijriYear: hYr,
+          periodObj: pObj,
+          messagePeriodText: `ഇന്ന്: ${sys.formattedDateFull}\n> *ഹിജ്‌റ മാസം:* ${pObj.name} ${hYr}\n> *വർഷം:* ${yr} – ${yr + 1}\n> *പ്രധാന ലക്ഷ്യം:* ${pObj.theme}`,
+          badgeText: `ഇന്ന്: ${sys.formattedDate} | ${pObj.name} ${hYr}`
         };
-      } else if (val === "all") {
+      } else if (hVal === "all") {
         return {
           key: "all",
-          messagePeriodText: `മുഴുവൻ വാർഷിക കർമ്മപദ്ധതികൾ (1448 – 1449 / 2026 – 2027)`,
-          badgeText: `മുഴുവൻ മാസങ്ങൾ (All 12 Months)`,
-          periodObj: null
+          isAllYear: true,
+          year: yr,
+          hijriYear: `${1448 + (yr - 2026)} – ${1449 + (yr - 2026)}`,
+          periodObj: null,
+          messagePeriodText: `മുഴുവൻ വാർഷിക കർമ്മപദ്ധതികൾ (${yr} – ${yr + 1} / ഹിജ്‌റ ${1448 + (yr - 2026)} – ${1449 + (yr - 2026)})`,
+          badgeText: `മുഴുവൻ മാസങ്ങൾ (${yr} – ${yr + 1})`
         };
       } else {
-        const periodObj = CALENDAR_PERIODS[val] || CALENDAR_PERIODS.rabi_al_akhir;
+        const pObj = PERPETUAL_HIJRI_MONTHS[hVal] || PERPETUAL_HIJRI_MONTHS.rabi_al_akhir;
+        const hYr = getHijriYearForPeriod(hVal, yr);
         return {
-          key: val,
-          messagePeriodText: `*ഹിജ്‌റ:* ${periodObj.hijriTitle} (${periodObj.gregorianPeriod})\n> *പ്രധാന ലക്ഷ്യം:* ${periodObj.theme}`,
-          badgeText: `${periodObj.name} (${periodObj.gregorianPeriod})`,
-          periodObj: periodObj
+          key: hVal,
+          isAllYear: false,
+          year: yr,
+          hijriYear: hYr,
+          periodObj: pObj,
+          messagePeriodText: `*ഹിജ്‌റ:* ${pObj.name} ${hYr} (${getGregorianPeriodString(hVal, yr)})\n> *പ്രധാന ലക്ഷ്യം:* ${pObj.theme}`,
+          badgeText: `${pObj.name} ${hYr} (${getGregorianPeriodString(hVal, yr)})`
         };
       }
     }
 
-    function onMonthChange() {
+    function updateCalendarPeriodViews() {
       const period = getSelectedPeriodDetails();
       const badge = document.getElementById('active-period-name');
       if (badge) badge.innerText = period.badgeText;
 
-      // Update tasks based on selected period
-      if (period.key === "all") {
-        // combine all month tasks
+      const yrLabel = document.getElementById('metrics-active-year-label');
+      if (yrLabel) yrLabel.innerText = `${period.year} – ${period.year + 1}`;
+
+      const mLabel = document.getElementById('metrics-active-month-label');
+      if (mLabel) {
+        mLabel.innerText = period.isAllYear ? "മുഴുവൻ വാർഷികം" : (period.periodObj ? period.periodObj.name : "മാസം");
+      }
+
+      // Load tasks
+      if (period.isAllYear) {
         let all = [];
-        Object.values(CALENDAR_PERIODS).forEach(p => {
-          all = all.concat(p.tasks);
-        });
+        Object.values(PERPETUAL_HIJRI_MONTHS).forEach(p => { all = all.concat(p.tasks); });
         checklistTasks = all;
       } else if (period.periodObj && period.periodObj.tasks) {
         checklistTasks = [...period.periodObj.tasks];
@@ -1634,167 +1265,51 @@
       refreshAllViews();
     }
 
-    function getAttributionFooter() {
-      return `> 📌 *ഈ സന്ദേശവും കർമ്മപദ്ധതിയും തയ്യാറാക്കിയത് താഴെ കാണുന്ന ഔദ്യോഗിക പേജ് വഴിയാണ്:*\n> ${PORTAL_LINK}\n\n\`\`\`[സിസ്റ്റം ജനറേറ്റഡ് രേഖ | SKSSF ആറങ്ങാടി യൂണിറ്റ്]\`\`\``;
-    }
-
-    function formatTasksForWhatsApp(filterWingOrPerson = null, tierLevel = "core") {
-      let filtered = [];
-      if (filterWingOrPerson) {
-        filtered = checklistTasks.filter(t => 
-          t.wing.toLowerCase().includes(filterWingOrPerson.toLowerCase()) || 
-          t.resp.toLowerCase().includes(filterWingOrPerson.toLowerCase())
-        );
-      } else {
-        if (tierLevel === "core") filtered = checklistTasks;
-        else if (tierLevel === "executive") filtered = checklistTasks.filter(t => t.tier === "executive" || t.tier === "members");
-        else if (tierLevel === "members") filtered = checklistTasks.filter(t => t.tier === "members");
-      }
-      if (filtered.length === 0) return "";
-
-      let res = "\n📋 *നിർവ്വഹിക്കേണ്ട ടാസ്‌‌ക് ലിസ്റ്റ്:*\n";
-      filtered.forEach((t, idx) => {
-        let statusMarker = "";
-        let priorityTag = "";
-
-        if (t.status === "done") {
-          statusMarker = "[✅ പൂർത്തിയായി]";
-        } else if (t.status === "in-progress") {
-          statusMarker = "[🟡 പുരോഗമിക്കുന്നു]";
-        } else if (t.status === "missed") {
-          statusMarker = "[⚠️ കാലാവധി കഴിഞ്ഞത് (നഷ്ടപ്പെട്ട അവസരം - അടുത്ത വർഷത്തേക്ക് മുന്നൊരുക്കം)]";
-          priorityTag = " 🟣 _[അടുത്ത വർഷത്തേക്ക് പ്ലാൻ ചെയ്യുക]_";
-        } else {
-          statusMarker = "[🔴 ബാക്കിയുണ്ട്]";
-          if (t.priority === "high") priorityTag = " 🔴 _[ഹൈ പ്രയോറിറ്റി]_";
-          else if (t.priority === "low") priorityTag = " 🟠 _[ലോ പ്രയോറിറ്റി]_";
-        }
-
-        res += `${idx + 1}. ${statusMarker} : ${t.status === "done" ? `~${t.title}~` : `*${t.title}*`}${priorityTag}\n`;
-        res += `   > _ചുമതല: ${t.resp} | വിംഗ്: ${t.wing}_\n`;
-        if (t.status === "missed") {
-          res += `   > _കുറിപ്പ്: ഈ വർഷത്തെ കാലാവധി കഴിഞ്ഞു. അടുത്ത വർഷം തീയതി തെറ്റാതെ നടപ്പിലാക്കാൻ ഇപ്പോൾ തന്നെ തയ്യാറെടുപ്പുകൾ നടത്തുക._\n`;
-        }
-      });
-      return res;
-    }
-
-    function canUserEditTask(task) {
-      if (currentUserRole === 'core') return true;
-      if (currentUserRole === 'executive') {
-        return task.tier === 'executive' || task.tier === 'members';
-      }
-      if (currentUserRole === 'members') {
-        return task.tier === 'members';
-      }
-      return false;
-    }
-
-    function createTaskCardHtml(t) {
-      let priorityBadge = "";
-      if (t.status === "missed") {
-        priorityBadge = `<span class="tag-pill" style="background:#f3e8ff; color:#7c3aed; font-weight:800;">🟣 അടുത്ത വർഷത്തേക്ക് റീഷെഡ്യൂൾ ചെയ്തവ</span>`;
-      } else if (t.priority === 'high') {
-        priorityBadge = `<span class="tag-pill" style="background:#fee2e2; color:#dc2626;">🔴 ഹൈ പ്രയോറിറ്റി</span>`;
-      } else if (t.priority === 'low') {
-        priorityBadge = `<span class="tag-pill" style="background:#ffedd5; color:#c2410c;">🟠 ലോ പ്രയോറിറ്റി</span>`;
-      } else {
-        priorityBadge = `<span class="tag-pill">🔵 നോർമൽ</span>`;
-      }
-
-      let btnClass = 'btn-pending';
-      let btnText = '🔴 ബാക്കി';
-      if (t.status === 'done') {
-        btnClass = 'btn-done'; btnText = '✅ കഴിഞ്ഞു';
-      } else if (t.status === 'in-progress') {
-        btnClass = 'btn-in-progress'; btnText = '🟡 നടക്കുന്നു';
-      } else if (t.status === 'missed') {
-        btnClass = 'btn-missed'; btnText = '⚠️ കഴിഞ്ഞുപോയത് (അടുത്ത വർഷത്തേക്ക്)';
-      }
-
-      const isEditable = canUserEditTask(t);
-      let actionControl = "";
-
-      if (isEditable) {
-        actionControl = `
-          <button onclick="cycleTaskStatus(${t.id})" class="cycle-btn ${btnClass}">
-            ${btnText}
-          </button>
-        `;
-      } else {
-        let lockReason = currentUserRole === 'public' ? "ഗസ്റ്റ് വ്യൂ (Read-Only)" : "കോർ കമ്മിറ്റിക്ക് മാത്രം";
-        actionControl = `
-          <span class="cycle-btn ${btnClass}" style="opacity: 0.8; cursor: not-allowed; display: inline-flex; align-items: center; gap: 4px;" title="${lockReason}">
-            ${btnText} <span style="font-size:10px;">🔒</span>
-          </span>
-        `;
-      }
-
-      return `
-        <div class="task-interactive-card status-${t.status}">
-          <div class="task-info-block">
-            <h4 style="font-size:13.5px; font-weight:700; margin-bottom:4px; word-break:break-word;">
-              ${t.status === 'done' ? '✅' : (t.status === 'in-progress' ? '🟡' : (t.status === 'missed' ? '⚠️' : '🔴'))} 
-              ${t.title}
-            </h4>
-            <p style="font-size:12px; color:#64748b; margin-bottom:6px; word-break:break-word;">${t.desc}</p>
-            <div style="display:flex; flex-wrap:wrap; gap:3px; align-items:center;">
-              <span class="tag-pill">🏢 ${t.wing}</span>
-              <span class="tag-pill">👤 ${t.resp}</span>
-              ${priorityBadge}
-              ${t.tier === 'core' ? `<span class="tag-pill" style="background:#fee2e2; color:#991b1b; font-weight:800;">കോർ ടാസ്‌‌ക്</span>` : ''}
-            </div>
-          </div>
-          <div class="task-action-block">
-            ${actionControl}
-          </div>
-        </div>
-      `;
-    }
-
-    function cycleTaskStatus(id) {
-      if (currentUserRole === 'public') {
-        showToast("പൊതുജനങ്ങൾക്ക് ടാസ്‌ക് മാറ്റാൻ അനുവാദമില്ല (Read-Only)!");
-        return;
-      }
-
-      const item = checklistTasks.find(x => x.id === id);
-      if (!item) return;
-
-      if (!canUserEditTask(item)) {
-        showToast("ഈ ടാസ്‌ക് മാറ്റാൻ കോർ കമ്മിറ്റിക്ക് മാത്രമേ അധികാരമുള്ളൂ!");
-        return;
-      }
-
-      // Cycle: pending -> in-progress -> done -> missed (കാലാവധി കഴിഞ്ഞത്) -> pending
-      if (item.status === 'pending') item.status = 'in-progress';
-      else if (item.status === 'in-progress') item.status = 'done';
-      else if (item.status === 'done') item.status = 'missed';
-      else item.status = 'pending';
-
-      saveTasks();
-      refreshAllViews();
-      showToast("സ്റ്റാറ്റസ് മാറ്റി സേവ് ചെയ്തു!");
-    }
-
     function calculateMetrics() {
-      const total = checklistTasks.length || 1;
-      const done = checklistTasks.filter(t => t.status === 'done').length;
-      const inProgress = checklistTasks.filter(t => t.status === 'in-progress').length;
-      const pending = checklistTasks.filter(t => t.status === 'pending').length;
-      const missed = checklistTasks.filter(t => t.status === 'missed').length;
+      // 1. Calculate Active Month Stats
+      const mTotal = checklistTasks.length || 1;
+      const mDone = checklistTasks.filter(t => t.status === 'done').length;
+      const mProg = checklistTasks.filter(t => t.status === 'in-progress').length;
+      const mPend = checklistTasks.filter(t => t.status === 'pending').length;
+      const mMiss = checklistTasks.filter(t => t.status === 'missed').length;
 
-      document.getElementById('stat-total').innerText = checklistTasks.length;
-      document.getElementById('stat-done').innerText = `${done} (${Math.round((done/total)*100)}%)`;
-      document.getElementById('stat-progress').innerText = `${inProgress} (${Math.round((inProgress/total)*100)}%)`;
-      document.getElementById('stat-pending').innerText = `${pending} (${Math.round((pending/total)*100)}%)`;
-      document.getElementById('stat-missed').innerText = `${missed} (${Math.round((missed/total)*100)}%)`;
+      const setEl = (id, text) => { const el = document.getElementById(id); if (el) el.innerText = text; };
+      const setW = (id, pct) => { const el = document.getElementById(id); if (el) el.style.width = `${pct}%`; };
 
-      document.getElementById('progress-done-bar').style.width = `${(done/total)*100}%`;
-      document.getElementById('progress-progress-bar').style.width = `${(inProgress/total)*100}%`;
-      document.getElementById('progress-pending-bar').style.width = `${(pending/total)*100}%`;
-      document.getElementById('progress-missed-bar').style.width = `${(missed/total)*100}%`;
+      setEl('stat-month-total', checklistTasks.length);
+      setEl('stat-month-done', `${mDone} (${Math.round((mDone / mTotal) * 100)}%)`);
+      setEl('stat-month-progress', `${mProg} (${Math.round((mProg / mTotal) * 100)}%)`);
+      setEl('stat-month-pending', `${mPend} (${Math.round((mPend / mTotal) * 100)}%)`);
+      setEl('stat-month-missed', `${mMiss} (${Math.round((mMiss / mTotal) * 100)}%)`);
 
+      setW('prog-month-done', Math.round((mDone / mTotal) * 100));
+      setW('prog-month-progress', Math.round((mProg / mTotal) * 100));
+      setW('prog-month-pending', Math.round((mPend / mTotal) * 100));
+      setW('prog-month-missed', Math.round((mMiss / mTotal) * 100));
+
+      // 2. Calculate Annual Cumulative Stats (Sum of all 12 perpetual months)
+      let allAnnualTasks = [];
+      Object.values(PERPETUAL_HIJRI_MONTHS).forEach(p => {
+        allAnnualTasks = allAnnualTasks.concat(p.tasks);
+      });
+      const aTotal = allAnnualTasks.length || 1;
+      const aDone = allAnnualTasks.filter(t => t.status === 'done').length;
+      const aProg = allAnnualTasks.filter(t => t.status === 'in-progress').length;
+      const aPend = allAnnualTasks.filter(t => t.status === 'pending').length;
+      const aMiss = allAnnualTasks.filter(t => t.status === 'missed').length;
+
+      setEl('stat-annual-total', allAnnualTasks.length);
+      setEl('stat-annual-done', `${aDone} (${Math.round((aDone / aTotal) * 100)}%)`);
+      setEl('stat-annual-progress', `${aProg} (${Math.round((aProg / aTotal) * 100)}%)`);
+      setEl('stat-annual-pending', `${aPend} (${Math.round((aPend / aTotal) * 100)}%)`);
+      setEl('stat-annual-missed', `${aMiss} (${Math.round((aMiss / aTotal) * 100)}%)`);
+
+      setW('prog-annual-done', Math.round((aDone / aTotal) * 100));
+      setW('prog-annual-progress', Math.round((aProg / aTotal) * 100));
+      setW('prog-annual-pending', Math.round((aPend / aTotal) * 100));
+      setW('prog-annual-missed', Math.round((aMiss / aTotal) * 100));
+
+      // 3. Render Breakdown Tables
       const wings = ["സഹചാരി", "വിഖായ", "ട്രെൻഡ്", "മീഡിയ", "ഇബാദ്", "ത്വലബ", "കോർ കമ്മിറ്റി"];
       const wingTbody = document.getElementById('subwing-stats-tbody');
       if (wingTbody) {
@@ -1839,19 +1354,51 @@
       }
     }
 
-    function renderTaskContainer(elementId, taskList) {
-      const c = document.getElementById(elementId);
-      if (!c) return;
-      if (taskList.length === 0) {
-        c.innerHTML = `<p style="font-size:12.5px; color:#64748b; padding:10px;">നിലവിൽ ടാസ്കുകൾ ലഭ്യമല്ല.</p>`;
-        return;
+    function renderTodayView() {
+      const sys = getSystemDateInfo();
+      const subTitle = document.getElementById('today-view-subtitle');
+      if (subTitle) subTitle.innerText = `ഇന്ന്: ${sys.formattedDateFull} | ${sys.hijriTitle}`;
+
+      const bannerDate = document.getElementById('live-today-fulldate');
+      if (bannerDate) bannerDate.innerText = `${sys.formattedDateFull} | ${sys.hijriTitle}`;
+
+      const bannerSpec = document.getElementById('live-today-specialty');
+      if (bannerSpec) bannerSpec.innerText = sys.specialtyText;
+
+      const dailyEl = document.getElementById('today-daily-text');
+      if (dailyEl) dailyEl.innerText = RECURRING_ROUTINES.daily;
+
+      const weeklyEl = document.getElementById('today-weekly-text');
+      if (weeklyEl) weeklyEl.innerText = RECURRING_ROUTINES.weekly;
+
+      // Filter high priority / pending / in-progress tasks for today's focus
+      const focusTasks = checklistTasks.filter(t => t.status === 'in-progress' || (t.status === 'pending' && t.priority === 'high'));
+      renderTaskContainer('today-tasks-container', focusTasks.length > 0 ? focusTasks : checklistTasks.slice(0, 5));
+
+      // Build WhatsApp shareable message for Today
+      let msg = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n📅 *ഇന്നത്തെ കർമ്മപദ്ധതി & ആക്ഷൻ പ്ലാൻ*\n> 🗓 *തീയതി:* ${sys.formattedDateFull}\n> 🌙 *ഹിജ്‌റ:* ${sys.hijriTitle}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\n🌟 *ഇന്നത്തെ ദിനവിശേഷം:* \n> ${sys.specialtyText}\n\n☀️ *ഇന്ന് നിർവ്വഹിക്കേണ്ട നിത്യേനയുള്ള ശീലം:*\n> • ${RECURRING_ROUTINES.daily}\n\n🕌 *പ്രതിവാര ശീലം:*\n> • ${RECURRING_ROUTINES.weekly}\n\n📌 *ഇന്ന് മുൻഗണന നൽകേണ്ട പ്രധാന ടാസ്‌കുകൾ:*\n`;
+
+      if (focusTasks.length > 0) {
+        focusTasks.forEach((t, i) => {
+          msg += `${i + 1}. *${t.title}* [${t.status === 'in-progress' ? '🟡 നടക്കുന്നു' : '🔴 ബാക്കി'}]\n   > _ചുമതല: ${t.resp} | വിംഗ്: ${t.wing}_\n`;
+        });
+      } else {
+        msg += `_ഈ മാസത്തെ പ്രധാന ടാസ്‌കുകൾ ചിട്ടയായി പുരോഗമിക്കുന്നു._\n`;
       }
-      c.innerHTML = taskList.map(t => createTaskCardHtml(t)).join('');
+
+      msg += `\n_ഓരോരുത്തരും സ്വന്തം ഉത്തരവാദിത്തങ്ങൾ ഭംഗിയായി പൂർത്തിയാക്കുമല്ലോ._\n\n` + getAttributionFooter();
+
+      const box = document.getElementById('today-whatsapp-msg');
+      if (box) box.innerText = msg;
+
+      const waBtn = document.getElementById('share-today-wa');
+      if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
     }
 
     function refreshAllViews() {
       calculateMetrics();
       renderAdminDashboard();
+      renderTodayView();
       renderTaskContainer('all-tasks-container', checklistTasks);
 
       const coreTasks = checklistTasks.filter(t => t.tier === 'core');
@@ -1881,194 +1428,9 @@
       renderAgendaView();
     }
 
-    function buildCoreMsg() {
-      const period = getSelectedPeriodDetails();
-      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n🔒 *കോർ കമ്മിറ്റി ആലോചനാ സന്ദേശവും നയരേഖയും*\n_[അതീവ രഹസ്യം - കോർ കമ്മിറ്റി ആഭ്യന്തര ചർച്ചയ്ക്ക് മാത്രം]_\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\nനമ്മുടെ യൂണിറ്റിന്റെ പ്രവർത്തനങ്ങൾ കൂടുതൽ ചിട്ടപ്പെടുത്തുന്നതിനായി കോർ കമ്മിറ്റിക്ക് മുന്നിൽ ചില നിർദ്ദേശങ്ങൾ സമർപ്പിക്കുന്നു:\n\n`;
-
-      if (period.periodObj) {
-        text += `• *മാസ വിഷയം:* ${period.periodObj.theme}\n`;
-        text += `• *ആത്മീയ ദിനങ്ങൾ:* ${period.periodObj.spiritualDays}\n`;
-      }
-      text += `\n*സ്ഥിരം ആവർത്തിത ചുമതലകൾ:*\n> • *പ്രതിമാസം:* ${RECURRING_ROUTINES.monthly}\n`;
-      text += formatTasksForWhatsApp(null, "core");
-      text += `\n_കോർ കമ്മിറ്റി അംഗങ്ങൾ വിലയേറിയ അഭിപ്രായങ്ങൾ പങ്കുവെക്കണമെന്ന് അഭ്യർത്ഥിക്കുന്നു._\n\n` + getAttributionFooter();
-      return text;
-    }
-
-    function buildExecutiveMsg() {
-      const period = getSelectedPeriodDetails();
-      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n🔐 *യൂണിറ്റ് എക്സിക്യൂട്ടീവ് കൗൺസിൽ സൗഹൃദ നിർദ്ദേശങ്ങളും ടാസ്‌ക് ലിസ്റ്റും*\n_[ഔദ്യോഗികം - എക്സിക്യൂട്ടീവ് കൗൺസിൽ അംഗങ്ങൾക്ക് മാത്രം]_\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\nഈ മാസത്തിൽ നമുക്ക് ഒത്തൊരുമിച്ച് ചെയ്യാവുന്ന പ്രധാന കർമ്മപദ്ധതികൾ നിർദ്ദേശമായി മുന്നോട്ട് വെക്കുന്നു:\n`;
-
-      if (period.periodObj) {
-        text += `• *പ്രധാന ലക്ഷ്യം:* ${period.periodObj.theme}\n`;
-      }
-      text += `\n*പ്രതിവാര / പ്രതിമാസ ശീലം:*\n> • *പ്രതിവാരം:* ${RECURRING_ROUTINES.weekly}\n`;
-      text += formatTasksForWhatsApp(null, "executive");
-      text += `\n_ഓരോരുത്തർക്കും ചെയ്യാൻ കഴിയുന്ന കാര്യങ്ങൾ എക്സിക്യൂട്ടീവ് ഗ്രൂപ്പിൽ അറിയിക്കുമല്ലോ._\n\n` + getAttributionFooter();
-      return text;
-    }
-
-    function buildAllMembersMsg() {
-      const period = getSelectedPeriodDetails();
-      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n👥 *മുഴുവൻ അംഗങ്ങൾക്കുമുള്ള സൗഹൃദ സന്ദേശവും വിവരങ്ങളും*\n_[SKSSF ആറങ്ങാടി യൂണിറ്റ് ഔദ്യോഗിക വേദി]_\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\nയൂണിറ്റിലെ മുഴുവൻ 42 അംഗങ്ങളുടെയും കൂട്ടായ്മയാണ് നമ്മുടെ കരുത്ത്. ഈ മാസത്തെ പ്രവർത്തനങ്ങളിൽ ഏവരുടെയും സജീവ പങ്കാളിത്തം പ്രതീക്ഷിക്കുന്നു:\n`;
-
-      if (period.periodObj) {
-        text += `• *പ്രധാന പരിപാടികൾ:* ${period.periodObj.theme}\n`;
-      }
-      text += formatTasksForWhatsApp(null, "members");
-      text += `\n_നിങ്ങളുടെ സജീവ സഹകരണങ്ങൾ വിനീതമായി പ്രതീക്ഷിക്കുന്നു._\n\n` + getAttributionFooter();
-      return text;
-    }
-
-    function buildPublicMsg() {
-      const period = getSelectedPeriodDetails();
-      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n📢 *മഹല്ല് നിവാസികൾക്കും പൊതുജനങ്ങൾക്കുമുള്ള സ്നേഹ സന്ദേശം*\n> *മാസം:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\nഈ മാസത്തിൽ യൂണിറ്റ് നടപ്പിലാക്കുന്ന പൊതുജനക്ഷേമ-ആത്മീയ കാര്യങ്ങൾ നിങ്ങളുടെ ശ്രദ്ധയിലേക്ക് സമർപ്പിക്കുന്നു:\n`;
-
-      if (period.periodObj) {
-        text += `• *വിശേഷങ്ങൾ:* ${period.periodObj.theme}\n• *പ്രത്യേക ദിനങ്ങൾ:* ${period.periodObj.spiritualDays}\n`;
-      }
-      text += `• *24x7 അടിയന്തിര രക്തദാന സേവനം:* വിഖായ ഹെൽപ്പ്ലൈൻ വഴി ലഭ്യമാണ്.\n• *സൗജന്യ മെഡിക്കൽ ഉപകരണ ബാങ്ക്:* കിടപ്പുരോഗികൾക്കായി വീൽചെയർ, വാട്ടർ ബെഡ് സൗകര്യങ്ങൾ സജ്ജമാണ്.\n\n` + getAttributionFooter();
-      return text;
-    }
-
-    function renderIndividualView() {
-      const pSel = document.getElementById('person-select');
-      const badge = document.getElementById('person-designation-badge');
-      const box = document.getElementById('individual-msg');
-      const waBtn = document.getElementById('share-ind-wa');
-      const header = document.getElementById('ind-tasks-header');
-
-      if (!pSel || !box) return;
-
-      populatePersonSelect();
-
-      const person = pSel.value;
-      if (person) {
-        const info = leadersRegistry[person] || { role: "എക്സിക്യൂട്ടീവ് അംഗം", salutation: `പ്രിയ സുഹൃത്ത് ${person}`, customSuggestions: ["യോഗങ്ങളിൽ കൃത്യസമയത്ത് പങ്കെടുക്കുക."] };
-        if (badge) badge.innerText = `പദവി: ${info.role}`;
-        if (header) header.innerText = `👤 ${person} - ചുമതലകൾ`;
-
-        let period = getSelectedPeriodDetails();
-        let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n*വ്യക്തിഗത സൗഹൃദ നിർദ്ദേശങ്ങളും ചുമതലകളും*\n> 👤 *വ്യക്തി:* ${person} | *പദവി:* ${info.role}\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${info.salutation},\n\n${ARABIC_SALAM_SHORT}\n\n`;
-        info.customSuggestions.forEach((sug, i) => { text += `${i + 1}. ${sug}\n`; });
-        text += formatTasksForWhatsApp(person);
-        text += `\n_നമ്മുടെ യൂണിറ്റിന്റെ വളർച്ചയ്ക്കായി താങ്കളുടെ നേതൃത്വം പ്രതീക്ഷിക്കുന്നു._\n\n` + getAttributionFooter();
-
-        box.innerText = text;
-        if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-
-        const personTasks = checklistTasks.filter(t => t.resp.toLowerCase().includes(person.toLowerCase()));
-        renderTaskContainer('ind-tasks-container', personTasks);
-      }
-    }
-
-    function populatePersonSelect() {
-      const pSel = document.getElementById('person-select');
-      if (!pSel) return;
-
-      const currentSelected = pSel.value;
-      const personalPins = getPersonalPins();
-
-      const allowedNames = Object.keys(leadersRegistry).filter(name => {
-        if (currentUserRole === 'core') return true;
-        if (currentUserRole === 'executive') {
-          const leaderInfo = personalPins[name];
-          return leaderInfo && leaderInfo.role !== 'core';
-        }
-        return false;
-      });
-
-      pSel.innerHTML = '';
-      allowedNames.forEach(name => {
-        const opt = document.createElement('option');
-        opt.value = name;
-        opt.innerText = `${name} (${leadersRegistry[name].role})`;
-        if (name === currentSelected) opt.selected = true;
-        pSel.appendChild(opt);
-      });
-    }
-
-    function renderWingView() {
-      const wSel = document.getElementById('wing-select');
-      const box = document.getElementById('wing-msg');
-      const waBtn = document.getElementById('share-wing-wa');
-      const header = document.getElementById('wing-tasks-header');
-
-      if (!wSel || !box) return;
-      const wing = wSel.value;
-      if (wing) {
-        const info = subWingsRegistry[wing] || { lead: "കൺവീനർ", suggestions: ["പ്രവർത്തനങ്ങൾ ആസൂത്രണം ചെയ്യുക."] };
-        if (header) header.innerText = `🏢 ${wing} - ചുമതലകൾ`;
-
-        let period = getSelectedPeriodDetails();
-        let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n*${wing.toUpperCase()} - സൗഹൃദ നിർദ്ദേശങ്ങളും ടാസ്‌ക് ലിസ്റ്റും*\n> 👤 *നേതൃത്വം:* ${info.lead}\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_SHORT}\n\n`;
-        info.suggestions.forEach((sug, i) => { text += `${i + 1}. ${sug}\n`; });
-        text += formatTasksForWhatsApp(wing);
-        text += `\n_സബ് വിംഗ് പ്രവർത്തകർ പരസ്പരം ആലോചിച്ച് ഈ നിർദ്ദേശങ്ങൾ നടപ്പിലാക്കുമല്ലോ._\n\n` + getAttributionFooter();
-
-        box.innerText = text;
-        if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-
-        const wingTasks = checklistTasks.filter(t => t.wing.toLowerCase().includes(wing.toLowerCase()));
-        renderTaskContainer('wing-tasks-container', wingTasks);
-      }
-    }
-
-    function renderAgendaView() {
-      const aSel = document.getElementById('agenda-category-select');
-      const box = document.getElementById('agenda-msg');
-      const waBtn = document.getElementById('share-agenda-wa');
-      const dInput = document.getElementById('agenda-custom-date');
-      const tInput = document.getElementById('agenda-custom-time');
-      const vInput = document.getElementById('agenda-custom-venue');
-
-      if (!aSel || !box) return;
-
-      const coreOpt = aSel.querySelector('option[value="core"]');
-      if (coreOpt) {
-        if (currentUserRole === 'core') {
-          coreOpt.style.display = 'block';
-          coreOpt.disabled = false;
-        } else {
-          coreOpt.style.display = 'none';
-          coreOpt.disabled = true;
-          if (aSel.value === 'core') aSel.value = 'executive';
-        }
-      }
-
-      const cat = aSel.value;
-      const period = getSelectedPeriodDetails();
-      const sys = getSystemDateInfo();
-
-      const dateStr = (dInput && dInput.value.trim()) || `${sys.formattedDateFull}`;
-      const timeStr = (tInput && tInput.value.trim()) || "രാത്രി 8:30 ന്";
-      const venueStr = (vInput && vInput.value.trim()) || "ആറങ്ങാടി ഇർഷാദുൽ അനാം മദ്റസ";
-
-      let title = "കോർ കമ്മിറ്റി യോഗ നോട്ടീസ്";
-      let agendas = ["പ്രാർത്ഥന & അധ്യക്ഷ ഭാഷണം", "മുൻ തീരുമാന പുരോഗതി വിലയിരുത്തൽ", "കാലാവധി കഴിഞ്ഞ കാര്യങ്ങൾ അടുത്ത വർഷത്തേക്ക് പുനഃക്രമീകരിക്കൽ", "സഹചാരി സെന്റർ & പള്ളി കമ്മിറ്റി കത്ത്"];
-
-      if (cat === "executive") {
-        title = "യൂണിറ്റ് എക്സിക്യൂട്ടീവ് കൗൺസിൽ യോഗ നോട്ടീസ്";
-        agendas = ["ഖുർആൻ പാരായണം & പ്രാർത്ഥന", "കഴിഞ്ഞ യോഗ മിനുട്സ് അംഗീകരിക്കൽ", "13 സബ് വിംഗുകളുടെ പ്രവർത്തന റിപ്പോർട്ട്", "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം"];
-      } else if (cat === "general") {
-        title = "മുഴുവൻ അംഗങ്ങളുടെയും ജനറൽ ബോഡി യോഗം (42 Members)";
-        agendas = ["പ്രാർത്ഥന & ആമുഖ ഭാഷണം", "വാർഷിക കർമ്മരേഖാ അവലോകനം", "പ്രവാസികളായ അംഗങ്ങളുടെ അഭിപ്രായങ്ങൾ", "സമാപന പ്രാർത്ഥന"];
-      } else if (cat === "public") {
-        title = "പൊതുജന സംഗമം / മഹല്ല് കൂട്ടായ്മ";
-        agendas = ["പ്രാർത്ഥന & സ്വാഗതം", "മുഖ്യ പ്രഭാഷണം", "മെഡിക്കൽ ഉപകരണ ബാങ്ക് സമർപ്പണം", "സമാപന ദുആ"];
-      }
-
-      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n*${title}*\n> *കാലയളവ്:* ${period.messagePeriodText}\n━━━━━━━━━━━━━━━━━━━━━\n\n${ARABIC_SALAM_FULL}\n\nനിശ്ചയിച്ച യോഗത്തിലേക്ക് ഏവരെയും ക്ഷണിക്കുന്നു.\n\n🗓 *തീയതി:* ${dateStr}\n⏰ *സമയം:* ${timeStr}\n📍 *വേദി:* ${venueStr}\n\n📋 *യോഗ അജണ്ട:*\n`;
-      agendas.forEach((item, idx) => { text += `${idx + 1}. ${item}\n`; });
-      text += `\n_കൃത്യസമയത്ത് തന്നെ എല്ലാവരും സംബന്ധിക്കണമെന്ന് അഭ്യർത്ഥിക്കുന്നു._\n\n` + getAttributionFooter();
-
-      box.innerText = text;
-      if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-    }
-
     function switchTab(name) {
-      if (currentUserRole === 'public' && name !== 'analytics' && name !== 'public') {
-        name = 'analytics';
+      if (currentUserRole === 'public' && name !== 'analytics' && name !== 'public' && name !== 'today') {
+        name = 'today';
       } else if (currentUserRole === 'executive' && (name === 'core' || name === 'admin')) {
         name = 'executive';
       } else if (currentUserRole === 'members' && (name === 'core' || name === 'executive' || name === 'admin')) {
@@ -2087,11 +1449,10 @@
 
     function initApp() {
       const sys = getSystemDateInfo();
-      const autoOpt = document.getElementById('opt-auto-date');
-      if (autoOpt) autoOpt.innerText = `ഇന്ന്: ${sys.formattedDate} (${sys.hijriTitle}) (Auto Detect)`;
+      selectedActiveYear = sys.year >= 2026 ? sys.year : 2026;
 
-      const badge = document.getElementById('active-period-name');
-      if (badge) badge.innerText = `ഇന്ന്: ${sys.formattedDate} | ${sys.hijriTitle}`;
+      const yrSel = document.getElementById('cal-year-select');
+      if (yrSel) yrSel.value = selectedActiveYear.toString();
 
       const dInput = document.getElementById('agenda-custom-date');
       if (dInput && !dInput.value) dInput.value = `${sys.formattedDateFull}`;
@@ -2108,7 +1469,7 @@
         });
       }
 
-      refreshAllViews();
+      updateCalendarPeriodViews();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
