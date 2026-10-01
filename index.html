@@ -14,8 +14,8 @@
       --primary-light: #ecfdf5;
       --accent: #0284c7;
       --danger: #dc2626;
-      --warning: #d97706; /* Amber / Yellow */
-      --orange-low: #ea580c; /* Orange for Low Priority */
+      --warning: #d97706;
+      --orange-low: #ea580c;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
@@ -38,7 +38,7 @@
       padding-bottom: 70px;
     }
 
-    /* Auth Gate Screen */
+    /* 1. SECURE AUTH GATE SCREEN */
     #auth-gate-screen {
       position: fixed;
       inset: 0;
@@ -47,15 +47,15 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      z-index: 9999;
+      z-index: 99999;
     }
 
     .auth-card {
       background: #ffffff;
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       border-radius: 16px;
-      padding: 28px 24px;
+      padding: 34px 26px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       text-align: center;
     }
@@ -64,47 +64,51 @@
       display: inline-block;
       background: #ecfdf5;
       color: #065f46;
-      padding: 5px 12px;
+      padding: 5px 14px;
       border-radius: 999px;
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .auth-card h2 {
       font-size: 20px;
       font-weight: 800;
       color: #0f172a;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .auth-card p {
-      font-size: 13px;
+    .auth-card p.auth-desc {
+      font-size: 13.5px;
       color: #64748b;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
     .pin-input-wrapper {
       position: relative;
-      margin-bottom: 12px;
+      margin-bottom: 18px;
     }
 
     .auth-input {
       width: 100%;
-      padding: 13px 48px 13px 16px;
+      padding: 14px 60px 14px 18px;
       border-radius: 10px;
       border: 2px solid #cbd5e1;
-      font-size: 18px;
+      font-size: 24px;
       text-align: center;
-      letter-spacing: 6px;
-      font-weight: 700;
+      letter-spacing: 8px;
+      font-weight: 800;
       outline: none;
       transition: all 0.2s;
+      background: #f8fafc;
+      color: #0f172a;
     }
 
     .auth-input:focus {
+      background: #ffffff;
       border-color: #047857;
-      box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15);
+      box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.18);
     }
 
     .btn-toggle-eye {
@@ -112,59 +116,56 @@
       right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #64748b;
-      font-size: 12px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      color: #475569;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
-      padding: 4px 6px;
+      padding: 5px 8px;
+      user-select: none;
+    }
+
+    .btn-toggle-eye:hover {
+      background: #e2e8f0;
+      color: #0f172a;
     }
 
     .auth-btn {
       width: 100%;
       background: #047857;
       color: #ffffff;
-      padding: 12px 18px;
+      padding: 14px 18px;
       border-radius: 10px;
       border: none;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
     }
 
     .auth-btn:hover {
       background: #065f46;
     }
 
-    .auth-quick-btn {
-      width: 100%;
-      margin-top: 10px;
-      background: #f1f5f9;
-      color: #334155;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px dashed #cbd5e1;
-      font-size: 12.5px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .auth-quick-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+    .auth-btn:active {
+      transform: scale(0.99);
     }
 
     .auth-error {
       color: #dc2626;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 600;
-      margin-top: 10px;
+      margin-top: 14px;
       display: none;
+      background: #fef2f2;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid #fecaca;
     }
 
+    /* 2. MAIN APPLICATION STYLES */
     header {
       background: linear-gradient(135deg, #065f46 0%, #047857 60%, #0f766e 100%);
       color: #ffffff;
@@ -224,7 +225,7 @@
     }
 
     .btn-lock:hover {
-      background: rgba(225, 29, 72, 0.3);
+      background: rgba(225, 29, 72, 0.4);
       border-color: #fda4af;
     }
 
@@ -418,7 +419,7 @@
       border: 1px solid #202c33;
     }
 
-    /* Color Coded Tasks */
+    /* Tasks Color Indicators */
     .task-item {
       padding: 14px 16px;
       border-radius: 12px;
@@ -432,7 +433,6 @@
       transition: all 0.2s;
     }
 
-    /* Statuses */
     .task-item.status-done {
       background-color: #f0fdf4;
       border-color: #86efac;
@@ -448,7 +448,7 @@
     .task-item.status-pending {
       background-color: #ffffff;
       border-color: #e2e8f0;
-      border-left: 5px solid #94a3b8; /* Slate / Neutral */
+      border-left: 5px solid #94a3b8;
     }
 
     .task-body h4 {
@@ -476,7 +476,6 @@
       margin-right: 6px;
     }
 
-    /* Priority Badges */
     .badge-priority-high {
       background: #fee2e2;
       color: #dc2626;
@@ -498,7 +497,6 @@
       font-weight: 700;
     }
 
-    /* Status Badges */
     .badge-status-done {
       background: #dcfce7;
       color: #15803d;
@@ -562,7 +560,6 @@
       transform: translateY(-1px);
     }
 
-    /* Legend Box */
     .legend-box {
       display: flex;
       gap: 14px;
@@ -608,7 +605,7 @@
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s ease;
-      z-index: 1000;
+      z-index: 100000;
       pointer-events: none;
     }
 
@@ -624,12 +621,12 @@
 </head>
 <body>
 
-  <!-- 1. MANDATORY SECURITY GATE SCREEN -->
+  <!-- 1. MANDATORY SECURITY GATE SCREEN (WITHOUT ANY DISPLAYED PASSWORDS OR LEAKED HINTS) -->
   <div id="auth-gate-screen">
     <div class="auth-card">
       <div class="auth-badge">സുരക്ഷിത കവാടം</div>
       <h2>SKSSF ആറങ്ങാടി യൂണിറ്റ്</h2>
-      <p>പോർട്ടലിലെ ഉള്ളടക്കങ്ങളും നിർദ്ദേശങ്ങളും കാണുന്നതിനായി സുരക്ഷാ കോഡ് (PIN) നൽകുക:</p>
+      <p class="auth-desc">പോർട്ടലിലെ കർമ്മപദ്ധതികളും വിവരങ്ങളും പരിശോധിക്കുന്നതിനായി സുരക്ഷാ കോഡ് (PIN) നൽകുക:</p>
       
       <div class="pin-input-wrapper">
         <input 
@@ -639,20 +636,17 @@
           placeholder="••••" 
           maxlength="8" 
           inputmode="numeric" 
-          autocomplete="one-time-code"
+          autocomplete="off"
+          autofocus
+          oninput="handlePinInput(this)"
           onkeydown="if(event.key==='Enter') verifyGatePin()"
         >
         <button type="button" onclick="togglePinVisibility()" id="btn-toggle-eye" class="btn-toggle-eye">കാണിക്കുക</button>
       </div>
 
-      <button onclick="verifyGatePin()" class="auth-btn">അൺലോക്ക് ചെയ്യുക</button>
+      <button type="button" onclick="verifyGatePin()" class="auth-btn">അൺലോക്ക് ചെയ്യുക</button>
 
-      <!-- Quick 1-click fallback unlock -->
-      <button onclick="quickUnlock()" class="auth-quick-btn">
-        🔑 1989 നൽകി നേരിട്ട് തുറക്കുക
-      </button>
-
-      <p id="gate-error" class="auth-error">തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി '1989' നൽകുക.</p>
+      <p id="gate-error" class="auth-error">തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി ശരിയായ കോഡ് നൽകുക.</p>
     </div>
   </div>
 
@@ -742,7 +736,7 @@
           മീറ്റിംഗ് & ലളിത അജണ്ട
         </button>
         <button onclick="switchTab('interactive')" id="tab-interactive" class="tab-btn">
-          തത്സമയ ടാസ്‌‌ക് ചെക്ക്‌ലിസ്റ്റ്
+          തത്സമയ ടാസ്ക് ചെക്ക്‌ലിസ്റ്റ്
         </button>
       </div>
 
@@ -906,7 +900,7 @@
         <div class="card-header">
           <div class="card-title">
             <h2>തത്സമയ ടാസ്‌ക് ചെക്ക്‌‌ലിസ്റ്റ് & സ്റ്റാറ്റസ് മാറ്റം</h2>
-            <p>പൂർത്തിയായവ പച്ച മാർക്കും (✅), നടന്നുകൊണ്ടിരിക്കുന്നവ മഞ്ഞ മാർക്കും (🟡), ബാക്കിയുള്ളവ ചുവപ്പ്/ഗ്രേ മാർക്കും (🔴), മുൻഗണനയിൽ ലോ പ്രയോറിറ്റിക്ക് ഓറഞ്ചും (🟠) നൽകിയിരിക്കുന്നു. സ്റ്റാറ്റസ് മാറ്റാൻ ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുക.</p>
+            <p>പൂർത്തിയായവ പച്ച മാർക്കും (✅), നടന്നുകൊണ്ടിരിക്കുന്നവ മഞ്ഞ മാർക്കും (🟡), ബാക്കിയുള്ളവ ചുവപ്പ് മാർക്കും (🔴), മുൻഗണനയിൽ ലോ പ്രയോറിറ്റിക്ക് ഓറഞ്ചും (🟠) നൽകിയിരിക്കുന്നു. സ്റ്റാറ്റസ് മാറ്റാൻ ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുക.</p>
           </div>
         </div>
 
@@ -926,14 +920,17 @@
 
   <script>
     const PORTAL_LINK = "https://skssfarangadiunit.github.io/Task-Manager/";
-    const APP_PIN = "1989";
+    
+    // Valid security codes accepted for unit access:
+    // 1989 (SKSSF സ്ഥാപക വർഷം) and 3333 (ആറങ്ങാടി യൂണിറ്റ് കോഡ്)
+    const ACCEPTED_PINS = ["1989", "3333"];
 
-    // In-memory safety fallback for iframe and private browser storage policies
     let isMemoryUnlocked = false;
 
     function safeGetAuth() {
       try {
-        return sessionStorage.getItem("skssf_gate_unlocked") === "true" || isMemoryUnlocked;
+        const stored = localStorage.getItem("skssf_gate_unlocked") || sessionStorage.getItem("skssf_gate_unlocked");
+        return stored === "true" || isMemoryUnlocked;
       } catch (e) {
         return isMemoryUnlocked;
       }
@@ -943,8 +940,10 @@
       isMemoryUnlocked = val;
       try {
         if (val) {
+          localStorage.setItem("skssf_gate_unlocked", "true");
           sessionStorage.setItem("skssf_gate_unlocked", "true");
         } else {
+          localStorage.removeItem("skssf_gate_unlocked");
           sessionStorage.removeItem("skssf_gate_unlocked");
         }
       } catch (e) {
@@ -952,31 +951,57 @@
       }
     }
 
-    // Official Attribution Footer
     function getAttributionFooter() {
-      let t = `> 📌 *ഈ സന്ദേശവും കർമ്മപദ്ധതിയും തയ്യാറാക്കിയത് താഴെ കാണുന്ന ഔദ്യോഗിക പേജ് വഴിയാണ്:*\n`;
-      t += `> ${PORTAL_LINK}\n\n`;
-      t += ````[സിസ്റ്റം ജനറേറ്റഡ് രേഖ | SKSSF ആറങ്ങാടി യൂണിറ്റ്]`````;
+      let t = "> 📌 *ഈ സന്ദേശവും കർമ്മപദ്ധതിയും തയ്യാറാക്കിയത് താഴെ കാണുന്ന ഔദ്യോഗിക പേജ് വഴിയാണ്:*\n";
+      t += "> " + PORTAL_LINK + "\n\n";
+      t += "```[സിസ്റ്റം ജനറേറ്റഡ് രേഖ | SKSSF ആറങ്ങാടി യൂണിറ്റ്]```";
       return t;
     }
 
-    // Auth gate handling
     function checkInitialAuth() {
       if (safeGetAuth()) {
-        const gate = document.getElementById('auth-gate-screen');
-        const app = document.getElementById('main-app');
-        if (gate) gate.classList.add('hidden');
-        if (app) app.classList.remove('hidden');
-        try { initApp(); } catch(e) { console.error(e); }
+        unlockInterface();
       } else {
-        const gate = document.getElementById('auth-gate-screen');
-        const app = document.getElementById('main-app');
-        if (gate) gate.classList.remove('hidden');
-        if (app) app.classList.add('hidden');
-        setTimeout(() => {
-          const el = document.getElementById('gate-pin-input');
-          if (el) el.focus();
-        }, 150);
+        lockInterface();
+      }
+    }
+
+    function unlockInterface() {
+      const gate = document.getElementById('auth-gate-screen');
+      const app = document.getElementById('main-app');
+      if (gate) {
+        gate.style.display = 'none';
+        gate.classList.add('hidden');
+      }
+      if (app) {
+        app.style.display = 'block';
+        app.classList.remove('hidden');
+      }
+      try {
+        initApp();
+      } catch (e) {
+        console.error("Initialization error:", e);
+      }
+    }
+
+    function lockInterface() {
+      const gate = document.getElementById('auth-gate-screen');
+      const app = document.getElementById('main-app');
+      const inputEl = document.getElementById('gate-pin-input');
+      const err = document.getElementById('gate-error');
+
+      if (gate) {
+        gate.style.display = 'flex';
+        gate.classList.remove('hidden');
+      }
+      if (app) {
+        app.style.display = 'none';
+        app.classList.add('hidden');
+      }
+      if (err) err.style.display = 'none';
+      if (inputEl) {
+        inputEl.value = '';
+        setTimeout(() => inputEl.focus(), 150);
       }
     }
 
@@ -993,61 +1018,53 @@
       }
     }
 
-    function quickUnlock() {
-      const input = document.getElementById('gate-pin-input');
-      if (input) input.value = "1989";
-      verifyGatePin();
+    function cleanPin(val) {
+      if (!val) return "";
+      // Malayalam digits conversion (൧ -> 1, ൨ -> 2 etc.)
+      const mlMap = {'൦':'0','൧':'1','൨':'2','൩':'3','൪':'4','൫':'5','൬':'6','൭':'7','൮':'8','൯':'9'};
+      let normalized = String(val).replace(/[൦-൯]/g, d => mlMap[d]);
+      // Remove all non-numeric characters and accidental spaces
+      return normalized.replace(/\D/g, '');
+    }
+
+    // Auto-verify when 4 digits are entered
+    function handlePinInput(el) {
+      const cleaned = cleanPin(el.value);
+      if (cleaned.length >= 4) {
+        if (ACCEPTED_PINS.includes(cleaned)) {
+          verifyGatePin();
+        }
+      }
     }
 
     function verifyGatePin() {
       const inputEl = document.getElementById('gate-pin-input');
-      let rawVal = (inputEl ? inputEl.value : "").trim();
-
-      // Convert Malayalam digits (൧, ൨, ൩, ൪, ൫, ൬, ൭, ൮, ൯, ൦) to English numerals (0-9)
-      const mlMap = {'൦':'0','൧':'1','൨':'2','൩':'3','൪':'4','൫':'5','൬':'6','൭':'7','൮':'8','൯':'9'};
-      let normalizedPin = rawVal.replace(/[൦-൯]/g, d => mlMap[d]);
-
-      // Remove any non-digit spaces or accidental invisible characters
-      normalizedPin = normalizedPin.replace(/\D/g, '');
-
       const err = document.getElementById('gate-error');
-      if (normalizedPin === APP_PIN) {
+      const cleanedPin = cleanPin(inputEl ? inputEl.value : "");
+
+      if (ACCEPTED_PINS.includes(cleanedPin)) {
         safeSetAuth(true);
         if (err) err.style.display = 'none';
-
-        const gate = document.getElementById('auth-gate-screen');
-        const app = document.getElementById('main-app');
-        if (gate) gate.classList.add('hidden');
-        if (app) app.classList.remove('hidden');
-
-        try {
-          initApp();
-        } catch (initErr) {
-          console.error("initApp error:", initErr);
-        }
+        unlockInterface();
         showToast("സുരക്ഷാ കോഡ് ശരിയായി! പ്രവേശനം അനുവദിച്ചു.");
       } else {
         if (err) {
           err.style.display = 'block';
-          err.innerText = `നൽകിയ കോഡ് (${rawVal || 'ശൂന്യം'}) തെറ്റാണ്! 1989 നൽകുക.`;
+          err.innerText = "തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി ശരിയായ കോഡ് നൽകുക.";
         }
-        if (inputEl) inputEl.value = '';
+        if (inputEl) {
+          inputEl.value = '';
+          inputEl.focus();
+        }
       }
     }
 
     function lockApp() {
       safeSetAuth(false);
-      const inputEl = document.getElementById('gate-pin-input');
-      if (inputEl) inputEl.value = '';
-      const gate = document.getElementById('auth-gate-screen');
-      const app = document.getElementById('main-app');
-      if (gate) gate.classList.remove('hidden');
-      if (app) app.classList.add('hidden');
+      lockInterface();
       showToast("പോർട്ടൽ വീണ്ടും ലോക്ക് ചെയ്തു.");
     }
 
-    // Tasks State with Status: 'pending', 'in-progress' (Yellow 🟡), 'done' (Green ✅)
-    // Priority: 'high' (Red 🔴), 'low' (Orange 🟠), 'normal' (Blue 🔵)
     let checklistTasks = [
       { id: 1, title: "മഹല്ല് പള്ളി കമ്മിറ്റിക്ക് ഔദ്യോഗിക കത്ത് നൽകൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "in-progress", priority: "high", desc: "ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദ്, ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദ് എന്നിവരുമായി ആലോചിച്ച് സമർപ്പിക്കുക." },
       { id: 2, title: "യൂണിറ്റിന്റെ ഔദ്യോഗിക സീലുകൾ നിർമ്മിക്കൽ", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ, മുഹമ്മദ് ആദിൽ", status: "in-progress", priority: "high", desc: "പ്രസിഡന്റ്, ജനറൽ സെക്രട്ടറി സീലുകൾ നിർമ്മിക്കുക." },
@@ -1060,7 +1077,6 @@
       { id: 9, title: "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം - റൂട്ട് മാപ്പും തീയതിയും", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "low", desc: "മഹല്ലിന് കീഴിലെ മുഴുവൻ പള്ളികളിലെയും പര്യടന തീയതി നിശ്ചയിക്കുക." }
     ];
 
-    // Helper to format task checklist into WhatsApp string with correct Color Code Indicators
     function formatTasksForWhatsApp(filterWingOrPerson = null) {
       let filtered = checklistTasks;
       if (filterWingOrPerson) {
@@ -1071,21 +1087,19 @@
         if (filtered.length === 0) filtered = checklistTasks.slice(0, 5);
       }
 
-      let res = `\n📋 *നിർവ്വഹിക്കേണ്ട ടാസ്‌ക് ലിസ്റ്റ് (Action Checklist):*\n`;
+      let res = "\n📋 *നിർവ്വഹിക്കേണ്ട ടാസ്‌ക് ലിസ്റ്റ് (Action Checklist):*\n";
       filtered.forEach((t, idx) => {
         let statusMarker = "";
         let priorityTag = "";
 
-        // Status Indicators
         if (t.status === "done") {
           statusMarker = "[✅ പൂർത്തിയായി]";
         } else if (t.status === "in-progress") {
-          statusMarker = "[🟡 പുരോഗമിക്കുന്നു]"; // Yellow for In Progress
+          statusMarker = "[🟡 പുരോഗമിക്കുന്നു]";
         } else {
           statusMarker = "[🔴 ബാക്കിയുണ്ട്]";
         }
 
-        // Priority Indicators (Orange for Low Priority)
         if (t.priority === "low") {
           priorityTag = " 🟠 _[ലോ പ്രയോറിറ്റി]_";
         } else if (t.priority === "high") {
@@ -1291,7 +1305,6 @@
       refreshAllMessages();
     }
 
-    // 1. Core Committee Message
     function buildCoreMsg() {
       const period = getPeriodName();
       let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
@@ -1308,7 +1321,6 @@
       text += `3. *പഠന ക്ലാസ് സംഘാടനം (ഒക്ടോബർ 11):* കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ സംയുക്ത അനുസ്മരണവും പഠന ക്ലാസും (ഉസ്താദ് ജാബിർ യമാനി പാടൂർ) വിജയകരമാക്കാൻ കോർ കമ്മിറ്റി പ്രത്യേക മേൽനോട്ടം വഹിച്ചാലോ?\n`;
       text += `4. *ഓഫീസ് & മെഡിക്കൽ ബാങ്ക്:* സഹചാരി സെന്റർ / യൂണിറ്റ് ഓഫീസിനായി അനുയോജ്യമായ മുറി കണ്ടെത്താനുള്ള അന്വേഷണം വേഗത്തിലാക്കിയാൽ ഉപകാരമായിരിക്കും.\n`;
 
-      // Live tasks list appended with color indicators
       text += formatTasksForWhatsApp("കോർ കമ്മിറ്റി");
 
       text += `\n_നമ്മുടെ യൂണിറ്റിന്റെ ഉയർച്ചയ്ക്കായി ഈ വിഷയങ്ങളിൽ ബഹുമാനപ്പെട്ട കോർ കമ്മിറ്റി അംഗങ്ങൾ തങ്ങളുടെ വിലയേറിയ അഭിപ്രായങ്ങളും നിർദ്ദേശങ്ങളും പങ്കുവെക്കണമെന്ന് വിനീതമായി അഭ്യർത്ഥിക്കുന്നു._\n\n`;
@@ -1316,7 +1328,6 @@
       return text;
     }
 
-    // 2. Executive Committee Message
     function buildExecutiveMsg() {
       const period = getPeriodName();
       let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
@@ -1333,7 +1344,6 @@
       text += `• *ട്രെൻഡ് & വിദ്യാഭ്യാസം:* നാട്ടിലെ തൊഴിലന്വേഷകരുടെ വിവരശേഖരണത്തിനും ഒക്ടോബർ 11 പഠന ക്ലാസിലെ വിദ്യാർത്ഥി പങ്കാളിത്തത്തിനും ലത്തീഫ് സാഹിബിനൊപ്പം മുന്നിട്ടിറങ്ങിയാലോ?\n`;
       text += `• *മീഡിയ & സൈബർ:* സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ ഡിസൈൻ ചെയ്യാനും ഇൻസ്റ്റാഗ്രാം പേജുകൾ ക്രമീകരിക്കാനും റൈഹാൻ ബഷീറുമായി സഹകരിച്ചുകൂടെ?\n`;
 
-      // Live tasks list appended
       text += formatTasksForWhatsApp();
 
       text += `\n_ഇതിലേക്ക് ഓരോരുത്തർക്കും ചെയ്യാൻ കഴിയുന്ന കാര്യങ്ങൾ എക്സിക്യൂട്ടീവ് ഗ്രൂപ്പിൽ അറിയിക്കുമല്ലോ._\n\n`;
@@ -1341,7 +1351,6 @@
       return text;
     }
 
-    // 3. All Members Message
     function buildAllMembersMsg() {
       const period = getPeriodName();
       let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
@@ -1357,7 +1366,6 @@
       text += `2. *സഹചാരി മെഡിക്കൽ ബാങ്ക്:* കിടപ്പുരോഗികൾക്കായി വീൽചെയർ, വാട്ടർ ബെഡ് സ്പോൺസർഷിപ്പ് കണ്ടെത്താൻ നാട്ടിലുള്ളവരും പ്രവാസികളുമായ മെമ്പർമാർക്ക് സഹായിക്കാൻ കഴിയുമോ?\n`;
       text += `3. *രക്തദാന സേന:* വിഖായയുടെ രക്തദാന ഡാറ്റാബേസിലേക്ക് പേരും രക്തഗ്രൂപ്പും നൽകാൻ തയ്യാറായാൽ ഒരു ജീവൻ രക്ഷിക്കാൻ നമുക്ക് സാധിക്കും.\n`;
 
-      // Live tasks list appended
       text += formatTasksForWhatsApp();
 
       text += `\n_നിങ്ങളുടെ വിലയേറിയ നിർദ്ദേശങ്ങളും സഹകരണങ്ങളും യൂണിറ്റിന്റെ മുന്നേറ്റത്തിന് അനിവാര്യമാണ്._\n\n`;
@@ -1365,7 +1373,6 @@
       return text;
     }
 
-    // 4. Public Message
     function buildPublicMsg() {
       const period = getPeriodName();
       let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
@@ -1386,7 +1393,6 @@
       return text;
     }
 
-    // 5. Individual Suggestion & Task Message
     function buildIndividualMsg(name) {
       const period = getPeriodName();
       const info = leadersRegistry[name] || {
@@ -1413,7 +1419,6 @@
         text += `${i + 1}. ${sug}\n`;
       });
 
-      // Filter tasks assigned to this person or general
       text += formatTasksForWhatsApp(name);
 
       text += `\n_നമ്മുടെ യൂണിറ്റിന്റെ വളർച്ചയ്ക്കും നാടിന്റെ നന്മയ്ക്കുമായി താങ്കളുടെ അകമഴിഞ്ഞ സഹകരണവും നേതൃത്വവും പ്രതീക്ഷിക്കുന്നു._\n\n`;
@@ -1421,7 +1426,6 @@
       return text;
     }
 
-    // 6. Sub-Wing Message
     function buildWingMsg(wingName) {
       const period = getPeriodName();
       const wing = subWingsRegistry[wingName] || {
@@ -1446,7 +1450,6 @@
         text += `${i + 1}. ${sug}\n`;
       });
 
-      // Filter tasks assigned to this wing
       text += formatTasksForWhatsApp(wingName);
 
       text += `\n_സബ് വിംഗ് പ്രവർത്തകർ പരസ്പരം ആലോചിച്ച് ഈ നിർദ്ദേശങ്ങൾ നടപ്പിലാക്കാൻ ശ്രമിക്കുമല്ലോ._\n\n`;
@@ -1454,7 +1457,6 @@
       return text;
     }
 
-    // 7. Meeting & Simple Agenda Message
     function buildAgendaMsg(category) {
       const period = getPeriodName();
       const dInput = document.getElementById('agenda-custom-date');
@@ -1522,7 +1524,6 @@
         text += `${idx + 1}. ${item}\n`;
       });
 
-      // Appending current live tasks with status indicators
       text += formatTasksForWhatsApp();
 
       text += `\n_കൃത്യസമയത്ത് തന്നെ എല്ലാവരും സംബന്ധിക്കണമെന്ന് വിനീതമായി ഓർമ്മിപ്പിക്കുന്നു._\n\n`;
@@ -1530,38 +1531,26 @@
       return text;
     }
 
-    // Refresh all messages across tabs
     function refreshAllMessages() {
-      // 1. Core
       const coreText = buildCoreMsg();
       document.getElementById('core-msg').innerText = coreText;
       document.getElementById('share-core-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(coreText)}`;
 
-      // 2. Executive
       const execText = buildExecutiveMsg();
       document.getElementById('exec-msg').innerText = execText;
       document.getElementById('share-exec-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(execText)}`;
 
-      // 3. All Members
       const allText = buildAllMembersMsg();
       document.getElementById('allmembers-msg').innerText = allText;
       document.getElementById('share-allmembers-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(allText)}`;
 
-      // 4. Public
       const pubText = buildPublicMsg();
       document.getElementById('public-msg').innerText = pubText;
       document.getElementById('share-public-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pubText)}`;
 
-      // 5. Individual
       renderIndividualView();
-
-      // 6. Sub-wings
       renderWingView();
-
-      // 7. Agenda
       renderAgendaView();
-
-      // 8. Tasks
       renderInteractiveTasks();
     }
 
@@ -1608,7 +1597,6 @@
       if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     }
 
-    // Render Tasks with Yellow for In-Progress and Orange for Low-Priority
     function renderInteractiveTasks() {
       const container = document.getElementById('tasks-container');
       if (!container) return;
@@ -1618,7 +1606,6 @@
         const div = document.createElement('div');
         div.className = `task-item status-${t.status}`;
 
-        // Priority Badge styling (Orange for Low Priority)
         let priorityBadge = '';
         if (t.priority === 'low') {
           priorityBadge = `<span class="tag-badge badge-priority-low">🟠 ലോ പ്രയോറിറ്റി</span>`;
@@ -1628,7 +1615,6 @@
           priorityBadge = `<span class="tag-badge badge-priority-normal">🔵 നോർമൽ</span>`;
         }
 
-        // Status Badge styling (Yellow for In-Progress, Green for Done)
         let statusBadge = '';
         let btnText = '';
         let btnClass = '';
@@ -1669,7 +1655,6 @@
       });
     }
 
-    // Cycles status: pending (🔴) -> in-progress (🟡 മഞ്ഞ) -> done (✅ പച്ച) -> pending
     function cycleTaskStatus(id) {
       const item = checklistTasks.find(x => x.id === id);
       if (item) {
@@ -1699,7 +1684,6 @@
     }
 
     function initApp() {
-      // Populate persons dropdown
       const pSel = document.getElementById('person-select');
       if (pSel && pSel.children.length === 0) {
         Object.keys(leadersRegistry).forEach(name => {
@@ -1710,7 +1694,6 @@
         });
       }
 
-      // Populate wings dropdown
       const wSel = document.getElementById('wing-select');
       if (wSel && wSel.children.length === 0) {
         Object.keys(subWingsRegistry).forEach(wName => {
