@@ -668,17 +668,6 @@
 
       <button type="button" onclick="verifyGatePin()" class="auth-btn">പ്രവേശിക്കുക</button>
 
-      <!-- Google Sign-in Mock/Hook -->
-      <button type="button" onclick="handleGoogleSignIn()" class="btn-google-login">
-        <svg width="18" height="18" viewBox="0 0 24 24">
-          <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/>
-          <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
-          <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.3 0 12s.7 3.3 1.9 5.7l3.7-2.9z"/>
-          <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 16.4C3.7 20.1 7.5 23 12 23z"/>
-        </svg>
-        ഗൂഗിൾ അക്കൗണ്ട് വഴി ലോഗിൻ ചെയ്യുക (Google Sign-In)
-      </button>
-
       <button type="button" onclick="loginAsGuest()" class="guest-btn">പൊതുജന അറിയിപ്പുകൾ മാത്രം കാണുക (Guest View)</button>
 
       <p id="gate-error" class="auth-error">തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി വീണ്ടും ശ്രമിക്കുക.</p>
@@ -696,7 +685,7 @@
         </div>
         <div class="header-controls">
           <span id="current-role-badge" class="role-badge">കോർ കമ്മിറ്റി (Admin)</span>
-          <button onclick="switchTab('settings')" class="btn-header" title="യൂണിറ്റ് ക്രമീകരണങ്ങൾ">⚙️ ക്രമീകരണങ്ങൾ</button>
+          <button id="header-settings-btn" onclick="switchTab('settings')" class="btn-header" title="യൂണിറ്റ് ക്രമീകരണങ്ങൾ">⚙️ ക്രമീകരണങ്ങൾ</button>
           <button onclick="lockApp()" class="btn-header btn-lock" title="പോർട്ടൽ ലോക്ക് ചെയ്യുക">ലോക്ക് 🔒</button>
         </div>
       </div>
@@ -815,15 +804,15 @@
           </div>
 
           <div class="admin-box">
-            <h3>🌐 ഗൂഗിൾ ലോഗിൻ & ക്ലൗഡ് സ്റ്റാറ്റസ്</h3>
-            <p style="font-size:12px; color:#64748b; margin-bottom:10px;">Google Firebase Authentication ലിങ്ക് ചെയ്തുകൊണ്ട് അംഗങ്ങൾക്ക് ജിമെയിൽ വഴി ലോഗിൻ നൽകാം.</p>
-            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; font-size:12px;">
-              <strong>സ്റ്റാറ്റസ്:</strong> <span style="color:#16a34a; font-weight:700;">തയ്യാറാണ് (Ready for Sync)</span><br>
-              <strong>ലോഗിൻ ടൈപ്പ്:</strong> Google OAuth 2.0 / Firebase<br>
-              <strong>ഡാറ്റാ സംരക്ഷണം:</strong> AES-256 പ്രാദേശിക എൻക്രിപ്ഷൻ
+            <h3>🛡️ ഡാറ്റാ സുരക്ഷ & റോൾ കൺട്രോൾ സ്റ്റാറ്റസ്</h3>
+            <p style="font-size:12px; color:#64748b; margin-bottom:10px;">റോൾ അധിഷ്ഠിത സുരക്ഷാ ക്രമീകരണങ്ങൾ നിലവിൽ പോർട്ടലിൽ സജീവമാണ്.</p>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; font-size:12px; line-height:1.6;">
+              <strong>കോർ കമ്മിറ്റി:</strong> സമ്പൂർണ്ണ നിയന്ത്രണം & എഡിറ്റിംഗ്<br>
+              <strong>എക്സിക്യൂട്ടീവ്:</strong> എക്സിക്യൂട്ടീവ് ലെവൽ ആക്സസ് മാത്രം<br>
+              <strong>പൊതുജനങ്ങൾ:</strong> റീഡ് ഒൺലി (Read-Only) പ്രോഗ്രസ് വ്യൂ
             </div>
-            <button onclick="showToast('ഗൂഗിൾ ക്ലൗഡ് സമന്വയം സജീവമാണ്!')" class="btn-primary-sm" style="margin-top:10px; width:100%;">
-              ക്ലൗഡ് സിങ്ക് പരിശോധിക്കുക
+            <button onclick="showToast('റോൾ അനുമതികൾ കർശനമായി നടപ്പിലാക്കിയിട്ടുണ്ട്!')" class="btn-primary-sm" style="margin-top:10px; width:100%;">
+              സുരക്ഷാ സ്റ്റാറ്റസ് ഓക്കേ ആണ്
             </button>
           </div>
         </div>
@@ -1344,21 +1333,12 @@
       }
     }
 
-    function handleGoogleSignIn() {
-      // Direct Google Login Mock / Hook for Firebase integration
-      currentUserRole = "core";
-      loggedInUserName = "മുഹമ്മദ് ആദിൽ";
-      safeSetAuth(true, "core", loggedInUserName);
-      unlockInterface();
-      showToast("ഗൂഗിൾ അക്കൗണ്ട് വഴി വിജയകരമായി പ്രവേശിച്ചു! (Admin)");
-    }
-
     function loginAsGuest() {
       currentUserRole = "public";
       loggedInUserName = null;
       safeSetAuth(true, "public");
       unlockInterface();
-      showToast("പൊതുജന ഗസ്റ്റ് മോഡിൽ പ്രവേശിച്ചു!");
+      showToast("പൊതുജന ഗസ്റ്റ് മോഡിൽ പ്രവേശിച്ചു! (Read-Only)");
     }
 
     function safeGetAuth() {
@@ -1433,6 +1413,11 @@
       const coreTab = document.getElementById('tab-core');
       const execTab = document.getElementById('tab-executive');
       const membersTab = document.getElementById('tab-allmembers');
+      const indTab = document.getElementById('tab-individuals');
+      const subwingsTab = document.getElementById('tab-subwings');
+      const agendaTab = document.getElementById('tab-agenda');
+      const settingsTab = document.getElementById('tab-settings');
+      const headerSettingsBtn = document.getElementById('header-settings-btn');
 
       let nameLabel = loggedInUserName ? ` (${loggedInUserName})` : "";
 
@@ -1442,24 +1427,51 @@
         if (coreTab) coreTab.style.display = 'flex';
         if (execTab) execTab.style.display = 'flex';
         if (membersTab) membersTab.style.display = 'flex';
+        if (indTab) indTab.style.display = 'flex';
+        if (subwingsTab) subwingsTab.style.display = 'flex';
+        if (agendaTab) agendaTab.style.display = 'flex';
+        if (settingsTab) settingsTab.style.display = 'flex';
+        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
       } else if (currentUserRole === 'executive') {
         if (badge) badge.innerText = `എക്സിക്യൂട്ടീവ്${nameLabel}`;
         if (adminTab) adminTab.style.display = 'none';
-        if (coreTab) coreTab.style.display = 'none';
+        if (coreTab) coreTab.style.display = 'none'; // Core committee tab strictly hidden
         if (execTab) execTab.style.display = 'flex';
         if (membersTab) membersTab.style.display = 'flex';
+        if (indTab) indTab.style.display = 'flex';
+        if (subwingsTab) subwingsTab.style.display = 'flex';
+        if (agendaTab) agendaTab.style.display = 'flex';
+        if (settingsTab) settingsTab.style.display = 'flex';
+        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
       } else if (currentUserRole === 'members') {
         if (badge) badge.innerText = `യൂണിറ്റ് അംഗം${nameLabel}`;
         if (adminTab) adminTab.style.display = 'none';
         if (coreTab) coreTab.style.display = 'none';
         if (execTab) execTab.style.display = 'none';
         if (membersTab) membersTab.style.display = 'flex';
+        if (indTab) indTab.style.display = 'none';
+        if (subwingsTab) subwingsTab.style.display = 'none';
+        if (agendaTab) agendaTab.style.display = 'none';
+        if (settingsTab) settingsTab.style.display = 'flex';
+        if (headerSettingsBtn) headerSettingsBtn.style.display = 'inline-flex';
       } else {
-        if (badge) badge.innerText = "പൊതുജനങ്ങൾ (Guest)";
+        // Public / Guest Mode: STRICTLY READ-ONLY PROGRESS & PUBLIC ANNOUNCEMENT
+        if (badge) badge.innerText = "പൊതുജനങ്ങൾ (Guest - Read Only)";
         if (adminTab) adminTab.style.display = 'none';
         if (coreTab) coreTab.style.display = 'none';
         if (execTab) execTab.style.display = 'none';
         if (membersTab) membersTab.style.display = 'none';
+        if (indTab) indTab.style.display = 'none'; // No individual names or messages for public
+        if (subwingsTab) subwingsTab.style.display = 'none';
+        if (agendaTab) agendaTab.style.display = 'none';
+        if (settingsTab) settingsTab.style.display = 'none';
+        if (headerSettingsBtn) headerSettingsBtn.style.display = 'none';
+
+        // Automatically switch away if currently on a restricted tab
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab && (activeTab.id !== 'tab-analytics' && activeTab.id !== 'tab-public')) {
+          switchTab('analytics');
+        }
       }
     }
 
@@ -1644,10 +1656,42 @@
       return res;
     }
 
+    function canUserEditTask(task) {
+      if (currentUserRole === 'core') return true;
+      if (currentUserRole === 'executive') {
+        // Executive can edit executive and general member tasks, but NOT Core Committee tier tasks
+        return task.tier === 'executive' || task.tier === 'members';
+      }
+      if (currentUserRole === 'members') {
+        return task.tier === 'members';
+      }
+      // Public / Guest cannot edit any tasks
+      return false;
+    }
+
     function createTaskCardHtml(t) {
       let priorityBadge = t.priority === 'high' ? `<span class="tag-pill" style="background:#fee2e2; color:#dc2626;">🔴 ഹൈ പ്രയോറിറ്റി</span>` : `<span class="tag-pill">🔵 നോർമൽ</span>`;
       let btnClass = t.status === 'done' ? 'btn-done' : (t.status === 'in-progress' ? 'btn-in-progress' : 'btn-pending');
       let btnText = t.status === 'done' ? '✅ കഴിഞ്ഞു' : (t.status === 'in-progress' ? '🟡 നടക്കുന്നു' : '🔴 ബാക്കി');
+
+      const isEditable = canUserEditTask(t);
+      let actionControl = "";
+
+      if (isEditable) {
+        actionControl = `
+          <button onclick="cycleTaskStatus(${t.id})" class="cycle-btn ${btnClass}">
+            ${btnText}
+          </button>
+        `;
+      } else {
+        // Read-only indicator
+        let lockReason = currentUserRole === 'public' ? "ഗസ്റ്റ് വ്യൂ (Read-Only)" : "കോർ കമ്മിറ്റിക്ക് മാത്രം";
+        actionControl = `
+          <span class="cycle-btn ${btnClass}" style="opacity: 0.8; cursor: not-allowed; display: inline-flex; align-items: center; gap: 4px;" title="${lockReason}">
+            ${btnText} <span style="font-size:10px;">🔒</span>
+          </span>
+        `;
+      }
 
       return `
         <div class="task-interactive-card status-${t.status}">
@@ -1658,27 +1702,37 @@
               <span class="tag-pill">🏢 ${t.wing}</span>
               <span class="tag-pill">👤 ${t.resp}</span>
               ${priorityBadge}
+              ${t.tier === 'core' ? `<span class="tag-pill" style="background:#fee2e2; color:#991b1b; font-weight:800;">കോർ ടാസ്‌ക്</span>` : ''}
             </div>
           </div>
           <div>
-            <button onclick="cycleTaskStatus(${t.id})" class="cycle-btn ${btnClass}">
-              ${btnText}
-            </button>
+            ${actionControl}
           </div>
         </div>
       `;
     }
 
     function cycleTaskStatus(id) {
-      const item = checklistTasks.find(x => x.id === id);
-      if (item) {
-        if (item.status === 'pending') item.status = 'in-progress';
-        else if (item.status === 'in-progress') item.status = 'done';
-        else item.status = 'pending';
-        saveTasks();
-        refreshAllViews();
-        showToast("സ്റ്റാറ്റസ് മാറ്റി സേവ് ചെയ്തു!");
+      if (currentUserRole === 'public') {
+        showToast("പൊതുജനങ്ങൾക്ക് ടാസ്‌ക് മാറ്റാൻ അനുവാദമില്ല (Read-Only)!");
+        return;
       }
+
+      const item = checklistTasks.find(x => x.id === id);
+      if (!item) return;
+
+      if (!canUserEditTask(item)) {
+        showToast("ഈ ടാസ്‌ക് മാറ്റാൻ കോർ കമ്മിറ്റിക്ക് മാത്രമേ അധികാരമുള്ളൂ!");
+        return;
+      }
+
+      if (item.status === 'pending') item.status = 'in-progress';
+      else if (item.status === 'in-progress') item.status = 'done';
+      else item.status = 'pending';
+
+      saveTasks();
+      refreshAllViews();
+      showToast("സ്റ്റാറ്റസ് മാറ്റി സേവ് ചെയ്തു!");
     }
 
     function calculateMetrics() {
@@ -1804,6 +1858,10 @@
       const header = document.getElementById('ind-tasks-header');
 
       if (!pSel || !box) return;
+
+      // Populate or re-filter leaders based on current user role
+      populatePersonSelect();
+
       const person = pSel.value;
       if (person) {
         const info = leadersRegistry[person] || { role: "എക്സിക്യൂട്ടീവ് അംഗം", salutation: `പ്രിയ സുഹൃത്ത് ${person}`, customSuggestions: ["യോഗങ്ങളിൽ കൃത്യസമയത്ത് പങ്കെടുക്കുക."] };
@@ -1822,6 +1880,34 @@
         const personTasks = checklistTasks.filter(t => t.resp.toLowerCase().includes(person.toLowerCase()));
         renderTaskContainer('ind-tasks-container', personTasks);
       }
+    }
+
+    function populatePersonSelect() {
+      const pSel = document.getElementById('person-select');
+      if (!pSel) return;
+
+      const currentSelected = pSel.value;
+      const personalPins = getPersonalPins();
+
+      // If user is executive, hide core committee leaders to protect privacy
+      const allowedNames = Object.keys(leadersRegistry).filter(name => {
+        if (currentUserRole === 'core') return true;
+        if (currentUserRole === 'executive') {
+          const leaderInfo = personalPins[name];
+          // Hide Tier 1 Core committee leaders from executive dropdown
+          return leaderInfo && leaderInfo.role !== 'core';
+        }
+        return false;
+      });
+
+      pSel.innerHTML = '';
+      allowedNames.forEach(name => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.innerText = `${name} (${leadersRegistry[name].role})`;
+        if (name === currentSelected) opt.selected = true;
+        pSel.appendChild(opt);
+      });
     }
 
     function renderWingView() {
@@ -1859,6 +1945,20 @@
       const vInput = document.getElementById('agenda-custom-venue');
 
       if (!aSel || !box) return;
+
+      // Filter Core Committee agenda option if current user is not Core
+      const coreOpt = aSel.querySelector('option[value="core"]');
+      if (coreOpt) {
+        if (currentUserRole === 'core') {
+          coreOpt.style.display = 'block';
+          coreOpt.disabled = false;
+        } else {
+          coreOpt.style.display = 'none';
+          coreOpt.disabled = true;
+          if (aSel.value === 'core') aSel.value = 'executive';
+        }
+      }
+
       const cat = aSel.value;
       const period = getSelectedPeriodDetails();
       const sys = getSystemDateInfo();
@@ -1890,6 +1990,15 @@
     }
 
     function switchTab(name) {
+      // Permission guards for switching tabs directly
+      if (currentUserRole === 'public' && name !== 'analytics' && name !== 'public') {
+        name = 'analytics';
+      } else if (currentUserRole === 'executive' && (name === 'core' || name === 'admin')) {
+        name = 'executive';
+      } else if (currentUserRole === 'members' && (name === 'core' || name === 'executive' || name === 'admin')) {
+        name = 'allmembers';
+      }
+
       document.querySelectorAll('.content-card').forEach(c => c.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
@@ -1911,15 +2020,7 @@
       const dInput = document.getElementById('agenda-custom-date');
       if (dInput && !dInput.value) dInput.value = `${sys.formattedDateFull}`;
 
-      const pSel = document.getElementById('person-select');
-      if (pSel && pSel.children.length === 0) {
-        Object.keys(leadersRegistry).forEach(name => {
-          const opt = document.createElement('option');
-          opt.value = name;
-          opt.innerText = `${name} (${leadersRegistry[name].role})`;
-          pSel.appendChild(opt);
-        });
-      }
+      populatePersonSelect();
 
       const wSel = document.getElementById('wing-select');
       if (wSel && wSel.children.length === 0) {
