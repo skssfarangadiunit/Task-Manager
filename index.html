@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKSSF ആറങ്ങാടി യൂണിറ്റ് - കർമ്മപദ്ധതി & വാട്സാപ്പ് കമ്മ്യൂണിക്കേഷൻ പോർട്ടൽ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-dark: #065f46;
+      --primary-light: #ecfdf5;
+      --accent: #0284c7;
+      --danger: #dc2626;
+      --warning: #d97706; /* Amber / Yellow */
+      --orange-low: #ea580c; /* Orange for Low Priority */
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --wa-green: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans Malayalam', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.55;
+      padding-bottom: 70px;
+    }
+
+    /* Auth Gate Screen */
+    #auth-gate-screen {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .auth-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .auth-badge {
+      display: inline-block;
+      background: #ecfdf5;
+      color: #065f46;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .auth-card h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .auth-card p {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+
+    .pin-input-wrapper {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 13px 48px 13px 16px;
+      border-radius: 10px;
+      border: 2px solid #cbd5e1;
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 6px;
+      font-weight: 700;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .auth-input:focus {
+      border-color: #047857;
+      box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15);
+    }
+
+    .btn-toggle-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 4px 6px;
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: #047857;
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .auth-btn:hover {
+      background: #065f46;
+    }
+
+    .auth-quick-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .auth-quick-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .auth-error {
+      color: #dc2626;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-top: 10px;
+      display: none;
+    }
+
+    header {
+      background: linear-gradient(135deg, #065f46 0%, #047857 60%, #0f766e 100%);
+      color: #ffffff;
+      padding: 16px 20px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-text h1 {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 12px;
+      color: #a7f3d0;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-lock {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-lock:hover {
+      background: rgba(225, 29, 72, 0.3);
+      border-color: #fda4af;
+    }
+
+    .link-badge {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #e2e8f0;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 600;
+    }
+
+    .link-badge:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .filter-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .month-dropdown {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #047857;
+      background: #f0fdf4;
+      font-size: 13px;
+      font-weight: 700;
+      color: #064e3b;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      padding: 9px 15px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.25);
+    }
+
+    .tab-btn.special-tab.active {
+      background: #0369a1;
+      border-color: #0369a1;
+      box-shadow: 0 2px 6px rgba(3, 105, 161, 0.25);
+    }
+
+    .content-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .card-title h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .card-title p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .select-dropdown {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      background-color: #f1f5f9;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .btn-copy {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-whatsapp {
+      background: var(--wa-green);
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb956;
+    }
+
+    .msg-box {
+      background: #0b141a;
+      color: #d1d7db;
+      border-radius: 12px;
+      padding: 18px;
+      font-family: 'SF Pro Text', Consolas, Monaco, monospace;
+      font-size: 13.5px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 540px;
+      user-select: all;
+      border: 1px solid #202c33;
+    }
+
+    /* Color Coded Tasks */
+    .task-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+
+    /* Statuses */
+    .task-item.status-done {
+      background-color: #f0fdf4;
+      border-color: #86efac;
+      border-left: 5px solid #16a34a; /* Green */
+    }
+
+    .task-item.status-in-progress {
+      background-color: #fefce8;
+      border-color: #fde047;
+      border-left: 5px solid #ca8a04; /* Yellow / Amber */
+    }
+
+    .task-item.status-pending {
+      background-color: #ffffff;
+      border-color: #e2e8f0;
+      border-left: 5px solid #94a3b8; /* Slate / Neutral */
+    }
+
+    .task-body h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .task-desc {
+      font-size: 13px;
+      color: #475569;
+      margin: 4px 0 8px;
+    }
+
+    .tag-badge {
+      background: #f1f5f9;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* Priority Badges */
+    .badge-priority-high {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      font-weight: 700;
+    }
+
+    .badge-priority-low {
+      background: #ffedd5;
+      color: #ea580c; /* Orange */
+      border: 1px solid #fdba74;
+      font-weight: 700;
+    }
+
+    .badge-priority-normal {
+      background: #e0f2fe;
+      color: #0284c7;
+      border: 1px solid #bae6fd;
+      font-weight: 700;
+    }
+
+    /* Status Badges */
+    .badge-status-done {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+      font-weight: 700;
+    }
+
+    .badge-status-in-progress {
+      background: #fef9c3;
+      color: #a16207; /* Yellow / Amber */
+      border: 1px solid #fde047;
+      font-weight: 700;
+    }
+
+    .badge-status-pending {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      font-weight: 700;
+    }
+
+    .task-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .status-select-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .status-select-btn.btn-done {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .status-select-btn.btn-in-progress {
+      background: #eab308;
+      color: #713f12;
+      border-color: #ca8a04;
+    }
+
+    .status-select-btn.btn-pending {
+      background: #f1f5f9;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+
+    .status-select-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* Legend Box */
+    .legend-box {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      outline: none;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. MANDATORY SECURITY GATE SCREEN -->
+  <div id="auth-gate-screen">
+    <div class="auth-card">
+      <div class="auth-badge">സുരക്ഷിത കവാടം</div>
+      <h2>SKSSF ആറങ്ങാടി യൂണിറ്റ്</h2>
+      <p>പോർട്ടലിലെ ഉള്ളടക്കങ്ങളും നിർദ്ദേശങ്ങളും കാണുന്നതിനായി സുരക്ഷാ കോഡ് (PIN) നൽകുക:</p>
+      
+      <div class="pin-input-wrapper">
+        <input 
+          type="password" 
+          id="gate-pin-input" 
+          class="auth-input" 
+          placeholder="••••" 
+          maxlength="8" 
+          inputmode="numeric" 
+          autocomplete="one-time-code"
+          onkeydown="if(event.key==='Enter') verifyGatePin()"
+        >
+        <button type="button" onclick="togglePinVisibility()" id="btn-toggle-eye" class="btn-toggle-eye">കാണിക്കുക</button>
+      </div>
+
+      <button onclick="verifyGatePin()" class="auth-btn">അൺലോക്ക് ചെയ്യുക</button>
+
+      <!-- Quick 1-click fallback unlock -->
+      <button onclick="quickUnlock()" class="auth-quick-btn">
+        🔑 1989 നൽകി നേരിട്ട് തുറക്കുക
+      </button>
+
+      <p id="gate-error" class="auth-error">തെറ്റായ സുരക്ഷാ കോഡ്! ദയവായി '1989' നൽകുക.</p>
+    </div>
+  </div>
+
+  <!-- 2. MAIN APPLICATION -->
+  <div id="main-app" class="hidden">
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="brand">
+          <div class="brand-text">
+            <h1>SKSSF ആറങ്ങാടി യൂണിറ്റ്</h1>
+            <p>കർമ്മപദ്ധതി & വാട്സാപ്പ് കമ്മ്യൂണിക്കേഷൻ പോർട്ടൽ</p>
+          </div>
+        </div>
+        <div class="header-controls">
+          <a href="https://saeedthrissur.github.io/fantastic-waffle/" target="_blank" class="link-badge">
+            പോർട്ടൽ ലിങ്ക്
+          </a>
+          <button onclick="lockApp()" class="btn-lock">
+            ലോക്ക് ചെയ്യുക
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notification Toast -->
+    <div id="toast">
+      <span id="toast-text">സന്ദേശം കോപ്പി ചെയ്തു!</span>
+    </div>
+
+    <main>
+      <!-- Filter Panel -->
+      <div class="filter-panel">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <span style="font-size:13px; font-weight:800; color:#065f46;">കർമ്മപദ്ധതി മാസം:</span>
+          <select id="month-selector" onchange="onMonthChange()" class="month-dropdown">
+            <option value="auto">ഇന്നത്തെ തീയതി പ്രകാരം (Auto Detect)</option>
+            <option value="all">മുഴുവൻ മാസങ്ങളിലെയും കർമ്മപദ്ധതികൾ (All Months)</option>
+            <optgroup label="─── പ്രതിമാസ കലണ്ടർ ───">
+              <option value="rabi_al_akhir">1. റബീഉൽ ആഖിർ (സെപ്റ്റംബർ - ഒക്ടോബർ 2026)</option>
+              <option value="jumada_al_ula">2. ജുമാദൽ ഊലാ (ഒക്ടോബർ - നവംബർ 2026)</option>
+              <option value="jumada_al_akhira">3. ജുമാദൽ ആഖിറ (നവംബർ - ഡിസംബർ 2026)</option>
+              <option value="rajab">4. റജബ് (ഡിസംബർ 2026 - ജനുവരി 2027)</option>
+              <option value="shaban">5. ശഅ്ബാൻ (ജനുവരി - ഫെബ്രുവരി 2027)</option>
+              <option value="ramadan">6. വിശുദ്ധ റമളാൻ (ഫെബ്രുവരി - മാർച്ച് 2027)</option>
+              <option value="shawwal">7. ശവ്വാൽ (മാർച്ച് - ഏപ്രിൽ 2027)</option>
+              <option value="dhul_qadah">8. ദുൽഖഅ്ദ (ഏപ്രിൽ - മെയ് 2027)</option>
+              <option value="dhul_hijjah">9. ദുൽഹിജ്ജ (മെയ് - ജൂൺ 2027)</option>
+              <option value="muharram">10. മുഹർറം (ജൂൺ - ജൂലൈ 2027)</option>
+              <option value="safar">11. സഫർ (ജൂലൈ - ആഗസ്റ്റ് 2027)</option>
+              <option value="rabi_al_awwal">12. റബീഉൽ അവ്വൽ (ആഗസ്റ്റ് - സെപ്റ്റംബർ 2027)</option>
+            </optgroup>
+            <optgroup label="─── സ്ഥിരം ആവർത്തിത കാര്യങ്ങൾ ───">
+              <option value="routine_all">മുഴുവൻ സ്ഥിരം ആവർത്തിത കാര്യങ്ങൾ (All Routines)</option>
+            </optgroup>
+          </select>
+          <span id="active-period-name" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 10px; border-radius:14px; font-size:11.5px; font-weight:700;">
+            റബീഉൽ ആഖിർ (സെപ്റ്റംബർ - ഒക്ടോബർ 2026)
+          </span>
+        </div>
+        <div style="font-size:12px; color:#64748b; font-weight:600;">
+          ചാവക്കാട് മേഖല | തൃശൂർ ജില്ല
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-bar">
+        <button onclick="switchTab('core')" id="tab-core" class="tab-btn active">
+          കോർ കമ്മിറ്റി (Core Committee)
+        </button>
+        <button onclick="switchTab('executive')" id="tab-executive" class="tab-btn">
+          എക്സിക്യൂട്ടീവ് ഗ്രൂപ്പ് (Executive Group)
+        </button>
+        <button onclick="switchTab('allmembers')" id="tab-allmembers" class="tab-btn">
+          മുഴുവൻ അംഗങ്ങൾ (All 42 Members)
+        </button>
+        <button onclick="switchTab('public')" id="tab-public" class="tab-btn">
+          പബ്ലിക് / മഹല്ല് ഗ്രൂപ്പ് (Public WhatsApp)
+        </button>
+        <button onclick="switchTab('individuals')" id="tab-individuals" class="tab-btn">
+          വ്യക്തിഗത നിർദ്ദേശങ്ങൾ & ടാസ്ക്
+        </button>
+        <button onclick="switchTab('subwings')" id="tab-subwings" class="tab-btn">
+          സബ് വിംഗുകൾ (13 വിംഗുകൾ)
+        </button>
+        <button onclick="switchTab('agenda')" id="tab-agenda" class="tab-btn special-tab">
+          മീറ്റിംഗ് & ലളിത അജണ്ട
+        </button>
+        <button onclick="switchTab('interactive')" id="tab-interactive" class="tab-btn">
+          തത്സമയ ടാസ്‌‌ക് ചെക്ക്‌ലിസ്റ്റ്
+        </button>
+      </div>
+
+      <!-- TAB 1: Core Committee Message -->
+      <div id="view-core" class="content-card">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>കോർ കമ്മിറ്റി സന്ദേശവും ടാസ്‌ക് ലിസ്റ്റും</h2>
+            <p>പ്രസിഡന്റ്, സെക്രട്ടറി, വർക്കിംഗ് സെക്രട്ടറി, ട്രഷറർ, രണ്ട് കൗൺസിലർമാർ എന്നിവർക്കുള്ള നിർദ്ദേശങ്ങളും കർമ്മരേഖയും</p>
+          </div>
+          <div class="action-group">
+            <button onclick="copyElementText('core-msg', 'കോർ കമ്മിറ്റി സന്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-core-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പിൽ അയക്കാം
+            </a>
+          </div>
+        </div>
+        <div id="core-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 2: Executive Council Message -->
+      <div id="view-executive" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>സമ്പൂർണ്ണ എക്സിക്യൂട്ടീവ് കൗൺസിൽ സന്ദേശവും ടാസ്‌ക് ലിസ്റ്റും</h2>
+            <p>ഭാരവാഹികൾ, സബ് വിംഗ് കൺവീനർമാർ, എക്സിക്യൂട്ടീവ് അംഗങ്ങൾ എന്നിവർക്കായി തയ്യാറാക്കിയത്</p>
+          </div>
+          <div class="action-group">
+            <button onclick="copyElementText('exec-msg', 'എക്സിക്യൂട്ടീവ് സന്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-exec-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പിൽ അയക്കാം
+            </a>
+          </div>
+        </div>
+        <div id="exec-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 3: All Members Group Message -->
+      <div id="view-allmembers" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>മുഴുവൻ അംഗങ്ങളുടെയും ഗ്രൂപ്പിലേക്കുള്ള സന്ദേശവും ടാസ്‌ക് ലിസ്റ്റും</h2>
+            <p>പ്രവാസികളും നാട്ടിലുള്ളവരുമായ മുഴുവൻ 42 അംഗങ്ങൾക്കും യൂണിറ്റ് പ്രവർത്തനങ്ങളിൽ പങ്കാളികളാകാനുള്ള സൗഹൃദ ക്ഷണം</p>
+          </div>
+          <div class="action-group">
+            <button onclick="copyElementText('allmembers-msg', 'അംഗങ്ങളുടെ സന്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-allmembers-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പിൽ അയക്കാം
+            </a>
+          </div>
+        </div>
+        <div id="allmembers-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 4: Public / Mahallu Group Message -->
+      <div id="view-public" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>പൊതുജനങ്ങൾ / മഹല്ല് വാട്സാപ്പ് ഗ്രൂപ്പ് അറിയിപ്പ്</h2>
+            <p>നാട്ടുകാർക്കും ഗുണകാംക്ഷികൾക്കുമായി ആത്മീയ-സാന്ത്വന-സേവന വിവരങ്ങൾ പങ്കുവെക്കൽ</p>
+          </div>
+          <div class="action-group">
+            <button onclick="copyElementText('public-msg', 'പബ്ലിക് സന്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-public-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പിൽ അയക്കാം
+            </a>
+          </div>
+        </div>
+        <div id="public-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 5: Individual Messages -->
+      <div id="view-individuals" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>വ്യക്തിഗത സൗഹൃദ നിർദ്ദേശങ്ങളും ടാസ്‌ക് ലിസ്റ്റും</h2>
+            <p>ഓരോ ഭാരവാഹിക്കും അംഗത്തിനും അവരുടെ ചുമതലകൾക്കനുസരിച്ച് തയ്യാറാക്കിയത്</p>
+            <div id="person-designation-badge" style="display:inline-block; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; margin-top:4px;">
+              പദവി: ലോഡ് ചെയ്യുന്നു...
+            </div>
+          </div>
+          <div class="action-group">
+            <label for="person-select" style="font-size:12px; font-weight:700;">വ്യക്തി:</label>
+            <select id="person-select" onchange="renderIndividualView()" class="select-dropdown"></select>
+            <button onclick="copyElementText('individual-msg', 'വ്യക്തിഗത നിർദ്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-ind-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പ്
+            </a>
+          </div>
+        </div>
+        <div id="individual-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 6: Sub-Wings Messages -->
+      <div id="view-subwings" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>സബ് വിംഗുകൾ തിരിച്ചുള്ള കർമ്മപദ്ധതികളും ടാസ്‌ക് ലിസ്റ്റും</h2>
+            <p>13 ഉപവിഭാഗങ്ങൾക്കും വ്യക്തമായ കർമ്മനിർദ്ദേശങ്ങൾ</p>
+          </div>
+          <div class="action-group">
+            <label for="wing-select" style="font-size:12px; font-weight:700;">വിംഗ്:</label>
+            <select id="wing-select" onchange="renderWingView()" class="select-dropdown"></select>
+            <button onclick="copyElementText('wing-msg', 'സബ് വിംഗ് സന്ദേശം കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-wing-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പ്
+            </a>
+          </div>
+        </div>
+        <div id="wing-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 7: Meetings & Simple Agenda Planner -->
+      <div id="view-agenda" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>പ്രതിമാസ മീറ്റിംഗുകൾ & അജണ്ട നോട്ടീസ്</h2>
+            <p>വിവിധ തലങ്ങളിലുള്ള യോഗങ്ങൾക്കായുള്ള നോട്ടീസും അജണ്ടയും</p>
+          </div>
+          <div class="action-group">
+            <label for="agenda-category-select" style="font-size:12px; font-weight:700;">യോഗ തരം:</label>
+            <select id="agenda-category-select" onchange="renderAgendaView()" class="select-dropdown">
+              <option value="core">1. കോർ കമ്മിറ്റി പ്രതിമാസ യോഗം (Core Committee Meeting)</option>
+              <option value="executive">2. യൂണിറ്റ് എക്സിക്യൂട്ടീവ് കൗൺസിൽ യോഗം (Executive Meeting)</option>
+              <option value="subwings">3. സബ് വിംഗ് കൺവീനർമാരുടെ അവലോകന യോഗം (Sub-Wing Meet)</option>
+              <option value="general">4. മുഴുവൻ 42 അംഗങ്ങളുടെ ജനറൽ ബോഡി യോഗം (General Body)</option>
+              <option value="public">5. പൊതുജന സംഗമം / മഹല്ല് കൂട്ടായ്മ (Public / Mahallu Meet)</option>
+            </select>
+            <button onclick="copyElementText('agenda-msg', 'അജണ്ട നോട്ടീസ് കോപ്പി ചെയ്തു!')" class="btn-copy">
+              കോപ്പി ചെയ്യാം
+            </button>
+            <a id="share-agenda-wa" href="#" target="_blank" class="btn-whatsapp">
+              വാട്സാപ്പിൽ അയക്കാം
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <input type="text" id="agenda-custom-date" placeholder="തീയതി (ഉദാ: 2026 ഒക്ടോബർ 15 വ്യാഴം)" class="form-input" style="flex:1; min-width:200px;" oninput="renderAgendaView()">
+          <input type="text" id="agenda-custom-time" placeholder="സമയം (ഉദാ: രാത്രി 8:30 ന്)" class="form-input" style="flex:1; min-width:160px;" oninput="renderAgendaView()">
+          <input type="text" id="agenda-custom-venue" placeholder="വേദി (ഉദാ: ഇർഷാദുൽ അനാം മദ്റസ)" class="form-input" style="flex:1; min-width:200px;" oninput="renderAgendaView()">
+        </div>
+
+        <div id="agenda-msg" class="msg-box"></div>
+      </div>
+
+      <!-- TAB 8: Interactive Tasks Checklist -->
+      <div id="view-interactive" class="content-card hidden">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>തത്സമയ ടാസ്‌ക് ചെക്ക്‌ലിസ്റ്റ് & സ്റ്റാറ്റസ് മാറ്റം</h2>
+            <p>പൂർത്തിയായവ പച്ച മാർക്കും (✅), നടന്നുകൊണ്ടിരിക്കുന്നവ മഞ്ഞ മാർക്കും (🟡), ബാക്കിയുള്ളവ ചുവപ്പ്/ഗ്രേ മാർക്കും (🔴), മുൻഗണനയിൽ ലോ പ്രയോറിറ്റിക്ക് ഓറഞ്ചും (🟠) നൽകിയിരിക്കുന്നു. സ്റ്റാറ്റസ് മാറ്റാൻ ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുക.</p>
+          </div>
+        </div>
+
+        <!-- Color Legend Info Box -->
+        <div class="legend-box">
+          <div class="legend-item"><span style="color:#15803d; font-size:14px;">✅</span> <strong>പച്ച:</strong> പൂർത്തിയായി (Done)</div>
+          <div class="legend-item"><span style="color:#ca8a04; font-size:14px;">🟡</span> <strong>മഞ്ഞ:</strong> നടന്നുകൊണ്ടിരിക്കുന്നു (In Progress)</div>
+          <div class="legend-item"><span style="color:#dc2626; font-size:14px;">🔴</span> <strong>ചുവപ്പ്:</strong> ബാക്കിയുണ്ട് / ഹൈ പ്രയോറിറ്റി</div>
+          <div class="legend-item"><span style="color:#ea580c; font-size:14px;">🟠</span> <strong>ഓറഞ്ച്:</strong> ലോ പ്രയോറിറ്റി (Low Priority)</div>
+        </div>
+
+        <div id="tasks-container"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const PORTAL_LINK = "https://saeedthrissur.github.io/fantastic-waffle/";
+    const APP_PIN = "1989";
+
+    // In-memory safety fallback for iframe and private browser storage policies
+    let isMemoryUnlocked = false;
+
+    function safeGetAuth() {
+      try {
+        return sessionStorage.getItem("skssf_gate_unlocked") === "true" || isMemoryUnlocked;
+      } catch (e) {
+        return isMemoryUnlocked;
+      }
+    }
+
+    function safeSetAuth(val) {
+      isMemoryUnlocked = val;
+      try {
+        if (val) {
+          sessionStorage.setItem("skssf_gate_unlocked", "true");
+        } else {
+          sessionStorage.removeItem("skssf_gate_unlocked");
+        }
+      } catch (e) {
+        // Storage restricted fallback
+      }
+    }
+
+    // Official Attribution Footer
+    function getAttributionFooter() {
+      let t = `> 📌 *ഈ സന്ദേശവും കർമ്മപദ്ധതിയും തയ്യാറാക്കിയത് താഴെ കാണുന്ന ഔദ്യോഗിക പേജ് വഴിയാണ്:*\n`;
+      t += `> ${PORTAL_LINK}\n\n`;
+      t += ````[സിസ്റ്റം ജനറേറ്റഡ് രേഖ | SKSSF ആറങ്ങാടി യൂണിറ്റ്]`````;
+      return t;
+    }
+
+    // Auth gate handling
+    function checkInitialAuth() {
+      if (safeGetAuth()) {
+        const gate = document.getElementById('auth-gate-screen');
+        const app = document.getElementById('main-app');
+        if (gate) gate.classList.add('hidden');
+        if (app) app.classList.remove('hidden');
+        try { initApp(); } catch(e) { console.error(e); }
+      } else {
+        const gate = document.getElementById('auth-gate-screen');
+        const app = document.getElementById('main-app');
+        if (gate) gate.classList.remove('hidden');
+        if (app) app.classList.add('hidden');
+        setTimeout(() => {
+          const el = document.getElementById('gate-pin-input');
+          if (el) el.focus();
+        }, 150);
+      }
+    }
+
+    function togglePinVisibility() {
+      const input = document.getElementById('gate-pin-input');
+      const btn = document.getElementById('btn-toggle-eye');
+      if (!input || !btn) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = 'മറയ്ക്കുക';
+      } else {
+        input.type = 'password';
+        btn.innerText = 'കാണിക്കുക';
+      }
+    }
+
+    function quickUnlock() {
+      const input = document.getElementById('gate-pin-input');
+      if (input) input.value = "1989";
+      verifyGatePin();
+    }
+
+    function verifyGatePin() {
+      const inputEl = document.getElementById('gate-pin-input');
+      let rawVal = (inputEl ? inputEl.value : "").trim();
+
+      // Convert Malayalam digits (൧, ൨, ൩, ൪, ൫, ൬, ൭, ൮, ൯, ൦) to English numerals (0-9)
+      const mlMap = {'൦':'0','൧':'1','൨':'2','൩':'3','൪':'4','൫':'5','൬':'6','൭':'7','൮':'8','൯':'9'};
+      let normalizedPin = rawVal.replace(/[൦-൯]/g, d => mlMap[d]);
+
+      // Remove any non-digit spaces or accidental invisible characters
+      normalizedPin = normalizedPin.replace(/\D/g, '');
+
+      const err = document.getElementById('gate-error');
+      if (normalizedPin === APP_PIN) {
+        safeSetAuth(true);
+        if (err) err.style.display = 'none';
+
+        const gate = document.getElementById('auth-gate-screen');
+        const app = document.getElementById('main-app');
+        if (gate) gate.classList.add('hidden');
+        if (app) app.classList.remove('hidden');
+
+        try {
+          initApp();
+        } catch (initErr) {
+          console.error("initApp error:", initErr);
+        }
+        showToast("സുരക്ഷാ കോഡ് ശരിയായി! പ്രവേശനം അനുവദിച്ചു.");
+      } else {
+        if (err) {
+          err.style.display = 'block';
+          err.innerText = `നൽകിയ കോഡ് (${rawVal || 'ശൂന്യം'}) തെറ്റാണ്! 1989 നൽകുക.`;
+        }
+        if (inputEl) inputEl.value = '';
+      }
+    }
+
+    function lockApp() {
+      safeSetAuth(false);
+      const inputEl = document.getElementById('gate-pin-input');
+      if (inputEl) inputEl.value = '';
+      const gate = document.getElementById('auth-gate-screen');
+      const app = document.getElementById('main-app');
+      if (gate) gate.classList.remove('hidden');
+      if (app) app.classList.add('hidden');
+      showToast("പോർട്ടൽ വീണ്ടും ലോക്ക് ചെയ്തു.");
+    }
+
+    // Tasks State with Status: 'pending', 'in-progress' (Yellow 🟡), 'done' (Green ✅)
+    // Priority: 'high' (Red 🔴), 'low' (Orange 🟠), 'normal' (Blue 🔵)
+    let checklistTasks = [
+      { id: 1, title: "മഹല്ല് പള്ളി കമ്മിറ്റിക്ക് ഔദ്യോഗിക കത്ത് നൽകൽ", wing: "കോർ കമ്മിറ്റി", resp: "മുഹമ്മദ് ആദിൽ, നിസാർ കെ. കെ", status: "in-progress", priority: "high", desc: "ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദ്, ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദ് എന്നിവരുമായി ആലോചിച്ച് സമർപ്പിക്കുക." },
+      { id: 2, title: "യൂണിറ്റിന്റെ ഔദ്യോഗിക സീലുകൾ നിർമ്മിക്കൽ", wing: "കോർ കമ്മിറ്റി", resp: "നിസാർ കെ. കെ, മുഹമ്മദ് ആദിൽ", status: "in-progress", priority: "high", desc: "പ്രസിഡന്റ്, ജനറൽ സെക്രട്ടറി സീലുകൾ നിർമ്മിക്കുക." },
+      { id: 3, title: "സുപ്രഭാതം പത്രം പള്ളിയിൽ സ്ഥിരമാക്കലും സ്ഥാപന സ്പോൺസർഷിപ്പും", wing: "മീഡിയ & കൗൺസിൽ", resp: "മുഹമ്മദ് ആദിൽ", status: "in-progress", priority: "normal", desc: "ആറങ്ങാടി ഉപ്പാപ്പ പള്ളിയിലും പഞ്ചായത്തിലെ സ്ഥാപനങ്ങളിലും സുപ്രഭാതം വരുത്താൻ അബ്ദുൽ ഖാദർ വാഫിയുമായി സംസാരിക്കുക." },
+      { id: 4, title: "വിഖായ രക്തദാന വിവരശേഖരണം പൂർത്തിയാക്കൽ", wing: "വിഖായ", resp: "അൻസിൽ വി. എ", status: "in-progress", priority: "high", desc: "ഒക്ടോബർ 1 രക്തദാന ദിനത്തോടനുബന്ധിച്ച് മഹല്ല് ബ്ലഡ് ഡാറ്റാബേസ് പൂർത്തിയാക്കുക." },
+      { id: 5, title: "സഹചാരി സെന്റർ / യൂണിറ്റ് ഓഫീസ് കണ്ടെത്തൽ", wing: "സഹചാരി", resp: "മുഹമ്മദ് ആദിൽ, അൻസിൽ വി. എ, മുഹമ്മദ് സഫീർ", status: "pending", priority: "high", desc: "പതാകകൾ, പുസ്തകങ്ങൾ, മെഡിക്കൽ ഉപകരണ ബാങ്ക് എന്നിവ അങ്ങോട്ട് മാറ്റാൻ മുറി കണ്ടെത്തുക." },
+      { id: 6, title: "സംഘടനാ പഠന ക്ലാസ് (2026 ഒക്ടോബർ 11 ഞായർ രാവിലെ 10:00)", wing: "വിഖായ & എക്സിക്യൂട്ടീവ്", resp: "അൻസിൽ വി. എ (സംഘാടന ചുമതല)", status: "in-progress", priority: "high", desc: "കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ അനുസ്മരണവും പഠന ക്ലാസും (ഉസ്താദ് ജാബിർ യമാനി പാടൂർ). ഹാൾ ഒരുക്കലും സ്വീകരണവും." },
+      { id: 7, title: "പഠന ക്ലാസ് സ്പെഷ്യൽ സപ്ലിമെന്റ് തയ്യാറാക്കൽ", wing: "ട്രെൻഡ് & സർഗലയം", resp: "അബ്ദുൽ ലത്തീഫ്, മുഹമ്മദ് ഹാറൂൺ", status: "pending", priority: "normal", desc: "ക്ലാസിൽ വിതരണം ചെയ്യാനുള്ള ലഘു സപ്ലിമെന്റ് തയ്യാറാക്കലും കവർ ഡിസൈനും." },
+      { id: 8, title: "ഇൻസ്റ്റാഗ്രാം അക്കൗണ്ടുകൾ പുനഃക്രമീകരിക്കൽ", wing: "മീഡിയ & സൈബർ വിംഗ്", resp: "റൈഹാൻ ബഷീർ", status: "done", priority: "low", desc: "ഔദ്യോഗിക പേജ് യൂണിറ്റ് വാർത്തകൾക്കായും പഴയ പേജ് സ്റ്റാറ്റസുകൾക്കായും ക്രമീകരിക്കുക." },
+      { id: 9, title: "പള്ളികളിലെ ശാക്തീകരണ പര്യടനം - റൂട്ട് മാപ്പും തീയതിയും", wing: "എക്സിക്യൂട്ടീവ്", resp: "മുഴുവൻ ഭാരവാഹികളും", status: "pending", priority: "low", desc: "മഹല്ലിന് കീഴിലെ മുഴുവൻ പള്ളികളിലെയും പര്യടന തീയതി നിശ്ചയിക്കുക." }
+    ];
+
+    // Helper to format task checklist into WhatsApp string with correct Color Code Indicators
+    function formatTasksForWhatsApp(filterWingOrPerson = null) {
+      let filtered = checklistTasks;
+      if (filterWingOrPerson) {
+        filtered = checklistTasks.filter(t => 
+          t.wing.toLowerCase().includes(filterWingOrPerson.toLowerCase()) || 
+          t.resp.toLowerCase().includes(filterWingOrPerson.toLowerCase())
+        );
+        if (filtered.length === 0) filtered = checklistTasks.slice(0, 5);
+      }
+
+      let res = `\n📋 *നിർവ്വഹിക്കേണ്ട ടാസ്‌ക് ലിസ്റ്റ് (Action Checklist):*\n`;
+      filtered.forEach((t, idx) => {
+        let statusMarker = "";
+        let priorityTag = "";
+
+        // Status Indicators
+        if (t.status === "done") {
+          statusMarker = "[✅ പൂർത്തിയായി]";
+        } else if (t.status === "in-progress") {
+          statusMarker = "[🟡 പുരോഗമിക്കുന്നു]"; // Yellow for In Progress
+        } else {
+          statusMarker = "[🔴 ബാക്കിയുണ്ട്]";
+        }
+
+        // Priority Indicators (Orange for Low Priority)
+        if (t.priority === "low") {
+          priorityTag = " 🟠 _[ലോ പ്രയോറിറ്റി]_";
+        } else if (t.priority === "high") {
+          priorityTag = " 🔴 _[ഹൈ പ്രയോറിറ്റി]_";
+        }
+
+        const titleText = t.status === "done" ? `~${t.title}~` : `*${t.title}*`;
+        res += `${idx + 1}. ${statusMarker} : ${titleText}${priorityTag}\n`;
+        res += `   > _ചുമതല: ${t.resp} | വിംഗ്: ${t.wing}_\n`;
+      });
+      return res;
+    }
+
+    const leadersRegistry = {
+      "മുഹമ്മദ് ആദിൽ": {
+        role: "യൂണിറ്റ് പ്രസിഡന്റ്",
+        salutation: "ബഹുമാനപ്പെട്ട പ്രസിഡന്റ് ആദിൽ സാഹിബ്",
+        toneStyle: "നമ്മുടെ യൂണിറ്റിന്റെ പ്രവർത്തനങ്ങൾക്ക് നേതൃത്വം നൽകുന്ന പ്രസിഡന്റ് അവർകൾക്ക് സ്നേഹാദരങ്ങളോടെ സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "മഹല്ല് ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദുമായും ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദുമായും ആലോചിച്ച് പള്ളി കമ്മിറ്റിക്കുള്ള ഔദ്യോഗിക കത്ത് സമർപ്പിക്കാൻ മുൻകൈ എടുത്താൽ നന്നായിരിക്കും.",
+          "ആറങ്ങാടി ഉപ്പാപ്പ പള്ളിയിൽ സുപ്രഭാതം പത്രം സ്ഥിരമാക്കുന്നതിനും പഞ്ചായത്ത് സ്ഥാപനങ്ങളിൽ സ്പോൺസർഷിപ്പ് ആരംഭിക്കുന്നതിനും സദർ ഉസ്താദ് അബ്ദുൽ ഖാദർ വാഫിയുമായി സംസാരിക്കുന്നത് ആലോചിക്കാമോ?",
+          "സഹചാരി സെന്ററിനായി അനുയോജ്യമായ മുറി കണ്ടെത്താൻ അൻസിലുമായി ചേർന്ന് അന്വേഷണം നടത്തിയാൽ വളരെ ഉപകാരമായിരിക്കും."
+        ]
+      },
+      "നിസാർ കെ. കെ": {
+        role: "യൂണിറ്റ് ജനറൽ സെക്രട്ടറി",
+        salutation: "പ്രിയ ജനറൽ സെക്രട്ടറി നിസാർ സാഹിബ്",
+        toneStyle: "യൂണിറ്റിന്റെ ചിട്ടയായ നടത്തിപ്പിനായി സെക്രട്ടറി അവർകളുടെ ശ്രദ്ധയിലേക്ക് വിനീതമായി സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "യൂണിറ്റിന്റെ ഔദ്യോഗിക ആവശ്യങ്ങൾക്കായി പ്രസിഡന്റ്, സെക്രട്ടറി സീലുകൾ ഉടൻ നിർമ്മിക്കാൻ നടപടിയെടുത്താൽ നന്നായിരിക്കും.",
+          "കഴിഞ്ഞ എക്സിക്യൂട്ടീവ് യോഗത്തിലെ തീരുമാനങ്ങളുടെ ഫോളോ-അപ്പ് രേഖപ്പെടുത്താനും അടുത്ത മീറ്റിംഗ് അജണ്ട തയ്യാറാക്കാനും സാധിക്കുമോ?",
+          "മഹല്ല് പള്ളികളിലെ ശാക്തീകരണ പര്യടനത്തിന്റെ റൂട്ട് മാപ്പും തീയതിയും തയ്യാറാക്കുന്നതിലേക്ക് നിർദ്ദേശങ്ങൾ നൽകിയാൽ ഉപകാരമായിരിക്കും."
+        ]
+      },
+      "മുഹ്സിൻ പി. എം": {
+        role: "യൂണിറ്റ് വർക്കിംഗ് സെക്രട്ടറി",
+        salutation: "പ്രിയ വർക്കിംഗ് സെക്രട്ടറി മുഹ്സിൻ സാഹിബ്",
+        toneStyle: "സംഘടനാ പ്രവർത്തനങ്ങളുടെ ഫീൽഡ് ഏകോപനത്തിനായി സമർപ്പിക്കുന്ന സൗഹൃദ നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "ജനറൽ സെക്രട്ടറിയുമായി ചേർന്ന് എക്സിക്യൂട്ടീവ് കൗൺസിൽ അംഗങ്ങളുടെ സാന്നിധ്യം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചാൽ നന്നായിരിക്കും.",
+          "വരാനിരിക്കുന്ന പരിപാടികളുടെ ഹാൾ ക്രമീകരണങ്ങളും സമയക്രമവും ഉറപ്പുവരുത്താൻ സഹായിക്കാമോ?",
+          "സബ് വിംഗുകളുടെ പ്രവർത്തന പുരോഗതി ആഴ്ചതോറും അന്വേഷിച്ച് ക്രോഡീകരിക്കാൻ മുൻകൈ എടുത്താലോ?"
+        ]
+      },
+      "വി. ബി. റമീസ് ബാഖവി": {
+        role: "യൂണിറ്റ് ട്രഷറർ",
+        salutation: "ബഹുമാനപ്പെട്ട റമീസ് ബാഖവി ഉസ്താദ് (ട്രഷറർ)",
+        toneStyle: "യൂണിറ്റിന്റെ സാമ്പത്തിക സുതാര്യതയ്ക്കും ഫണ്ട് മാനേജ്മെന്റിനുമായി ഉസ്താദിന്റെ ശ്രദ്ധയിലേക്ക് സമർപ്പിക്കുന്നത്:",
+        customSuggestions: [
+          "യൂണിറ്റിന്റെ നിലവിലെ സാമ്പത്തിക നീക്കിയിരിപ്പും പുതിയ വരവ്-ചെലവ് കണക്കുകളും ക്യാഷ് ബുക്കിൽ രേഖപ്പെടുത്തി സൂക്ഷിച്ചാൽ നന്നായിരിക്കും.",
+          "സഹചാരി റിലീഫ് ഫണ്ട്, പലിശരഹിത വായ്പാ നിധി എന്നിവയുടെ പ്രത്യേക അക്കൗണ്ട് പുസ്തകം ക്രമീകരിക്കാൻ സാധിക്കുമോ?",
+          "റമളാൻ, മീലാദ് തുടങ്ങിയ വിശേഷാൽ ഫണ്ടുകൾക്കായുള്ള രസീത് ബുക്കുകൾ മുൻകൂട്ടി തയ്യാറാക്കുന്നത് ആലോചിക്കാമോ?"
+        ]
+      },
+      "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി": {
+        role: "മേഖലാ കൗൺസിലർ & ഇബാദ് കൺവീനർ",
+        salutation: "ബഹുമാനപ്പെട്ട എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി ഉസ്താദ്",
+        toneStyle: "യൂണിറ്റിന്റെ ആത്മീയ മാർഗ്ഗദർശനത്തിനായി ബഹുമാനപ്പെട്ട ഉസ്താദിന്റെ മുന്നിൽ സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "മാസത്തിലെ വ്യാഴാഴ്ച രാവുകളിലെ സ്ഥിരം സ്വലാത്ത്, മൗലിദ്, കുത്തുബിയ്യത്ത് സദസ്സുകൾക്ക് നേതൃത്വം നൽകാൻ ഉസ്താദിന്റെ സൗകര്യം അറിയിച്ചാൽ നന്നായിരിക്കും.",
+          "ഒരു വർഷത്തെ സമഗ്ര ആത്മീയ കർമ്മരേഖാ കരട് തയ്യാറാക്കാൻ ഉസ്താദിന്റെ മാർഗ്ഗനിർദ്ദേശങ്ങൾ നൽകിയാലോ?",
+          "മേഖലാ കമ്മിറ്റിയുമായുള്ള ആശയവിനിമയം ശക്തമായി നിലനിർത്താൻ ഉസ്താദിന്റെ സഹായം വിനീതമായി പ്രതീക്ഷിക്കുന്നു."
+        ]
+      },
+      "അൻസിൽ വി. എ": {
+        role: "മേഖലാ കൗൺസിലർ & വിഖായ കൺവീനർ",
+        salutation: "പ്രിയ അൻസിൽ സാഹിബ് (മേഖലാ കൗൺസിലർ & വിഖായ കൺവീനർ)",
+        toneStyle: "സന്നദ്ധ സേവന രംഗത്തെ കരുത്തുറ്റ ഇടപെടലുകൾക്കായി സ്നേഹപൂർവ്വം സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "2026 ഒക്ടോബർ 11 ഞായറാഴ്ച നടക്കുന്ന കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ അനുസ്മരണവും പഠന ക്ലാസും (ജാബിർ യമാനി പാടൂർ) വിജയകരമാക്കാൻ ഹാൾ ഒരുക്കലും അതിഥി സൽക്കാരവും ഏകോപിപ്പിച്ചാൽ നന്നായിരിക്കും.",
+          "ഒക്ടോബർ 1 രക്തദാന ദിനത്തോടനുബന്ധിച്ചുള്ള മഹല്ല് രക്തദാതാക്കളുടെ വിവരശേഖരണം പൂർത്തിയാക്കാൻ ശ്രദ്ധിക്കാമോ?",
+          "സന്നദ്ധ മയ്യത്ത് പരിപാലന സ്ക്വാഡ് രൂപീകരണ ചർച്ചകളും അപകട വളവുകളിലെ റോഡ് സുരക്ഷാ പരിശോധനയും മുന്നോട്ട് കൊണ്ടുപോയാലോ?"
+        ]
+      },
+      "അബ്ദുൽ ലത്തീഫ്": {
+        role: "യൂണിറ്റ് വൈസ് പ്രസിഡന്റ് & ട്രെൻഡ് കൺവീനർ",
+        salutation: "പ്രിയ അബ്ദുൽ ലത്തീഫ് സാഹിബ് (വൈസ് പ്രസിഡന്റ് & ട്രെൻഡ് കൺവീനർ)",
+        toneStyle: "വിദ്യാഭ്യാസ, തൊഴിൽ മുന്നേറ്റങ്ങൾക്കായി താങ്കൾക്ക് പരിഗണിക്കാവുന്ന നല്ല ആശയങ്ങൾ:",
+        customSuggestions: [
+          "ഒക്ടോബർ 11 പഠന ക്ലാസിൽ പ്രദേശത്തെ വിദ്യാർത്ഥികളുടെയും യുവാക്കളുടെയും പങ്കാളിത്തം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചാൽ നന്നായിരിക്കും.",
+          "നാട്ടിലെ തൊഴിലന്വേഷകരായ യുവതീ-യുവാക്കളുടെ പ്രാഥമിക വിവരശേഖരണം ആരംഭിക്കുന്നത് ആലോചിക്കാമോ?",
+          "പഠന ക്ലാസിൽ വിതരണം ചെയ്യാനുള്ള ലഘു സപ്ലിമെന്റ് തയ്യാറാക്കുന്നതിൽ സഹകരിച്ചാൽ വളരെ ഉപകാരമായിരിക്കും."
+        ]
+      },
+      "റൈഹാൻ ബഷീർ": {
+        role: "മീഡിയ & സൈബർ വിംഗ് കൺവീനർ",
+        salutation: "പ്രിയ റൈഹാൻ ബഷീർ (മീഡിയ & സൈബർ വിംഗ് കൺവീനർ)",
+        toneStyle: "പ്രചാരണ രംഗത്തും ഡിജിറ്റൽ ഏകോപനത്തിലും താങ്കൾക്ക് പരിഗണിക്കാവുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "ഒക്ടോബർ 11 പഠന ക്ലാസ് ഔദ്യോഗിക പോസ്റ്റർ, സുപ്രഭാതം കലണ്ടർ അധിഷ്ഠിത പോസ്റ്ററുകൾ എന്നിവ കൃത്യസമയത്ത് ഡിസൈൻ ചെയ്ത് ഷെഡ്യൂൾ ചെയ്താൽ നന്നായിരിക്കും.",
+          "ഇൻസ്റ്റാഗ്രാം അക്കൗണ്ടുകൾ വേർതിരിച്ച് (ഔദ്യോഗിക വാർത്തകൾക്ക് പുതിയതും, സ്റ്റാറ്റസ്/റീലുകൾക്ക് പഴയതും) ക്രമീകരിക്കാമോ?",
+          "വാട്സാപ്പ് ഗ്രൂപ്പുകളിൽ ഐടി അച്ചടക്കം ഉറപ്പുവരുത്താനും ലിങ്കുകൾ നിയന്ത്രിക്കാനും ശ്രദ്ധിച്ചാലോ?"
+        ]
+      },
+      "മുഹമ്മദ് സഫീർ ആർ. എം": {
+        role: "യൂണിറ്റ് വൈസ് പ്രസിഡന്റ് & സഹചാരി കൺവീനർ",
+        salutation: "പ്രിയ മുഹമ്മദ് സഫീർ സാഹിബ് (വൈസ് പ്രസിഡന്റ് & സഹചാരി കൺവീനർ)",
+        toneStyle: "സാന്ത്വന ജീവകാരുണ്യ പ്രവർത്തനങ്ങളിൽ മാതൃക കാട്ടാൻ താങ്കൾക്ക് സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "സഹചാരി സെന്റർ സ്ഥാപിച്ച് മെഡിക്കൽ ഉപകരണ ബാങ്കിലേക്ക് വീൽചെയർ, വാട്ടർ ബെഡ്, ഓക്സിജൻ സിലിണ്ടർ എന്നിവ സമാഹരിക്കാൻ അന്വേഷണം നടത്തിയാൽ നന്നായിരിക്കും.",
+          "മഹല്ലിലെ കിടപ്പുരോഗികളുടെ വിവരങ്ങൾ ശേഖരിച്ച് പാലിയേറ്റീവ് ഹോം കെയർ രജിസ്റ്റർ പൂർത്തിയാക്കാൻ സാധിക്കുമോ?",
+          "പലിശരഹിത വായ്പാ നിധിയുടെയും ഉസ്താദ്-മുഅല്ലിം-പ്രവർത്തക ക്ഷേമനിധിയുടെയും കരട് രേഖ തയ്യാറാക്കാൻ മുൻകൈ എടുത്താലോ?"
+        ]
+      }
+    };
+
+    const subWingsRegistry = {
+      "സഹചാരി റിലീഫ് സെൽ": {
+        lead: "മുഹമ്മദ് സഫീർ ആർ. എം",
+        desc: "ജീവകാരുണ്യ, സാന്ത്വന, മാട്രിമോണിയൽ & ഹലാൽ സാമ്പത്തിക വിഭാഗം",
+        suggestions: [
+          "ആറങ്ങാടിയിൽ സഹചാരി സെന്റർ കണ്ടെത്തി മെഡിക്കൽ ഉപകരണ ബാങ്കിലേക്ക് വീൽചെയർ, വാട്ടർ ബെഡ്, നെബുലൈസർ എന്നിവ സമാഹരിച്ചാലോ?",
+          "മഹല്ലിലെ കിടപ്പുരോഗികളുടെ വിവരങ്ങൾ ശേഖരിച്ച് പാലിയേറ്റീവ് ഹോം കെയർ രജിസ്റ്റർ തയ്യാറാക്കുന്നത് നന്നായിരിക്കും.",
+          "പലിശരഹിത വായ്പാ നിധിയുടെയും ഉസ്താദ്-മുഅല്ലിം-പ്രവർത്തക ക്ഷേമനിധിയുടെയും കരട് രേഖ തയ്യാറാക്കാൻ ആലോചിച്ചുകൂടെ?"
+        ]
+      },
+      "വിഖായ വിംഗ്": {
+        lead: "അൻസിൽ വി. എ",
+        desc: "സന്നദ്ധ സേവനം, ട്രാഫിക്, രക്തദാനം & ദുരന്ത നിവാരണം",
+        suggestions: [
+          "ഒക്ടോബർ 1 രക്തദാന ദിനത്തോടനുബന്ധിച്ച് മഹല്ല് ബ്ലഡ് ഡോണേഴ്സ് ഡാറ്റാബേസ് പൂർത്തിയാക്കി നാടിന് സമർപ്പിച്ചാലോ?",
+          "മഹല്ല് മയ്യത്ത് പരിപാലന സമിതിയുമായി ചേർന്ന് പ്രായോഗിക മയ്യത്ത് പരിപാലന ക്ലാസ് നടത്തിയാൽ വളരെ ഉപകാരമായിരിക്കും.",
+          "ആറങ്ങാടിയിലെ പ്രധാന റോഡുകളിലും ഇടുങ്ങിയ തിരിവുകളിലും കോൺവെക്സ് മിററുകളും ദിശാ ബോർഡുകളും സ്ഥാപിക്കുന്നത് ആലോചിക്കാമോ?"
+        ]
+      },
+      "ട്രെൻഡ് (വിദ്യാഭ്യാസ വിഭാഗം)": {
+        lead: "അബ്ദുൽ ലത്തീഫ്",
+        desc: "വിദ്യാഭ്യാസം, കരിയർ & തൊഴിൽ മാർഗ്ഗനിർദ്ദേശം",
+        suggestions: [
+          "നാട്ടിലെ തൊഴിലന്വേഷകരായ യുവാക്കൾക്കായി ആറങ്ങാടി ജോബ് ഡെസ്ക് വിവരശേഖരണം ആരംഭിച്ചാലോ?",
+          "എസ്.എസ്.എൽ.സി, പ്ലസ് ടു കഴിഞ്ഞ വിദ്യാർത്ഥികൾക്കായി കരിയർ ക്ലിനിക്ക് സംഘടിപ്പിക്കുന്നത് നന്നായിരിക്കും.",
+          "ഒക്ടോബർ 11 പഠന ക്ലാസ് സപ്ലിമെന്റ് തയ്യാറാക്കുന്നതിൽ വിദ്യാർത്ഥി പങ്കാളിത്തം ഉറപ്പുവരുത്താൻ ശ്രദ്ധിച്ചുകൂടെ?"
+        ]
+      },
+      "മീഡിയ & സൈബർ വിംഗ്": {
+        lead: "റൈഹാൻ ബഷീർ",
+        desc: "ഐടി, ഡാറ്റാ മാനേജ്മെന്റ് & സോഷ്യൽ മീഡിയ",
+        suggestions: [
+          "സുപ്രഭാതം കലണ്ടർ അടിസ്ഥാനമാക്കിയുള്ള പോസ്റ്ററുകളും റീലുകളും സോഷ്യൽ മീഡിയയിൽ ഷെഡ്യൂൾ ചെയ്താൽ നന്നായിരിക്കും.",
+          "ഔദ്യോഗിക ഇൻസ്റ്റാഗ്രാം പേജ് യൂണിറ്റ് വാർത്തകൾക്കു മാത്രമായും പഴയ പേജ് ക്രിയേറ്റീവ് സ്റ്റാറ്റസുകൾക്കായും ക്രമീകരിക്കാമോ?",
+          "വാട്സാപ്പ് ഗ്രൂപ്പുകളിൽ കർശനമായ അഡ്മിൻ നിയന്ത്രണവും ലിങ്ക് നിരോധനവും ഏർപ്പെടുത്തി സൈബർ അച്ചടക്കം ഉറപ്പാക്കിക്കൂടെ?"
+        ]
+      },
+      "ഇബാദ് (ദഅ്വാ വിഭാഗം)": {
+        lead: "എ. എം. മുഹമ്മദ് സഈദ് ബാഖവി",
+        desc: "ആത്മീയ വിശുദ്ധി & ദഅ്വാ പ്രവർത്തനങ്ങൾ",
+        suggestions: [
+          "പ്രതിമാസ വ്യാഴാഴ്ച രാവുകളിൽ മൻഖൂസ് മൗലിദ്, കുത്തുബിയ്യത്ത്, റാത്തീബ് സദസ്സുകൾ പള്ളി കേന്ദ്രീകരിച്ച് ചിട്ടപ്പെടുത്തിയാലോ?",
+          "ശൈഖ് ജീലാനി ദിനം, സമസ്ത പ്രാർത്ഥനാ ദിനം എന്നിവയിൽ പ്രത്യേക ദുആ മജ്‌ലിസുകൾ സംഘടിപ്പിക്കുന്നത് നന്നായിരിക്കും."
+        ]
+      }
+    };
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      const textEl = document.getElementById('toast-text');
+      if (textEl) textEl.innerText = msg;
+      if (t) {
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2300);
+      }
+    }
+
+    function copyElementText(id, note) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(note || "കോപ്പി ചെയ്തു!"))
+          .catch(() => fallbackCopy(text, note));
+      } else {
+        fallbackCopy(text, note);
+      }
+    }
+
+    function fallbackCopy(text, note) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(note || "കോപ്പി ചെയ്തു!");
+      } catch (e) {
+        showToast("കോപ്പി ചെയ്യാൻ സാധിച്ചില്ല!");
+      }
+      document.body.removeChild(ta);
+    }
+
+    function getPeriodName() {
+      const sel = document.getElementById('month-selector');
+      if (!sel) return "റബീഉൽ ആഖിർ (സെപ്റ്റംബർ - ഒക്ടോബർ 2026)";
+      const opt = sel.options[sel.selectedIndex];
+      return opt ? opt.text : "റബീഉൽ ആഖിർ (സെപ്റ്റംബർ - ഒക്ടോബർ 2026)";
+    }
+
+    function onMonthChange() {
+      const badge = document.getElementById('active-period-name');
+      if (badge) badge.innerText = getPeriodName();
+      refreshAllMessages();
+    }
+
+    // 1. Core Committee Message
+    function buildCoreMsg() {
+      const period = getPeriodName();
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*കോർ കമ്മിറ്റി ആലോചനാ സന്ദേശവും ടാസ്‌ക് ലിസ്റ്റും*\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `ബഹുമാനപ്പെട്ട പ്രസിഡന്റ്, ജനറൽ സെക്രട്ടറി, വർക്കിംഗ് സെക്രട്ടറി, ട്രഷറർ, മേഖല കൗൺസിലർമാർ എന്നിവരുടെ ശ്രദ്ധയിലേക്ക്,\n\n`;
+      text += `അസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹി വബറകാതുഹു.\n\n`;
+      text += `നമ്മുടെ യൂണിറ്റിന്റെ പ്രവർത്തനങ്ങൾ കൂടുതൽ ചിട്ടപ്പെടുത്തുന്നതിനും ഭാവി കർമ്മപദ്ധതികൾ വിജയകരമാക്കുന്നതിനുമായി കോർ കമ്മിറ്റിക്ക് മുന്നിൽ ചില നിർദ്ദേശങ്ങൾ വിനീതമായി സമർപ്പിക്കുന്നു:\n\n`;
+      
+      text += `💡 *കോർ കമ്മിറ്റിയിൽ നമുക്ക് ഇങ്ങനെ ആലോചിച്ചാലോ?*\n`;
+      text += `1. *പള്ളി കമ്മിറ്റി കത്ത്:* മഹല്ല് ഖത്തീബ് റാഷിദ് ബാഖവി ഉസ്താദുമായും ബഷീർ ഫൈസി ദേശമംഗലം ഉസ്താദുമായും ആലോചിച്ച് പള്ളി കമ്മിറ്റിക്കുള്ള ഔദ്യോഗിക കത്ത് ഒരാഴ്ചയ്ക്കുള്ളിൽ സമർപ്പിച്ചാൽ നന്നായിരിക്കില്ലേ?\n`;
+      text += `2. *സീലുകളുടെ നിർമ്മാണം:* യൂണിറ്റ് പ്രസിഡന്റ്, സെക്രട്ടറി എന്നിവരുടെ ഔദ്യോഗിക സീലുകൾ ഉടൻ നിർമ്മിക്കാൻ നടപടിയെടുത്തുകൂടെ?\n`;
+      text += `3. *പഠന ക്ലാസ് സംഘാടനം (ഒക്ടോബർ 11):* കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ സംയുക്ത അനുസ്മരണവും പഠന ക്ലാസും (ഉസ്താദ് ജാബിർ യമാനി പാടൂർ) വിജയകരമാക്കാൻ കോർ കമ്മിറ്റി പ്രത്യേക മേൽനോട്ടം വഹിച്ചാലോ?\n`;
+      text += `4. *ഓഫീസ് & മെഡിക്കൽ ബാങ്ക്:* സഹചാരി സെന്റർ / യൂണിറ്റ് ഓഫീസിനായി അനുയോജ്യമായ മുറി കണ്ടെത്താനുള്ള അന്വേഷണം വേഗത്തിലാക്കിയാൽ ഉപകാരമായിരിക്കും.\n`;
+
+      // Live tasks list appended with color indicators
+      text += formatTasksForWhatsApp("കോർ കമ്മിറ്റി");
+
+      text += `\n_നമ്മുടെ യൂണിറ്റിന്റെ ഉയർച്ചയ്ക്കായി ഈ വിഷയങ്ങളിൽ ബഹുമാനപ്പെട്ട കോർ കമ്മിറ്റി അംഗങ്ങൾ തങ്ങളുടെ വിലയേറിയ അഭിപ്രായങ്ങളും നിർദ്ദേശങ്ങളും പങ്കുവെക്കണമെന്ന് വിനീതമായി അഭ്യർത്ഥിക്കുന്നു._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 2. Executive Committee Message
+    function buildExecutiveMsg() {
+      const period = getPeriodName();
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*യൂണിറ്റ് എക്സിക്യൂട്ടീവ് കൗൺസിൽ സൗഹൃദ നിർദ്ദേശങ്ങളും ടാസ്‌ക് ലിസ്റ്റും*\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `പ്രിയ ഭാരവാഹികളെ, സബ് വിംഗ് കൺവീനർമാരെ, എക്സിക്യൂട്ടീവ് അംഗങ്ങളെ,\n\n`;
+      text += `അസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹ്.\n`;
+      text += `ഈ മാസത്തിൽ നമുക്ക് ഒത്തൊരുമിച്ച് ചെയ്യാവുന്ന ചില നല്ല കാര്യങ്ങൾ നിർദ്ദേശമായി മുന്നോട്ട് വെക്കുന്നു:\n\n`;
+
+      text += `✨ *നമുക്ക് ഇങ്ങനെ ചെയ്താലോ?*\n`;
+      text += `• *വിഖായ വിംഗ്:* ഒക്ടോബർ 1 രക്തദാന വിവരശേഖരണം പൂർത്തിയാക്കി എമർജൻസി ഡാറ്റാബേസ് സജ്ജമാക്കാൻ അൻസിലിന്റെ നേതൃത്വത്തിൽ സഹകരിച്ചാൽ നന്നായിരിക്കും.\n`;
+      text += `• *സഹചാരി വിംഗ്:* കിടപ്പുരോഗികൾക്കായി വീൽചെയർ, വാട്ടർ ബെഡ് എന്നിവ കണ്ടെത്തുന്നതിനും പാലിയേറ്റീവ് രജിസ്റ്റർ തയ്യാറാക്കുന്നതിനും സഫീറുമായി ചേർന്ന് പ്രവർത്തിക്കാമോ?\n`;
+      text += `• *ട്രെൻഡ് & വിദ്യാഭ്യാസം:* നാട്ടിലെ തൊഴിലന്വേഷകരുടെ വിവരശേഖരണത്തിനും ഒക്ടോബർ 11 പഠന ക്ലാസിലെ വിദ്യാർത്ഥി പങ്കാളിത്തത്തിനും ലത്തീഫ് സാഹിബിനൊപ്പം മുന്നിട്ടിറങ്ങിയാലോ?\n`;
+      text += `• *മീഡിയ & സൈബർ:* സുപ്രഭാതം കലണ്ടർ പോസ്റ്ററുകൾ ഡിസൈൻ ചെയ്യാനും ഇൻസ്റ്റാഗ്രാം പേജുകൾ ക്രമീകരിക്കാനും റൈഹാൻ ബഷീറുമായി സഹകരിച്ചുകൂടെ?\n`;
+
+      // Live tasks list appended
+      text += formatTasksForWhatsApp();
+
+      text += `\n_ഇതിലേക്ക് ഓരോരുത്തർക്കും ചെയ്യാൻ കഴിയുന്ന കാര്യങ്ങൾ എക്സിക്യൂട്ടീവ് ഗ്രൂപ്പിൽ അറിയിക്കുമല്ലോ._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 3. All Members Message
+    function buildAllMembersMsg() {
+      const period = getPeriodName();
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*മുഴുവൻ അംഗങ്ങൾക്കുമുള്ള സൗഹൃദ സന്ദേശവും ടാസ്‌ക് ലിസ്റ്റും*\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `പ്രിയ സഹപ്രവർത്തകരെ, പ്രവാസത്തിലും നാട്ടിലുമുള്ള സുഹൃത്തുക്കളെ,\n\n`;
+      text += `അസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹി വബറകാതുഹു.\n`;
+      text += `യൂണിറ്റിലെ മുഴുവൻ 42 അംഗങ്ങളുടെയും കൂട്ടായ്മയാണ് നമ്മുടെ കരുത്ത്. താഴെ പറയുന്ന കാര്യങ്ങളിൽ നമുക്ക് ഒത്തൊരുമിച്ച് കൈകോർത്താലോ?\n\n`;
+
+      text += `🤝 *നമുക്ക് പങ്കാളികളാകാം:*\n`;
+      text += `1. *സംഘടനാ പഠന ക്ലാസ്:* 2026 ഒക്ടോബർ 11 ഞായറാഴ്ച രാവിലെ 10:00 മണിക്ക് ഇർഷാദുൽ അനാം മദ്റസയിൽ നടക്കുന്ന കണ്ണിയത്ത് ഉസ്താദ് - ശംസുൽ ഉലമ പഠന ക്ലാസിൽ മുഴുവൻ അംഗങ്ങളും പങ്കെടുക്കണമെന്ന് സ്നേഹപൂർവ്വം ഓർമ്മിപ്പിക്കുന്നു.\n`;
+      text += `2. *സഹചാരി മെഡിക്കൽ ബാങ്ക്:* കിടപ്പുരോഗികൾക്കായി വീൽചെയർ, വാട്ടർ ബെഡ് സ്പോൺസർഷിപ്പ് കണ്ടെത്താൻ നാട്ടിലുള്ളവരും പ്രവാസികളുമായ മെമ്പർമാർക്ക് സഹായിക്കാൻ കഴിയുമോ?\n`;
+      text += `3. *രക്തദാന സേന:* വിഖായയുടെ രക്തദാന ഡാറ്റാബേസിലേക്ക് പേരും രക്തഗ്രൂപ്പും നൽകാൻ തയ്യാറായാൽ ഒരു ജീവൻ രക്ഷിക്കാൻ നമുക്ക് സാധിക്കും.\n`;
+
+      // Live tasks list appended
+      text += formatTasksForWhatsApp();
+
+      text += `\n_നിങ്ങളുടെ വിലയേറിയ നിർദ്ദേശങ്ങളും സഹകരണങ്ങളും യൂണിറ്റിന്റെ മുന്നേറ്റത്തിന് അനിവാര്യമാണ്._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 4. Public Message
+    function buildPublicMsg() {
+      const period = getPeriodName();
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*മഹല്ല് നിവാസികൾക്കും പൊതുജനങ്ങൾക്കുമുള്ള സ്നേഹ സന്ദേശം*\n`;
+      text += `> *മാസം:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `ബഹുമാനപ്പെട്ട മഹല്ല് നിവാസികളെ, രക്ഷിതാക്കളെ, പ്രിയ സുഹൃത്തുക്കളെ,\n\n`;
+      text += `അസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹി വബറകാതുഹു.\n`;
+      text += `ദീനീ വിജ്ഞാനവും ജീവകാരുണ്യ സാന്ത്വന പ്രവർത്തനങ്ങളും നാടിന്റെ നന്മയ്ക്കായി എത്തിക്കുക എന്നതാണ് നമ്മുടെ ലക്ഷ്യം. ഈ മാസത്തിൽ യൂണിറ്റ് നടപ്പിലാക്കുന്ന പൊതുജനക്ഷേമ കാര്യങ്ങൾ നിങ്ങളുടെ ശ്രദ്ധയിലേക്ക് സമർപ്പിക്കുന്നു:\n\n`;
+
+      text += `🌟 *മഹല്ല് കൂട്ടായ്മയ്ക്കായി:*\n`;
+      text += `• *സംഘടനാ പഠന ക്ലാസും അനുസ്മരണവും:* 2026 ഒക്ടോബർ 11 ഞായർ രാവിലെ 10 മണിക്ക് ആറങ്ങാടി ഇർഷാദുൽ അനാം മദ്റസയിൽ വെച്ച് ബഹുമാനപ്പെട്ട ഉസ്താദ് ജാബിർ യമാനി പാടൂർ നേതൃത്വം നൽകുന്ന പഠന ക്ലാസിലേക്ക് ഏവർക്കും ഹൃദ്യമായ സ്വാഗതം.\n`;
+      text += `• *സൗജന്യ മെഡിക്കൽ ഉപകരണ ബാങ്ക്:* മഹല്ലിലെ കിടപ്പുരോഗികൾക്ക് ആവശ്യമായ വീൽചെയർ, വാട്ടർ ബെഡ്, വാക്കർ തുടങ്ങിയവ സഹചാരി സെന്റർ വഴി ലഭ്യമാക്കാൻ ഒരുക്കങ്ങൾ പുരോഗമിക്കുന്നു.\n`;
+      text += `• *24x7 അടിയന്തിര രക്തദാന സഹായം:* ആശുപത്രികളിൽ അടിയന്തിര രക്തം ആവശ്യമുള്ളവർക്ക് വിഖായ രക്തദാന ഹെൽപ്പ്‌‌‌‌ലൈൻ സേവനം ലഭ്യമാണ്.\n\n`;
+
+      text += `> _യൂണിറ്റിന്റെ സാന്ത്വന ദൗത്യങ്ങൾക്ക് മഹല്ല് നിവാസികളുടെ പ്രാർത്ഥനയും പിന്തുണയും പ്രതീക്ഷിക്കുന്നു._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 5. Individual Suggestion & Task Message
+    function buildIndividualMsg(name) {
+      const period = getPeriodName();
+      const info = leadersRegistry[name] || {
+        role: "യൂണിറ്റ് എക്സിക്യൂട്ടീവ് അംഗം",
+        salutation: `പ്രിയ സുഹൃത്ത് ${name}`,
+        toneStyle: "യൂണിറ്റിന്റെ പ്രവർത്തനങ്ങളിൽ സജീവമാകാൻ താങ്കൾക്ക് സമർപ്പിക്കുന്ന നിർദ്ദേശങ്ങൾ:",
+        customSuggestions: [
+          "യൂണിറ്റ് യോഗങ്ങളിൽ കൃത്യസമയത്ത് പങ്കെടുത്ത് അഭിപ്രായങ്ങൾ പങ്കുവെച്ചാൽ നന്നായിരിക്കും.",
+          "വിഖായ, സഹചാരി പ്രവർത്തനങ്ങളിൽ സൗകര്യത്തിനനുസരിച്ച് സഹകരിക്കാമോ?"
+        ]
+      };
+
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*വ്യക്തിഗത സൗഹൃദ നിർദ്ദേശങ്ങളും ചുമതലകളും*\n`;
+      text += `> 👤 *വ്യക്തി:* ${name} | *പദവി:* ${info.role}\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `${info.salutation},\n\n`;
+      text += `അസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹ്.\n`;
+      text += `${info.toneStyle}\n\n`;
+
+      text += `💡 *താങ്കളുടെ നേതൃത്വത്തിൽ നമുക്ക് ഇങ്ങനെ ചെയ്താലോ?*\n`;
+      info.customSuggestions.forEach((sug, i) => {
+        text += `${i + 1}. ${sug}\n`;
+      });
+
+      // Filter tasks assigned to this person or general
+      text += formatTasksForWhatsApp(name);
+
+      text += `\n_നമ്മുടെ യൂണിറ്റിന്റെ വളർച്ചയ്ക്കും നാടിന്റെ നന്മയ്ക്കുമായി താങ്കളുടെ അകമഴിഞ്ഞ സഹകരണവും നേതൃത്വവും പ്രതീക്ഷിക്കുന്നു._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 6. Sub-Wing Message
+    function buildWingMsg(wingName) {
+      const period = getPeriodName();
+      const wing = subWingsRegistry[wingName] || {
+        lead: "കൺവീനർ",
+        desc: "ഉപവിഭാഗം",
+        suggestions: [
+          "ഈ മാസത്തിൽ വിംഗിന്റെ പ്രത്യേക യോഗം ചേർന്ന് പ്രവർത്തനങ്ങൾ ആസൂത്രണം ചെയ്താലോ?",
+          "കൂടുതൽ യുവാക്കളെ ഈ വിംഗിലേക്ക് ആകർഷിക്കാൻ ശ്രമിച്ചാൽ നന്നായിരിക്കും."
+        ]
+      };
+
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*${wingName.toUpperCase()} - സൗഹൃദ നിർദ്ദേശങ്ങളും ടാസ്‌ക് ലിസ്റ്റും*\n`;
+      text += `> 👤 *നേതൃത്വം:* ${wing.lead}\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `പ്രിയ ${wingName} കൺവീനർമാർക്കും സബ് കമ്മിറ്റി അംഗങ്ങൾക്കും സ്നേഹാദരങ്ങളോടെ,\n\n`;
+      text += `ഈ മാസത്തിൽ ${wingName} മുന്നിൽ വെക്കാവുന്ന ചില ആശയങ്ങൾ താഴെ സമർപ്പിക്കുന്നു:\n\n`;
+
+      text += `💡 *ഈ വിംഗിന് ഇങ്ങനെ ആലോചിച്ചാലോ?*\n`;
+      wing.suggestions.forEach((sug, i) => {
+        text += `${i + 1}. ${sug}\n`;
+      });
+
+      // Filter tasks assigned to this wing
+      text += formatTasksForWhatsApp(wingName);
+
+      text += `\n_സബ് വിംഗ് പ്രവർത്തകർ പരസ്പരം ആലോചിച്ച് ഈ നിർദ്ദേശങ്ങൾ നടപ്പിലാക്കാൻ ശ്രമിക്കുമല്ലോ._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // 7. Meeting & Simple Agenda Message
+    function buildAgendaMsg(category) {
+      const period = getPeriodName();
+      const dInput = document.getElementById('agenda-custom-date');
+      const tInput = document.getElementById('agenda-custom-time');
+      const vInput = document.getElementById('agenda-custom-venue');
+
+      const dateStr = (dInput && dInput.value.trim()) || "2026 ഒക്ടോബർ 15, വ്യാഴം";
+      const timeStr = (tInput && tInput.value.trim()) || "രാത്രി 8:30 ന്";
+      const venueStr = (vInput && vInput.value.trim()) || "ആറങ്ങാടി ഇർഷാദുൽ അനാം മദ്റസ";
+
+      let title = "";
+      let attendees = "";
+      let agendas = [];
+
+      if (category === "core") {
+        title = "കോർ കമ്മിറ്റി പ്രതിമാസ യോഗ നോട്ടീസ്";
+        attendees = "പ്രസിഡന്റ്, സെക്രട്ടറി, വർക്കിംഗ് സെക്രട്ടറി, ട്രഷറർ, മേഖല കൗൺസിലർമാർ";
+        agendas = [
+          "പ്രാർത്ഥന, സ്വാഗതം, അധ്യക്ഷ ഭാഷണം",
+          "കഴിഞ്ഞ മാസത്തെ തീരുമാനങ്ങളുടെ പുരോഗതി അവലോകനം",
+          "മഹല്ല് പള്ളി കമ്മിറ്റി കത്ത് & സീലുകളുടെ നിർമ്മാണം",
+          "ഒക്ടോബർ 11 പഠന ക്ലാസ് ഒരുക്കങ്ങളുടെ അന്തിമ വിലയിരുത്തൽ",
+          "സഹചാരി സെന്റർ ഓഫീസ് മുറി കണ്ടെത്തലും ക്രമീകരണവും",
+          "അടുത്ത എക്സിക്യൂട്ടീവ് യോഗ തീയതി നിശ്ചയിക്കൽ"
+        ];
+      } else if (category === "executive") {
+        title = "യൂണിറ്റ് എക്സിക്യൂട്ടീവ് കൗൺസിൽ യോഗ നോട്ടീസ്";
+        attendees = "മുഴുവൻ ഭാരവാഹികൾ, സബ് വിംഗ് കൺവീനർമാർ, എക്സിക്യൂട്ടീവ് അംഗങ്ങൾ";
+        agendas = [
+          "വിശുദ്ധ ഖുർആൻ പാരായണം & പ്രാരംഭ പ്രാർത്ഥന",
+          "സ്വാഗത ഭാഷണം & അധ്യക്ഷ പ്രസംഗം",
+          "മുൻ യോഗ മിനുട്സ് വായനയും അംഗീകരിക്കലും",
+          "സബ് വിംഗുകളുടെ പ്രവർത്തന റിപ്പോർട്ടും പുതിയ നിർദ്ദേശങ്ങളും",
+          "വരവ്-ചെലവ് കണക്ക് അവലോകനം (ട്രഷറർ)",
+          "മഹല്ല് ശാക്തീകരണ പര്യടനം - റൂട്ട് മാപ്പും തീയതിയും",
+          "സമാപന പ്രാർത്ഥന"
+        ];
+      } else {
+        title = "മുഴുവൻ അംഗങ്ങളുടെയും ജനറൽ ബോഡി യോഗം (All 42 Members)";
+        attendees = "യൂണിറ്റിലെ മുഴുവൻ 42 അംഗങ്ങളും (പ്രവാസികൾക്ക് ഓൺലൈൻ ലിങ്ക് വഴി)";
+        agendas = [
+          "ഖുർആൻ പാരായണം & പ്രാർത്ഥന",
+          "സ്വാഗതം & അധ്യക്ഷ പ്രസംഗം",
+          "യൂണിറ്റിന്റെ വാർഷിക കർമ്മരേഖാ അവതരണം",
+          "പ്രവാസികളായ അംഗങ്ങളുടെ അനുഭവങ്ങളും അഭിപ്രായങ്ങളും",
+          "പലിശരഹിത വായ്പാ നിധി, ഉസ്താദ്-പ്രവർത്തക ക്ഷേമനിധി വിശദീകരണം",
+          "നന്ദി പ്രകാശനം & പ്രാർത്ഥന"
+        ];
+      }
+
+      let text = `*SKSSF ആറങ്ങാടി യൂണിറ്റ്*\n`;
+      text += `*${title}*\n`;
+      text += `> *കാലയളവ്:* ${period}\n`;
+      text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `പ്രിയമുള്ളവരെ,\nഅസ്സലാമു അലൈക്കും വറഹ്മത്തുല്ലാഹി വബറകാതുഹു.\n\n`;
+      text += `നമ്മുടെ യൂണിറ്റിന്റെ പ്രവർത്തനങ്ങൾ കാര്യക്ഷമമായി വിലയിരുത്തുന്നതിനും ഭാവി പ്ലാനുകൾ ചർച്ച ചെയ്യുന്നതിനുമായി നിശ്ചയിച്ച യോഗത്തിലേക്ക് ഏവരെയും സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.\n\n`;
+
+      text += `🗓 *തീയതി:* ${dateStr}\n`;
+      text += `⏰ *സമയം:* ${timeStr}\n`;
+      text += `📍 *വേദി:* ${venueStr}\n`;
+      text += `👥 *പങ്കാളിത്തം:* ${attendees}\n\n`;
+
+      text += `📋 *ലളിതമായ യോഗ അജണ്ട:*\n`;
+      agendas.forEach((item, idx) => {
+        text += `${idx + 1}. ${item}\n`;
+      });
+
+      // Appending current live tasks with status indicators
+      text += formatTasksForWhatsApp();
+
+      text += `\n_കൃത്യസമയത്ത് തന്നെ എല്ലാവരും സംബന്ധിക്കണമെന്ന് വിനീതമായി ഓർമ്മിപ്പിക്കുന്നു._\n\n`;
+      text += getAttributionFooter();
+      return text;
+    }
+
+    // Refresh all messages across tabs
+    function refreshAllMessages() {
+      // 1. Core
+      const coreText = buildCoreMsg();
+      document.getElementById('core-msg').innerText = coreText;
+      document.getElementById('share-core-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(coreText)}`;
+
+      // 2. Executive
+      const execText = buildExecutiveMsg();
+      document.getElementById('exec-msg').innerText = execText;
+      document.getElementById('share-exec-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(execText)}`;
+
+      // 3. All Members
+      const allText = buildAllMembersMsg();
+      document.getElementById('allmembers-msg').innerText = allText;
+      document.getElementById('share-allmembers-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(allText)}`;
+
+      // 4. Public
+      const pubText = buildPublicMsg();
+      document.getElementById('public-msg').innerText = pubText;
+      document.getElementById('share-public-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pubText)}`;
+
+      // 5. Individual
+      renderIndividualView();
+
+      // 6. Sub-wings
+      renderWingView();
+
+      // 7. Agenda
+      renderAgendaView();
+
+      // 8. Tasks
+      renderInteractiveTasks();
+    }
+
+    function renderIndividualView() {
+      const pSel = document.getElementById('person-select');
+      const badge = document.getElementById('person-designation-badge');
+      const box = document.getElementById('individual-msg');
+      const waBtn = document.getElementById('share-ind-wa');
+
+      if (!pSel || !box) return;
+      const person = pSel.value;
+      if (person) {
+        const info = leadersRegistry[person];
+        if (badge && info) badge.innerText = `പദവി: ${info.role}`;
+        const text = buildIndividualMsg(person);
+        box.innerText = text;
+        if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      }
+    }
+
+    function renderWingView() {
+      const wSel = document.getElementById('wing-select');
+      const box = document.getElementById('wing-msg');
+      const waBtn = document.getElementById('share-wing-wa');
+
+      if (!wSel || !box) return;
+      const wing = wSel.value;
+      if (wing) {
+        const text = buildWingMsg(wing);
+        box.innerText = text;
+        if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      }
+    }
+
+    function renderAgendaView() {
+      const aSel = document.getElementById('agenda-category-select');
+      const box = document.getElementById('agenda-msg');
+      const waBtn = document.getElementById('share-agenda-wa');
+
+      if (!aSel || !box) return;
+      const cat = aSel.value;
+      const text = buildAgendaMsg(cat);
+      box.innerText = text;
+      if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    }
+
+    // Render Tasks with Yellow for In-Progress and Orange for Low-Priority
+    function renderInteractiveTasks() {
+      const container = document.getElementById('tasks-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      checklistTasks.forEach(t => {
+        const div = document.createElement('div');
+        div.className = `task-item status-${t.status}`;
+
+        // Priority Badge styling (Orange for Low Priority)
+        let priorityBadge = '';
+        if (t.priority === 'low') {
+          priorityBadge = `<span class="tag-badge badge-priority-low">🟠 ലോ പ്രയോറിറ്റി</span>`;
+        } else if (t.priority === 'high') {
+          priorityBadge = `<span class="tag-badge badge-priority-high">🔴 ഹൈ പ്രയോറിറ്റി</span>`;
+        } else {
+          priorityBadge = `<span class="tag-badge badge-priority-normal">🔵 നോർമൽ</span>`;
+        }
+
+        // Status Badge styling (Yellow for In-Progress, Green for Done)
+        let statusBadge = '';
+        let btnText = '';
+        let btnClass = '';
+
+        if (t.status === 'done') {
+          statusBadge = `<span class="tag-badge badge-status-done">✅ പൂർത്തിയായി</span>`;
+          btnText = '✅ പൂർത്തിയായി';
+          btnClass = 'btn-done';
+        } else if (t.status === 'in-progress') {
+          statusBadge = `<span class="tag-badge badge-status-in-progress">🟡 നടന്നുകൊണ്ടിരിക്കുന്നു</span>`;
+          btnText = '🟡 നടന്നുകൊണ്ടിരിക്കുന്നു';
+          btnClass = 'btn-in-progress';
+        } else {
+          statusBadge = `<span class="tag-badge badge-status-pending">🔴 തുടങ്ങിയിട്ടില്ല</span>`;
+          btnText = '🔴 തുടങ്ങിയിട്ടില്ല';
+          btnClass = 'btn-pending';
+        }
+
+        div.innerHTML = `
+          <div style="flex:1;">
+            <h4>${t.status === 'done' ? '✅' : (t.status === 'in-progress' ? '🟡' : '🔴')} ${t.title}</h4>
+            <p class="task-desc">${t.desc}</p>
+            <div>
+              <span class="tag-badge">വിംഗ്: ${t.wing}</span>
+              <span class="tag-badge">ചുമതല: ${t.resp}</span>
+              ${priorityBadge}
+              ${statusBadge}
+            </div>
+          </div>
+          <div class="task-actions">
+            <button onclick="cycleTaskStatus(${t.id})" class="status-select-btn ${btnClass}" title="സ്റ്റാറ്റസ് മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
+              ${btnText}
+            </button>
+            <span style="font-size:11px; color:#64748b; cursor:pointer;" onclick="cycleTaskStatus(${t.id})">മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക ↻</span>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Cycles status: pending (🔴) -> in-progress (🟡 മഞ്ഞ) -> done (✅ പച്ച) -> pending
+    function cycleTaskStatus(id) {
+      const item = checklistTasks.find(x => x.id === id);
+      if (item) {
+        if (item.status === 'pending') {
+          item.status = 'in-progress';
+          showToast(`സ്റ്റാറ്റസ്: 🟡 നടന്നുകൊണ്ടിരിക്കുന്നു (In Progress)`);
+        } else if (item.status === 'in-progress') {
+          item.status = 'done';
+          showToast(`സ്റ്റാറ്റസ്: ✅ പൂർത്തിയായി (Done)`);
+        } else {
+          item.status = 'pending';
+          showToast(`സ്റ്റാറ്റസ്: 🔴 തുടങ്ങിയിട്ടില്ല / ബാക്കിയുണ്ട്`);
+        }
+        refreshAllMessages();
+      }
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll('.content-card').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      const targetView = document.getElementById(`view-${name}`);
+      const targetBtn = document.getElementById(`tab-${name}`);
+
+      if (targetView) targetView.classList.remove('hidden');
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+
+    function initApp() {
+      // Populate persons dropdown
+      const pSel = document.getElementById('person-select');
+      if (pSel && pSel.children.length === 0) {
+        Object.keys(leadersRegistry).forEach(name => {
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.innerText = `${name} (${leadersRegistry[name].role})`;
+          pSel.appendChild(opt);
+        });
+      }
+
+      // Populate wings dropdown
+      const wSel = document.getElementById('wing-select');
+      if (wSel && wSel.children.length === 0) {
+        Object.keys(subWingsRegistry).forEach(wName => {
+          const opt = document.createElement('option');
+          opt.value = wName;
+          opt.innerText = `${wName} (${subWingsRegistry[wName].lead})`;
+          wSel.appendChild(opt);
+        });
+      }
+
+      refreshAllMessages();
+    }
+
+    document.addEventListener('DOMContentLoaded', checkInitialAuth);
+  </script>
+</body>
+</html>
