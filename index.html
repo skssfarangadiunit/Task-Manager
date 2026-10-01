@@ -25,7 +25,18 @@
       --wa-green: #25d366;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Noto Sans Malayalam', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,12 +51,12 @@
       position: fixed; inset: 0;
       background: #0f172a;
       display: flex; align-items: center; justify-content: center;
-      padding: 20px; z-index: 99999;
+      padding: 16px; z-index: 99999;
     }
 
     .auth-card {
-      background: #ffffff; width: 100%; max-width: 460px;
-      border-radius: 20px; padding: 32px 24px;
+      background: #ffffff; width: 100%; max-width: min(100%, 460px);
+      border-radius: 20px; padding: 28px 20px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       text-align: center;
     }
@@ -56,7 +67,7 @@
       margin-bottom: 12px;
     }
 
-    .auth-card h2 { font-size: 21px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .auth-card h2 { font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
     .auth-card p.auth-desc { font-size: 13px; color: #64748b; margin-bottom: 16px; line-height: 1.5; }
 
     .role-hint-box {
@@ -105,53 +116,63 @@
     /* HEADER */
     header {
       background: linear-gradient(135deg, #065f46 0%, #047857 60%, #0f766e 100%);
-      color: #ffffff; padding: 14px 20px; position: sticky; top: 0; z-index: 50;
+      color: #ffffff; padding: 12px 16px; position: sticky; top: 0; z-index: 50;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      width: 100%;
     }
 
     .header-container {
       max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap;
-      justify-content: space-between; align-items: center; gap: 12px;
+      justify-content: space-between; align-items: center; gap: 10px;
+      width: 100%;
     }
 
-    .brand h1 { font-size: 18px; font-weight: 800; line-height: 1.2; }
-    .brand p { font-size: 11.5px; color: #a7f3d0; }
+    .brand { min-width: 0; }
+    .brand h1 { font-size: 17px; font-weight: 800; line-height: 1.25; }
+    .brand p { font-size: 11px; color: #a7f3d0; }
 
-    .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .header-controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
     .role-badge {
       background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35);
-      padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #ffffff;
+      padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; color: #ffffff;
+      white-space: nowrap;
     }
 
     .btn-header {
       background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 6px 12px; border-radius: 999px; font-size: 12px; color: #fff;
+      padding: 5px 10px; border-radius: 999px; font-size: 11.5px; color: #fff;
       cursor: pointer; font-weight: 700; transition: background 0.15s ease;
-      display: inline-flex; align-items: center; gap: 5px;
+      display: inline-flex; align-items: center; gap: 4px;
+      white-space: nowrap;
     }
     .btn-header:hover { background: rgba(15, 23, 42, 0.7); }
     .btn-header.btn-lock:hover { background: rgba(225, 29, 72, 0.6); }
 
     /* MAIN CONTAINER */
     main {
-      max-width: 1240px; margin: 16px auto; padding: 0 16px;
-      display: flex; flex-direction: column; gap: 16px;
+      max-width: 1240px; margin: 14px auto; padding: 0 12px;
+      display: flex; flex-direction: column; gap: 14px;
+      width: 100%;
     }
 
     /* METRICS STRIP */
     .metrics-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+      gap: 10px;
+      width: 100%;
     }
 
     .metric-card {
       background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
-      padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+      padding: 12px 14px; display: flex; align-items: center; gap: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02); position: relative; overflow: hidden;
+      min-width: 0;
     }
 
     .metric-card::before {
-      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px;
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
     }
     .metric-card.card-total::before { background: #0284c7; }
     .metric-card.card-done::before { background: #16a34a; }
@@ -160,8 +181,8 @@
     .metric-card.card-missed::before { background: #7c3aed; }
 
     .metric-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
     }
     .card-total .metric-icon { background: #e0f2fe; color: #0284c7; }
     .card-done .metric-icon { background: #dcfce7; color: #16a34a; }
@@ -169,39 +190,48 @@
     .card-pending .metric-icon { background: #fee2e2; color: #dc2626; }
     .card-missed .metric-icon { background: #f3e8ff; color: #7c3aed; }
 
-    .metric-data h3 { font-size: 20px; font-weight: 800; line-height: 1.1; }
-    .metric-data p { font-size: 11px; color: var(--text-muted); font-weight: 700; }
+    .metric-data { min-width: 0; flex: 1; }
+    .metric-data h3 { font-size: 18px; font-weight: 800; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .metric-data p { font-size: 10.5px; color: var(--text-muted); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     .progress-bar-container {
-      background: #e2e8f0; height: 6px; border-radius: 999px;
-      overflow: hidden; margin-top: 6px; display: flex;
+      background: #e2e8f0; height: 5px; border-radius: 999px;
+      overflow: hidden; margin-top: 5px; display: flex; width: 100%;
     }
     .progress-segment { height: 100%; transition: width 0.3s ease; }
 
     /* FILTER BAR */
     .filter-panel {
       background: #ffffff; border: 1px solid var(--border); border-radius: 14px;
-      padding: 12px 18px; display: flex; flex-wrap: wrap; justify-content: space-between;
-      align-items: center; gap: 12px;
+      padding: 12px 14px; display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: center; gap: 10px; width: 100%;
+    }
+
+    .filter-controls-wrap {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; width: 100%;
+    }
+    @media (min-width: 768px) {
+      .filter-controls-wrap { width: auto; }
     }
 
     .month-dropdown {
-      padding: 8px 14px; border-radius: 8px; border: 1.5px solid #047857;
-      background: #f0fdf4; font-size: 13px; font-weight: 700; color: #064e3b;
-      outline: none; cursor: pointer;
+      padding: 7px 12px; border-radius: 8px; border: 1.5px solid #047857;
+      background: #f0fdf4; font-size: 12.5px; font-weight: 700; color: #064e3b;
+      outline: none; cursor: pointer; max-width: 100%;
     }
 
     /* TABS */
     .tabs-bar {
-      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px;
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;
       border-bottom: 2px solid var(--border); scrollbar-width: thin;
+      width: 100%; -webkit-overflow-scrolling: touch;
     }
 
     .tab-btn {
-      padding: 8px 14px; border-radius: 10px; font-size: 12.5px; font-weight: 700;
+      padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
       cursor: pointer; border: 1px solid var(--border); background: #ffffff;
       color: var(--text-muted); transition: all 0.2s ease; white-space: nowrap;
-      display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 5px; flex-shrink: 0;
     }
 
     .tab-btn.active {
@@ -214,58 +244,76 @@
     /* CONTENT CARD */
     .content-card {
       background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border);
-      padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      width: 100%; overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .content-card { padding: 20px; }
     }
 
     .card-header {
       display: flex; flex-wrap: wrap; justify-content: space-between;
-      align-items: center; gap: 12px; margin-bottom: 16px;
+      align-items: flex-start; gap: 10px; margin-bottom: 14px;
       border-bottom: 1px solid var(--border); padding-bottom: 12px;
+      width: 100%;
     }
 
-    .card-title h2 { font-size: 17px; font-weight: 800; color: var(--text-main); }
-    .card-title p { font-size: 12px; color: var(--text-muted); }
+    .card-title { min-width: 0; flex: 1 1 240px; }
+    .card-title h2 { font-size: 16px; font-weight: 800; color: var(--text-main); word-break: break-word; }
+    .card-title p { font-size: 12px; color: var(--text-muted); word-break: break-word; }
 
-    .action-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .action-group {
+      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+      margin-left: auto;
+    }
 
     .select-dropdown {
-      padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
-      font-size: 12.5px; font-weight: 600; background-color: #f1f5f9;
-      color: var(--text-main); outline: none;
+      padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+      font-size: 12px; font-weight: 600; background-color: #f1f5f9;
+      color: var(--text-main); outline: none; max-width: 100%;
     }
 
     .btn-copy {
-      background: var(--primary); color: #ffffff; border: none; padding: 8px 14px;
-      border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+      background: var(--primary); color: #ffffff; border: none; padding: 7px 12px;
+      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
     }
 
     .btn-whatsapp {
-      background: var(--wa-green); color: #ffffff; border: none; padding: 8px 14px;
-      border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; text-decoration: none;
+      background: var(--wa-green); color: #ffffff; border: none; padding: 7px 12px;
+      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none;
+      display: inline-block;
     }
 
     .msg-box {
-      background: #0b141a; color: #d1d7db; border-radius: 12px; padding: 16px;
-      font-family: 'SF Pro Text', Consolas, Monaco, monospace; font-size: 13px; line-height: 1.6;
-      white-space: pre-wrap; overflow-x: auto; max-height: 480px; user-select: all;
-      border: 1px solid #202c33; margin-bottom: 20px;
+      background: #0b141a; color: #d1d7db; border-radius: 12px; padding: 14px;
+      font-family: 'SF Pro Text', Consolas, Monaco, monospace; font-size: 12.5px; line-height: 1.6;
+      white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;
+      overflow-x: auto; max-height: 440px; user-select: all;
+      border: 1px solid #202c33; margin-bottom: 16px; width: 100%;
     }
 
     /* INTERACTIVE TASKS */
     .view-tasks-section {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
-      padding: 16px; margin-top: 14px;
+      padding: 14px; margin-top: 14px; width: 100%; overflow: hidden;
     }
 
     .view-tasks-header {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 12px; flex-wrap: wrap; gap: 6px; width: 100%;
     }
+    .view-tasks-header h3 { font-size: 13.5px; font-weight: 800; word-break: break-word; }
 
+    /* TASK CARD RESPONSIVE LAYOUT */
     .task-interactive-card {
       background: #ffffff; border: 1px solid var(--border); border-radius: 10px;
-      padding: 12px 14px; margin-bottom: 10px; display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 12px;
+      padding: 12px 14px; margin-bottom: 10px; display: flex; flex-direction: column;
+      gap: 10px; width: 100%; min-width: 0;
+    }
+    @media (min-width: 640px) {
+      .task-interactive-card {
+        flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 12px;
+      }
     }
 
     .task-interactive-card.status-done {
@@ -281,64 +329,77 @@
       background-color: #faf5ff; border-color: #d8b4fe; border-left: 5px solid #7c3aed;
     }
 
+    .task-info-block { min-width: 0; flex: 1; }
+    .task-action-block { flex-shrink: 0; align-self: flex-start; }
+
     .tag-pill {
       background: #f1f5f9; padding: 2px 7px; border-radius: 6px; font-size: 11px;
-      font-weight: 700; color: #475569; display: inline-block; margin-right: 4px;
+      font-weight: 700; color: #475569; display: inline-block; margin-right: 4px; margin-top: 3px;
+      word-break: break-word;
     }
 
     .cycle-btn {
-      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
-      border: 1.5px solid transparent; cursor: pointer; white-space: nowrap;
+      padding: 6px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700;
+      border: 1.5px solid transparent; cursor: pointer; white-space: normal;
+      text-align: center; max-width: 100%; line-height: 1.3;
+      display: inline-flex; align-items: center; justify-content: center; gap: 4px;
     }
     .cycle-btn.btn-done { background: #16a34a; color: #fff; }
     .cycle-btn.btn-in-progress { background: #eab308; color: #713f12; border-color: #ca8a04; }
     .cycle-btn.btn-pending { background: #fef2f2; color: #b91c1c; border-color: #fca5a5; }
     .cycle-btn.btn-missed { background: #f3e8ff; color: #6b21a8; border-color: #c084fc; }
 
-    /* TABLES */
+    /* TABLES AND MOBILE HORIZONTAL SCROLL */
+    .table-responsive {
+      width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      margin-top: 8px; border-radius: 8px; border: 1px solid var(--border);
+    }
+
     .stats-table {
-      width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px;
+      width: 100%; min-width: 440px; border-collapse: collapse; font-size: 12px;
     }
     .stats-table th {
-      background: #f1f5f9; padding: 8px 12px; text-align: left; font-weight: 700;
-      border-bottom: 2px solid var(--border);
+      background: #f1f5f9; padding: 8px 10px; text-align: left; font-weight: 700;
+      border-bottom: 2px solid var(--border); white-space: nowrap;
     }
-    .stats-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    .stats-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); word-break: break-word; }
     .stats-table tr:hover { background-color: #f8fafc; }
 
     /* TOAST */
     #toast {
-      position: fixed; bottom: 24px; right: 24px; background: #0f172a; color: #ffffff;
-      padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600;
+      position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #ffffff;
+      padding: 10px 18px; border-radius: 10px; font-size: 12.5px; font-weight: 600;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0;
       transition: all 0.3s ease; z-index: 100000; pointer-events: none;
+      max-width: calc(100vw - 40px);
     }
     #toast.show { transform: translateY(0); opacity: 1; }
 
     /* ADMIN & SETTINGS */
     .admin-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px; margin-bottom: 20px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 14px; margin-bottom: 18px; width: 100%;
     }
     .admin-box {
-      background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+      background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px;
+      min-width: 0;
     }
     .admin-box h3 {
-      font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 12px;
+      font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 10px;
     }
     .setting-row {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px solid #f1f5f9;
+      padding: 8px 0; border-bottom: 1px solid #f1f5f9; flex-wrap: wrap; gap: 6px;
     }
     .setting-row:last-child { border-bottom: none; }
     .btn-secondary {
       background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px;
-      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; max-width: 100%;
     }
     .btn-secondary:hover { background: #e2e8f0; }
     .btn-primary-sm {
       background: var(--primary); color: #fff; border: none; padding: 6px 12px;
-      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+      border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; max-width: 100%;
     }
     .btn-primary-sm:hover { background: var(--primary-dark); }
 
@@ -463,8 +524,8 @@
 
       <!-- Filter Panel with 12 Month Master Calendar -->
       <div class="filter-panel">
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-          <span style="font-size:13px; font-weight:800; color:#065f46;">മാസം / കാലയളവ്:</span>
+        <div class="filter-controls-wrap">
+          <span style="font-size:12.5px; font-weight:800; color:#065f46; white-space:nowrap;">മാസം / കാലയളവ്:</span>
           <select id="month-selector" onchange="onMonthChange()" class="month-dropdown">
             <option value="auto" id="opt-auto-date">ഇന്നത്തെ തീയതി (Auto Detect)</option>
             <option value="all">മുഴുവൻ വാർഷിക പദ്ധതികൾ (All Year 2026 - 2027)</option>
@@ -483,11 +544,11 @@
               <option value="rabi_al_awwal">12. റബീഉൽ അവ്വൽ (ആഗസ്റ്റ് - സെപ്റ്റംബർ 2027)</option>
             </optgroup>
           </select>
-          <span id="active-period-name" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 12px; border-radius:14px; font-size:12px; font-weight:700;">
+          <span id="active-period-name" style="background:#dcfce7; color:#15803d; border:1px solid #86efac; padding:4px 10px; border-radius:14px; font-size:11.5px; font-weight:700; word-break:break-word;">
             റബീഉൽ ആഖിർ
           </span>
         </div>
-        <div style="font-size:12px; color:#64748b; font-weight:600;">
+        <div style="font-size:11.5px; color:#64748b; font-weight:600; white-space:nowrap;">
           ചാവക്കാട് മേഖല | തൃശൂർ ജില്ല
         </div>
       </div>
@@ -575,15 +636,15 @@
               <input type="password" id="setting-new-pin" placeholder="പുതിയ പിൻ" class="select-dropdown" style="width:100%; margin-top:4px;" maxlength="8">
             </div>
             <button onclick="savePersonalPin()" class="btn-primary-sm" style="width:100%;">വ്യക്തിഗത പിൻ സേവ് ചെയ്യുക</button>
-          </div>
-
-          <div class="admin-box">
-            <h3>💾 ഡാറ്റാ ബാക്കപ്പും റീസെറ്റും</h3>
-            <p style="font-size:12px; color:#64748b; margin-bottom:12px;">യൂണിറ്റിന്റെ മുഴുവൻ ടാസ്കുകളും സെറ്റിങ്സുകളും ബാക്കപ്പ് ചെയ്യാനും സുരക്ഷിതമായി പുനഃസ്ഥാപിക്കാനും.</p>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <button onclick="exportDataBackup()" class="btn-secondary">📥 ഡാറ്റാ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുക (JSON)</button>
-              <button onclick="confirmResetAllPins()" class="btn-secondary" style="color:#b91c1c;">🔄 മുഴുവൻ കോഡുകളും ഫാക്ടറി റീസെറ്റ് ചെയ്യുക</button>
-            </div>
+        <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:14px; overflow:hidden;">
+          <h3 style="font-size:14px; font-weight:800; margin-bottom:8px;">📋 ഭാരവാഹികളുടെ പട്ടിക & പാസ്‌വേഡ് മാനേജ്‌മെന്റ്</h3>
+          <div class="table-responsive">
+            <table class="stats-table">
+              <thead>
+                <tr><th>പേര്</th><th>പദവി</th><th>വിഭാഗം</th><th>സ്വന്തം പിൻ</th><th>നടപടി</th></tr>
+              </thead>
+              <tbody id="admin-leaders-tbody"></tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -597,28 +658,32 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
-          <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:16px;">
-            <h3 style="font-size:14px; font-weight:800; color:#065f46; margin-bottom:10px;">🏢 സബ് വിംഗ് തിരിച്ചുള്ള പുരോഗതി</h3>
-            <table class="stats-table">
-              <thead><tr><th>സബ് വിംഗ്</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>കഴിഞ്ഞുപോയത്</th></tr></thead>
-              <tbody id="subwing-stats-tbody"></tbody>
-            </table>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:14px;">
+          <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:14px; overflow:hidden;">
+            <h3 style="font-size:13.5px; font-weight:800; color:#065f46; margin-bottom:8px;">🏢 സബ് വിംഗ് തിരിച്ചുള്ള പുരോഗതി</h3>
+            <div class="table-responsive">
+              <table class="stats-table">
+                <thead><tr><th>സബ് വിംഗ്</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>കഴിഞ്ഞുപോയത്</th></tr></thead>
+                <tbody id="subwing-stats-tbody"></tbody>
+              </table>
+            </div>
           </div>
 
-          <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:16px;">
-            <h3 style="font-size:14px; font-weight:800; color:#0369a1; margin-bottom:10px;">🏛️ കമ്മിറ്റി തലം തിരിച്ചുള്ള പുരോഗതി</h3>
-            <table class="stats-table">
-              <thead><tr><th>കമ്മിറ്റി തലം</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>ശതമാനം</th></tr></thead>
-              <tbody id="tier-stats-tbody"></tbody>
-            </table>
+          <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:14px; overflow:hidden;">
+            <h3 style="font-size:13.5px; font-weight:800; color:#0369a1; margin-bottom:8px;">🏛️ കമ്മിറ്റി തലം തിരിച്ചുള്ള പുരോഗതി</h3>
+            <div class="table-responsive">
+              <table class="stats-table">
+                <thead><tr><th>കമ്മിറ്റി തലം</th><th>ആകെ</th><th>കഴിഞ്ഞവ</th><th>ബാക്കി</th><th>ശതമാനം</th></tr></thead>
+                <tbody id="tier-stats-tbody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <div class="view-tasks-section" style="margin-top:20px;">
+        <div class="view-tasks-section" style="margin-top:16px;">
           <div class="view-tasks-header">
             <h3>📝 തെരഞ്ഞെടുത്ത മാസത്തിലെ ടാസ്‌ക് ചെക്ക്‌ലിസ്റ്റ് & തത്സമയ സ്റ്റാറ്റസ് മാറ്റം</h3>
-            <span style="font-size:11.5px; color:#64748b;">ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ സ്റ്റാറ്റസ് മാറും (Done ➔ In-progress ➔ Pending ➔ Missed)</span>
+            <span style="font-size:11px; color:#64748b;">ബട്ടണിൽ ക്ലിക്ക് ചെയ്താൽ സ്റ്റാറ്റസ് മാറും (Done ➔ In-progress ➔ Pending ➔ Missed)</span>
           </div>
           <div id="all-tasks-container"></div>
         </div>
@@ -1658,20 +1723,20 @@
 
       return `
         <div class="task-interactive-card status-${t.status}">
-          <div style="flex:1;">
-            <h4 style="font-size:13.5px; font-weight:700; margin-bottom:4px;">
+          <div class="task-info-block">
+            <h4 style="font-size:13.5px; font-weight:700; margin-bottom:4px; word-break:break-word;">
               ${t.status === 'done' ? '✅' : (t.status === 'in-progress' ? '🟡' : (t.status === 'missed' ? '⚠️' : '🔴'))} 
               ${t.title}
             </h4>
-            <p style="font-size:12px; color:#64748b; margin-bottom:6px;">${t.desc}</p>
-            <div>
+            <p style="font-size:12px; color:#64748b; margin-bottom:6px; word-break:break-word;">${t.desc}</p>
+            <div style="display:flex; flex-wrap:wrap; gap:3px; align-items:center;">
               <span class="tag-pill">🏢 ${t.wing}</span>
               <span class="tag-pill">👤 ${t.resp}</span>
               ${priorityBadge}
-              ${t.tier === 'core' ? `<span class="tag-pill" style="background:#fee2e2; color:#991b1b; font-weight:800;">കോർ ടാസ്‌ക്</span>` : ''}
+              ${t.tier === 'core' ? `<span class="tag-pill" style="background:#fee2e2; color:#991b1b; font-weight:800;">കോർ ടാസ്‌‌ക്</span>` : ''}
             </div>
           </div>
-          <div>
+          <div class="task-action-block">
             ${actionControl}
           </div>
         </div>
